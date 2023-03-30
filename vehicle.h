@@ -6,6 +6,7 @@
 #include <QGraphicsPolygonItem>
 #include <CONFIG.h>
 #include <QVector2D>
+#include <Projectile.h>
 
 
 
@@ -35,6 +36,7 @@ class Vehicle : public QObject, public QGraphicsPolygonItem,  public Moveable
         const Weapon* MissileWeapons[0] = {};
         const Weapon* RocketWeapons[0] = {};
         const Weapon* AreaWeapons[0] = {};
+
         QVector2D momentum;
         float drag;
 
@@ -47,7 +49,10 @@ class Vehicle : public QObject, public QGraphicsPolygonItem,  public Moveable
         bool isPlayerVehicle;
         virtual void moveForward()
         {
-            momentum.setY(momentum.y() + getForwardSpd());
+
+            QVector2D angularVelocity = QVector2D();
+            momentum.setY(momentum.y() + angularVelocity.y());
+            momentum.setX(momentum.x() + angularVelocity.x());
         }
         virtual void moveBackward()
         {

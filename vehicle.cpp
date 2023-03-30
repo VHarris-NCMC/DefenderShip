@@ -1,6 +1,4 @@
 #include "vehicle.h"
-
-#include <Projectile.h>
 #include <QTimer>
 #include <QVector2D>
 

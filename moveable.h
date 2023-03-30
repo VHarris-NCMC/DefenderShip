@@ -25,7 +25,7 @@ class Moveable
         void setTurnSpeed(float newturnSpeed);
 
     private:
-        float forwardSpeed=1;
+        float forwardSpeed=2;
         float backwardSpeed=-1;
         float strafeSpeed =1;
         float turnSpeed =1;
