@@ -1,0 +1,70 @@
+﻿cl : command line  warning D9035: option 'Gm' has been deprecated and will be removed in a future release
+cl : command line  warning D9025: overriding '/W3' with '/W1'
+  quaternion.cpp
+  glui_window.cpp
+C:\Users\vchar\Downloads\Box2D_v2.3.0\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+  glui_treepanel.cpp
+C:\Users\vchar\Downloads\Box2D_v2.3.0\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+C:\Users\vchar\Downloads\Box2D_v2.3.0\Box2D_v2.3.0\Box2D\glui\glui_treepanel.cpp(169,20): warning C4834: discarding return value of function with 'nodiscard' attribute
+  glui_tree.cpp
+C:\Users\vchar\Downloads\Box2D_v2.3.0\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+  glui_translation.cpp
+C:\Users\vchar\Downloads\Box2D_v2.3.0\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+  glui_textbox.cpp
+C:\Users\vchar\Downloads\Box2D_v2.3.0\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+C:\Users\vchar\Downloads\Box2D_v2.3.0\Box2D_v2.3.0\Box2D\glui\glui_textbox.cpp(1071,8): warning C4477: 'fprintf' : format string '%d' requires an argument of type 'int', but variadic argument 9 has type 'unsigned __int64'
+C:\Users\vchar\Downloads\Box2D_v2.3.0\Box2D_v2.3.0\Box2D\glui\glui_textbox.cpp(1071,8): message : consider using '%zd' in the format string
+  glui_string.cpp
+C:\Users\vchar\Downloads\Box2D_v2.3.0\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+  glui_statictext.cpp
+C:\Users\vchar\Downloads\Box2D_v2.3.0\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+  glui_spinner.cpp
+C:\Users\vchar\Downloads\Box2D_v2.3.0\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+C:\Users\vchar\Downloads\Box2D_v2.3.0\Box2D_v2.3.0\Box2D\glui\glui_spinner.cpp(65,31): warning C4312: 'type cast': conversion from 'int' to 'GLUI_Spinner *' of greater size
+  glui_separator.cpp
+C:\Users\vchar\Downloads\Box2D_v2.3.0\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+  glui_scrollbar.cpp
+C:\Users\vchar\Downloads\Box2D_v2.3.0\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+  glui_rotation.cpp
+C:\Users\vchar\Downloads\Box2D_v2.3.0\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+  glui_rollout.cpp
+C:\Users\vchar\Downloads\Box2D_v2.3.0\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+  glui_radio.cpp
+C:\Users\vchar\Downloads\Box2D_v2.3.0\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+  glui_panel.cpp
+C:\Users\vchar\Downloads\Box2D_v2.3.0\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+  glui_node.cpp
+C:\Users\vchar\Downloads\Box2D_v2.3.0\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+  glui_mouse_iaction.cpp
+C:\Users\vchar\Downloads\Box2D_v2.3.0\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+  glui_listbox.cpp
+C:\Users\vchar\Downloads\Box2D_v2.3.0\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+  glui_list.cpp
+C:\Users\vchar\Downloads\Box2D_v2.3.0\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+  glui_filebrowser.cpp
+C:\Users\vchar\Downloads\Box2D_v2.3.0\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+  Generating Code...
+  Compiling...
+  glui_edittext.cpp
+C:\Users\vchar\Downloads\Box2D_v2.3.0\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+  glui_control.cpp
+C:\Users\vchar\Downloads\Box2D_v2.3.0\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+  glui_commandline.cpp
+C:\Users\vchar\Downloads\Box2D_v2.3.0\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+  glui_column.cpp
+C:\Users\vchar\Downloads\Box2D_v2.3.0\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+  glui_checkbox.cpp
+C:\Users\vchar\Downloads\Box2D_v2.3.0\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+  glui_button.cpp
+C:\Users\vchar\Downloads\Box2D_v2.3.0\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+  glui_bitmap_img_data.cpp
+  glui_bitmaps.cpp
+C:\Users\vchar\Downloads\Box2D_v2.3.0\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+  glui_add_controls.cpp
+C:\Users\vchar\Downloads\Box2D_v2.3.0\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+  glui.cpp
+C:\Users\vchar\Downloads\Box2D_v2.3.0\Box2D_v2.3.0\Box2D\glui\glui.h(914,24): warning C4834: discarding return value of function with 'nodiscard' attribute
+  arcball.cpp
+  algebra3.cpp
+  Generating Code...
+  GLUI.vcxproj -> C:\Users\vchar\Downloads\Box2D_v2.3.0\Box2D_v2.3.0\Box2D\Build\vs2012\bin\Debug\GLUI.lib

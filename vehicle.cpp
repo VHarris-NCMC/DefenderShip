@@ -1,53 +1,99 @@
 #include "vehicle.h"
+#include "Box2D/Dynamics/b2Fixture.h"
+#include <Math.h>
+#include <QQuaternion>
 #include <QTimer>
 #include <QVector2D>
 
 Vehicle::Vehicle(bool isPlayer)
 {
      drawVehicle();
-    drag = 0.90;
      isPlayerVehicle = isPlayer;
      this->setFlag(QGraphicsItem::ItemIsFocusable);
      this->setFocus();
 
      QTimer* timer = new QTimer();
      if (isPlayer){
-        connect(timer,SIGNAL(timeout()),this,SLOT(applyDrag()));
         connect(timer,SIGNAL(timeout()),this,SLOT(move()));
      }
      else{
          connect(timer,SIGNAL(timeout()), this,SLOT(move()));
      }
      timer->start(CONFIG::GameSpeed());
+
 }
 
 void Vehicle::pursuePlayer(){
 
 }
-void Vehicle::applyDrag()
-{
- momentum *= drag;
-}
+
 void Vehicle::move()
 {
-    setPos(x() + momentum.x(), y() + momentum.y());
+    // Adjust Position Of GraphicPolygon
+    auto pos = QPointF(body->GetPosition().x, body->GetPosition().y);
+    setPos(pos);
+
+    // Adjust Angle of GraphicPolygon
+    //b2Vec2 rot = body->GetWorldVector( b2Vec2(0,1) );
+    auto  f_rot = body->GetAngle();
+
+    //auto deg = qreal(qRadiansToDegrees(rot.x));
+
+//if (rot.x < 0)
+//{
+   // deg = 360 -deg;
+//}
+     setRotation(f_rot);
+    qDebug()<< "WorldVector" << (f_rot) << " ";// << rot.y;
+    qDebug() << rotation();
+
+
+}
+void Vehicle::setBody(b2Body* b)
+{
+    body = b;
+    b2PolygonShape dynamicBox;
+    dynamicBox.SetAsBox(1.0f, 1.0f);
+    b2FixtureDef fixtureDef;
+    fixtureDef.shape = &dynamicBox;
+    fixtureDef.density = 1.0f;
+    fixtureDef.friction = 0.5f;
+    body->CreateFixture(&fixtureDef);
+
+}
+
+b2BodyDef* Vehicle::getBodyDef()
+{
+    return &bodyDef;
 }
 
 
 void Vehicle::drawVehicle()
 {
+
+
     QPolygonF polygon;
     for (QPointF p : vertices)
     {
-            polygon << p*4;
+            p*=4;
+            polygon << p;
+
     }
     for (QPointF p : vertices)
     {
         p.rx() = p.rx() *  -1;
         polygon << p*4;
+
     }
+
     polygon << this->vertices[0];
     this->setPolygon(polygon);
+    bodyDef.type = b2_dynamicBody;
+
+    bodyDef.fixedRotation = false;
+    bodyDef.position.Set(this->pos().x(), this->pos().y());
+
+
 
 
 

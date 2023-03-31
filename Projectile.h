@@ -17,7 +17,7 @@ class Projectile : public QObject, public QGraphicsRectItem
         void move();
     private:
         int lifespan;
-        const double speed = 20;
+        const double speed = .2;
 };
 enum DamageType{
     Kinetic = 0, Explosive = 1, Flame = 2, EMP = 3, Sticky = 4

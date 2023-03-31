@@ -6,10 +6,10 @@
 
 
 
-Player::Player()
+Player::Player(Vehicle* v)
 {
     //draw the player vehicle
-    vehicle = new Vehicle(true);
+    vehicle = v;
 
 }
 

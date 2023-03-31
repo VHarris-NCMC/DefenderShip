@@ -8,7 +8,7 @@
 class Player
 {
     public:
-        Player();
+        Player(Vehicle* v);
 
 
         Moveable* getVehicle();

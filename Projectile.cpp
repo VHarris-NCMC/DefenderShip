@@ -13,7 +13,7 @@ Projectile::Projectile(QPointF q)
     timer->start(CONFIG::GameSpeed());
 
     // set lifespan
-    lifespan = 100;
+    lifespan = 1000;
 
 }
 

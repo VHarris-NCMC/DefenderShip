@@ -1,30 +1,35 @@
 #ifndef VEHICLE_H
 #define VEHICLE_H
-
+#include "Box2D/Dynamics/b2Body.h"
 #include "weapon.h"
 #include <inputObject.h>
 #include <QGraphicsPolygonItem>
 #include <CONFIG.h>
 #include <QVector2D>
 #include <Projectile.h>
+#include <Box2D/Collision/Shapes/b2PolygonShape.h>
+
 
 
 
 class Vehicle : public QObject, public QGraphicsPolygonItem,  public Moveable
 {
+
     Q_OBJECT
     public:
        explicit Vehicle(bool isPlayer);
        QGraphicsPolygonItem* getPoly();
+       b2BodyDef bodyDef;
+       b2Body* body;
+       b2BodyDef* getBodyDef();
+       void setBody( b2Body* b);
 
 
 
        bool getIsPlayerVehicle() const;
     public slots:
        void pursuePlayer();
-       void applyDrag();
        void move();
-
 
     private:
         const QPointF vertices[9] ={
@@ -37,9 +42,6 @@ class Vehicle : public QObject, public QGraphicsPolygonItem,  public Moveable
         const Weapon* RocketWeapons[0] = {};
         const Weapon* AreaWeapons[0] = {};
 
-        QVector2D momentum;
-        float drag;
-
 
 
         void drawVehicle();
@@ -50,39 +52,48 @@ class Vehicle : public QObject, public QGraphicsPolygonItem,  public Moveable
         virtual void moveForward()
         {
 
-            QVector2D angularVelocity = QVector2D();
-            momentum.setY(momentum.y() + angularVelocity.y());
-            momentum.setX(momentum.x() + angularVelocity.x());
+            b2Vec2 forceDirection = body->GetWorldVector( b2Vec2(0,1));
+
+            forceDirection = getForwardSpd() * forceDirection;
+            body->ApplyLinearImpulse(forceDirection, body->GetPosition(), true);
+
+            if(body->GetLinearDamping()>=0)
+            {
+                body->SetLinearDamping(body->GetLinearDamping()-1);
+            }
+
+
+
+
         }
+
         virtual void moveBackward()
         {
-            momentum.setY(momentum.y() + getBackwardSpeed());
+
+            if (body->GetLinearDamping() <=5){
+                body->SetLinearDamping(body->GetLinearDamping()+1);
+
+            }
+
+
         }
         virtual void strafeLeft()
         {
-           momentum.setX(momentum.x() - getStrafeSpeed());
+
 
         }
         virtual void strafeRight()
         {
-            momentum.setX(momentum.x() + getStrafeSpeed());
+
         }
         virtual void turnLeft()
         {
 
-            qreal qr = rotation();
-            setRotation(qr+getTurnSpeed());
-
-
-
-
+            body->ApplyTorque(float32(getTurnSpeed()), true);
         }
         virtual void turnRight()
         {
-
-            qreal qr = rotation();
-            setRotation(qr-getTurnSpeed());
-
+            body->ApplyTorque(float32(-getTurnSpeed()), true);
         }
         void fire();
 
