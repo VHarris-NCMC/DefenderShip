@@ -1,41 +1,43 @@
 #include "scenemanager.h"
-#include "qapplication.h"
-
-#include <QGraphicsScene>
-#include <QTimer>
 
 
+
+// Initialize Singleton and mutex
 SceneManager::SceneManager()
 {
 
-   scene = new QGraphicsScene();
-   view = new QGraphicsView(scene);
-   gravity = new b2Vec2(0.0f, 0.0f);
-   world = new b2World(*gravity);
-   groundBodyDef.position.Set(0.0f, 0.0f);
+	InitializeScene();
+
+
+   //groundBodyDef.position.Set(0.0f, 0.0f);
    //groundBody = world->CreateBody(&groundBodyDef);
    //groundBox.SetAsBox(100.0f, 100.0f);
    //groundBody->CreateFixture(&groundBox, 0.0f);
 
-
-   setWindowSize();
-
-    addPlayerToScene();
-
-    QTimer* timer = new QTimer();
-
-
+	//QTimer* timer = new QTimer();
     wakeWorld();
-    connect(timer,SIGNAL(timeout()),this,SLOT(Step()));
-    timer->start(CONFIG::GameSpeed());
+	//connect(timer,SIGNAL(timeout()),this,SLOT(Step()));
+	//timer->start(CONFIG::GameSpeed());
 
 }
-void SceneManager::Step()
+
+QGraphicsScene* SceneManager::getScene() const
 {
-    float timeStep = 1.0f / 60.f;
-    int32 velocityIterations = 10;
-    int32 positionIterations = 8;
-            world->Step(timeStep, velocityIterations, positionIterations);
+	return scene;
+}
+
+b2World* SceneManager::getWorld() const
+{
+	return world;
+}
+void SceneManager::addToScene(QGraphicsItem* graphic)
+{
+
+	scene->addItem(graphic);
+
+	graphic->show();
+
+
 }
 void SceneManager::wakeWorld()
 {
@@ -45,27 +47,26 @@ void SceneManager::wakeWorld()
         b->SetActive(true);
     }
 }
-void SceneManager::addPlayerToScene()
+
+void SceneManager::InitializeScene()
 {
-    Vehicle* v = new Vehicle(true);
-    v->setBody(world->CreateBody(v->getBodyDef()));
-     player = new Player(v);
+	//Initialize Scene
+	scene = new QGraphicsScene();
+	auto rect = new QGraphicsRectItem;
+	rect->setRect(0,0,100,100);
+	scene->addItem(rect);
 
-    scene->addItem(player->getGraphic());
+	// Set Scene size to match window size
+	auto screenSize = WindowManager::Instance()->getCurrentScreenSize();
+	scene->setSceneRect(0-screenSize.rwidth()/2, 0-screenSize.rheight()/2, screenSize.rwidth(), screenSize.rheight());
+	qDebug() << "Scene Dimensions - Height: " <<scene->sceneRect().size().height() << " Width: " << scene->sceneRect().size().width();
+	//Configure World
+	gravity = new b2Vec2(0.0f, 0.0f);
+	world = new b2World(*gravity);
 
+
+	WindowManager::getView()->setScene(scene);
 
 }
 
-void SceneManager::setWindowSize()
-{
-
-
-    QSize screenSize = qApp->primaryScreen()->availableSize();
-
-    view->setFixedSize(screenSize);
-    view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    view->show();
-    scene->setSceneRect(0-screenSize.rwidth()/2, 0-screenSize.rheight()/2, screenSize.rwidth(), screenSize.rheight());
-}
 

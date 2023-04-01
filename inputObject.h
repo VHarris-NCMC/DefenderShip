@@ -3,7 +3,6 @@
 
 #include <QGraphicsScene>
 #include <QKeyEvent>
-#include <moveable.h>
 
 
 class InputObject

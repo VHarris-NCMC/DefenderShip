@@ -1,5 +1,5 @@
 QT       += core gui
-QT          += quick
+
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -56,15 +56,22 @@ SOURCES += \
     Box2D/Dynamics/b2World.cpp \
     Box2D/Dynamics/b2WorldCallbacks.cpp \
     Box2D/Rope/b2Rope.cpp \
-    Projectile.cpp \
-    converter.cpp \
-    enemy.cpp \
+	Projectile.cpp \
+	converter.cpp \
+	enemy.cpp \
+	gameObject.cpp \
+	gamemanager.cpp \
     main.cpp \
-    moveable.cpp \
-    player.cpp \
-    scenemanager.cpp \
-    vehicle.cpp \
-    weapon.cpp
+	mainwindow.cpp \
+	model.cpp \
+	player.cpp \
+	scenemanager.cpp \
+	vehicle.cpp \
+	vehiclepicker.cpp \
+	weapon.cpp \
+	windowmanager.cpp
+
+
 
 
 HEADERS += \
@@ -115,16 +122,24 @@ HEADERS += \
     Box2D/Dynamics/b2World.h \
     Box2D/Dynamics/b2WorldCallbacks.h \
     Box2D/Rope/b2Rope.h \
-    CONFIG.h \
-    CONSTANTS.h \
-    Projectile.h \
-    converter.h \
-    enemy.h \
-    moveable.h \
-    player.h \
-    scenemanager.h \
-    vehicle.h \
-    weapon.h
+	CONFIG.h \
+	CONSTANTS.h \
+	GameManager.h \
+	Projectile.h \
+	STATICMETHODS.h \
+	converter.h \
+	enemy.h \
+	gameObject.h \
+	inputObject.h \
+	mainwindow.h \
+	model.h \
+	player.h \
+	scenemanager.h \
+	vehicle.h \
+	vehiclepicker.h \
+	weapon.h \
+	windowmanager.h
+
 
 
 
@@ -207,8 +222,6 @@ DISTFILES += \
     Box2D/.qtc_clangd/.cache/clangd/index/b2ChainAndCircleContact.h.F5DD85643B88BFC9.idx \
     Box2D/.qtc_clangd/.cache/clangd/index/b2ChainAndPolygonContact.cpp.EDF61FA7D3521C7E.idx \
     Box2D/.qtc_clangd/.cache/clangd/index/b2ChainAndPolygonContact.h.44772CB56822B86A.idx \
-    Box2D/.qtc_clangd/.cache/clangd/index/b2ChainShape.cpp.8779F641CB34A2E4.idx \
-    Box2D/.qtc_clangd/.cache/clangd/index/b2ChainShape.h.A376D95AB9A16A4E.idx \
     Box2D/.qtc_clangd/.cache/clangd/index/b2CircleContact.cpp.D44498852789CCED.idx \
     Box2D/.qtc_clangd/.cache/clangd/index/b2CircleContact.h.4BEFF60266BDD6FE.idx \
     Box2D/.qtc_clangd/.cache/clangd/index/b2CircleShape.cpp.65526B03B6FED82B.idx \
@@ -563,6 +576,9 @@ DISTFILES += \
 
 SUBDIRS += \
     Box2D/B2D.pro
+
+FORMS += \
+	mainwindow.ui
 
 
 

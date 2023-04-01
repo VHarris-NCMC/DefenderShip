@@ -1,27 +1,17 @@
 #ifndef PLAYER_H
 #define PLAYER_H
-
-
+#include <GameObject.h>
 #include <QGraphicsItem>
-#include <Vehicle.h>
+#include <vehicle.h>
 
-class Player
+class Player : public  Vehicle
 {
     public:
-        Player(Vehicle* v);
-
-
-        Moveable* getVehicle();
-        QGraphicsItem* getGraphic();
-
+		Player();
 
 
     private:
-        Vehicle* vehicle;
-
-
-
-
+		int score;
 
 };
 #endif // PLAYER_H

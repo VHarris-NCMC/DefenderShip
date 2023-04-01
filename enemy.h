@@ -1,19 +1,11 @@
 #ifndef ENEMY_H
 #define ENEMY_H
 
-#include <Vehicle.h>
-
-
-
-
-
-class Enemy : public Vehicle
+class Enemy
 {
 
     public:
         explicit Enemy();
-
-
 
 };
 #endif

@@ -1,103 +1,33 @@
-#include "vehicle.h"
-#include "Box2D/Dynamics/b2Fixture.h"
-#include <Math.h>
-#include <QQuaternion>
-#include <QTimer>
-#include <QVector2D>
+#include <vehicle.h>
 
-Vehicle::Vehicle(bool isPlayer)
-{
-     drawVehicle();
-     isPlayerVehicle = isPlayer;
-     this->setFlag(QGraphicsItem::ItemIsFocusable);
-     this->setFocus();
 
-     QTimer* timer = new QTimer();
-     if (isPlayer){
-        connect(timer,SIGNAL(timeout()),this,SLOT(move()));
-     }
-     else{
-         connect(timer,SIGNAL(timeout()), this,SLOT(move()));
-     }
-     timer->start(CONFIG::GameSpeed());
-
-}
-
-void Vehicle::pursuePlayer(){
-
-}
-
+//Updates based on game speed, adjust vehicle graphics position / rotation
 void Vehicle::move()
 {
-    // Adjust Position Of GraphicPolygon
-    auto pos = QPointF(body->GetPosition().x, body->GetPosition().y);
-    setPos(pos);
 
-    // Adjust Angle of GraphicPolygon
-    //b2Vec2 rot = body->GetWorldVector( b2Vec2(0,1) );
-    auto  f_rot = body->GetAngle();
 
-    //auto deg = qreal(qRadiansToDegrees(rot.x));
+}
+Vehicle::Vehicle() : GameObject(new struct Model(1))
+{
+	qDebug() << "Vehicle Constructor 1";
 
-//if (rot.x < 0)
+}
+
+//sets dimensions of body and attaches fixture
+//void Vehicle::setBody(b2Body* b)
 //{
-   // deg = 360 -deg;
+//	 TODO: implement vehicle attributes
+//    body = b;
+//    b2PolygonShape dynamicBox;
+//   dynamicBox.SetAsBox(1.0f, 1.0f);
+
+//	b2FixtureDef fixtureDef;
+//    fixtureDef.shape = &dynamicBox;
+//    fixtureDef.density = 1.0f;
+//    fixtureDef.friction = 0.5f;
+//    body->CreateFixture(&fixtureDef);
+
 //}
-     setRotation(f_rot);
-    qDebug()<< "WorldVector" << (f_rot) << " ";// << rot.y;
-    qDebug() << rotation();
-
-
-}
-void Vehicle::setBody(b2Body* b)
-{
-    body = b;
-    b2PolygonShape dynamicBox;
-    dynamicBox.SetAsBox(1.0f, 1.0f);
-    b2FixtureDef fixtureDef;
-    fixtureDef.shape = &dynamicBox;
-    fixtureDef.density = 1.0f;
-    fixtureDef.friction = 0.5f;
-    body->CreateFixture(&fixtureDef);
-
-}
-
-b2BodyDef* Vehicle::getBodyDef()
-{
-    return &bodyDef;
-}
-
-
-void Vehicle::drawVehicle()
-{
-
-
-    QPolygonF polygon;
-    for (QPointF p : vertices)
-    {
-            p*=4;
-            polygon << p;
-
-    }
-    for (QPointF p : vertices)
-    {
-        p.rx() = p.rx() *  -1;
-        polygon << p*4;
-
-    }
-
-    polygon << this->vertices[0];
-    this->setPolygon(polygon);
-    bodyDef.type = b2_dynamicBody;
-
-    bodyDef.fixedRotation = false;
-    bodyDef.position.Set(this->pos().x(), this->pos().y());
-
-
-
-
-
-}
 
 void Vehicle::keyPressEvent(QKeyEvent* event)
 {
@@ -152,23 +82,21 @@ void Vehicle::handleInput(QKeyEvent* event)
 }
 void Vehicle::fire()
 {
-    for (Weapon* w : BulletWeapons)
-    {
-        auto pos = this->pos();
-        pos.setX(pos.rx() + w->getRelativeX());
-        pos.setY(pos.ry() + w->getRelativeY());
+	//TODO: re-add fire effect
+//    for (Weapon* w : BulletWeapons)
+//    {
+//        auto pos = this->pos();
+//        pos.setX(pos.rx() + w->getRelativeX());
+//        pos.setY(pos.ry() + w->getRelativeY());
 
-        Projectile* p = new Projectile(pos);
-        scene()->addItem(p);
+//        Projectile* p = new Projectile(pos);
+//        scene()->addItem(p);
 
 
 
-    }
+//    }
 }
-bool Vehicle::getIsPlayerVehicle() const
-{
-    return isPlayerVehicle;
-}
+
 
 
 
