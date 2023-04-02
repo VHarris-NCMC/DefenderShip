@@ -47,13 +47,16 @@ release/b2Rope.o
 release/Projectile.o
 release/converter.o
 release/enemy.o
+release/engine.o
 release/gameObject.o
 release/gamemanager.o
+release/inputmanager.o
 release/main.o
 release/mainwindow.o
 release/model.o
 release/player.o
 release/scenemanager.o
+release/updatemanager.o
 release/vehicle.o
 release/vehiclepicker.o
 release/weapon.o
@@ -61,3 +64,5 @@ release/windowmanager.o
 release/moc_Projectile.o
 release/moc_gameObject.o
 release/moc_mainwindow.o
+release/moc_updatemanager.o
+release/moc_vehicle.o

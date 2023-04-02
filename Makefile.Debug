@@ -99,19 +99,24 @@ SOURCES       = Box2D\Collision\Shapes\b2ChainShape.cpp \
 		Projectile.cpp \
 		converter.cpp \
 		enemy.cpp \
+		engine.cpp \
 		gameObject.cpp \
 		gamemanager.cpp \
+		inputmanager.cpp \
 		main.cpp \
 		mainwindow.cpp \
 		model.cpp \
 		player.cpp \
 		scenemanager.cpp \
+		updatemanager.cpp \
 		vehicle.cpp \
 		vehiclepicker.cpp \
 		weapon.cpp \
 		windowmanager.cpp debug\moc_Projectile.cpp \
 		debug\moc_gameObject.cpp \
-		debug\moc_mainwindow.cpp
+		debug\moc_mainwindow.cpp \
+		debug\moc_updatemanager.cpp \
+		debug\moc_vehicle.cpp
 OBJECTS       = debug/b2ChainShape.o \
 		debug/b2CircleShape.o \
 		debug/b2EdgeShape.o \
@@ -161,20 +166,25 @@ OBJECTS       = debug/b2ChainShape.o \
 		debug/Projectile.o \
 		debug/converter.o \
 		debug/enemy.o \
+		debug/engine.o \
 		debug/gameObject.o \
 		debug/gamemanager.o \
+		debug/inputmanager.o \
 		debug/main.o \
 		debug/mainwindow.o \
 		debug/model.o \
 		debug/player.o \
 		debug/scenemanager.o \
+		debug/updatemanager.o \
 		debug/vehicle.o \
 		debug/vehiclepicker.o \
 		debug/weapon.o \
 		debug/windowmanager.o \
 		debug/moc_Projectile.o \
 		debug/moc_gameObject.o \
-		debug/moc_mainwindow.o
+		debug/moc_mainwindow.o \
+		debug/moc_updatemanager.o \
+		debug/moc_vehicle.o
 
 DIST          = Box2D/.qtc_clangd/.cache/clangd/index/B2.config.ADDC6FEE8A85BF70.idx \
 		Box2D/.qtc_clangd/.cache/clangd/index/Box2D.h.6E5191B8B4D41C34.idx \
@@ -651,14 +661,18 @@ DIST          = Box2D/.qtc_clangd/.cache/clangd/index/B2.config.ADDC6FEE8A85BF70
 		GameManager.h \
 		Projectile.h \
 		STATICMETHODS.h \
+		components.h \
 		converter.h \
 		enemy.h \
+		engine.h \
 		gameObject.h \
 		inputObject.h \
+		inputmanager.h \
 		mainwindow.h \
 		model.h \
 		player.h \
 		scenemanager.h \
+		updatemanager.h \
 		vehicle.h \
 		vehiclepicker.h \
 		weapon.h \
@@ -711,13 +725,16 @@ DIST          = Box2D/.qtc_clangd/.cache/clangd/index/B2.config.ADDC6FEE8A85BF70
 		Projectile.cpp \
 		converter.cpp \
 		enemy.cpp \
+		engine.cpp \
 		gameObject.cpp \
 		gamemanager.cpp \
+		inputmanager.cpp \
 		main.cpp \
 		mainwindow.cpp \
 		model.cpp \
 		player.cpp \
 		scenemanager.cpp \
+		updatemanager.cpp \
 		vehicle.cpp \
 		vehiclepicker.cpp \
 		weapon.cpp \
@@ -741,10 +758,10 @@ qmake: FORCE
 qmake_all: FORCE
 
 dist:
-	$(ZIP) Defender.zip $(SOURCES) $(DIST) Defender.pro ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\spec_pre.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\device_config.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\common\sanitize.conf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\common\gcc-base.conf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\common\g++-base.conf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\win32\windows_vulkan_sdk.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\common\windows-vulkan.conf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\common\g++-win32.conf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\common\windows-desktop.conf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\qconfig.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_ext_freetype.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_ext_libjpeg.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_ext_libpng.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_concurrent.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_concurrent_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_core.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_core_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_dbus.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_dbus_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_designer.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_designer_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_designercomponents_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_devicediscovery_support_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_entrypoint_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_fb_support_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_freetype_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_gui.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_gui_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_harfbuzz_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_help.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_help_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_jpeg_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_labsanimation.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_labsanimation_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_labsfolderlistmodel.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_labsfolderlistmodel_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_labsqmlmodels.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_labsqmlmodels_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_labssettings.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_labssettings_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_labssharedimage.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_labssharedimage_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_labswavefrontmesh.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_labswavefrontmesh_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_linguist.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_linguist_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_network.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_network_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_opengl.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_opengl_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_openglwidgets.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_openglwidgets_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_packetprotocol_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_png_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_printsupport.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_printsupport_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_qml.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_qml_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_qmlcompiler_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_qmlcore.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_qmlcore_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_qmldebug_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_qmldom_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_qmlintegration.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_qmlintegration_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_qmllocalstorage.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_qmllocalstorage_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_qmlmodels.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_qmlmodels_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_qmltest.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_qmltest_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_qmlworkerscript.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_qmlworkerscript_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_qmlxmllistmodel.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_qmlxmllistmodel_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_quick.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_quick_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2impl.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2impl_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_quickcontrolstestutilsprivate_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_quickdialogs2.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_quickdialogs2_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_quickdialogs2quickimpl.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_quickdialogs2quickimpl_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_quickdialogs2utils.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_quickdialogs2utils_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_quicklayouts.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_quicklayouts_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_quickparticles_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_quickshapes_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_quicktemplates2.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_quicktestutilsprivate_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_quickwidgets.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_quickwidgets_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_sql.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_sql_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_svg.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_svg_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_svgwidgets.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_svgwidgets_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_testlib.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_testlib_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_tools_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_uiplugin.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_uitools.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_uitools_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_widgets.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_widgets_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_xml.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_xml_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_zlib_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\qt_functions.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\qt_config.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\win32-g++\qmake.conf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\spec_post.prf .qmake.stash ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\exclusive_builds.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\toolchain.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\default_pre.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\win32\default_pre.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\resolve_config.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\exclusive_builds_post.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\default_post.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\build_pass.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\qml_debug.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\entrypoint.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\precompile_header.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\warn_on.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\qt.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\resources_functions.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\resources.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\moc.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\win32\opengl.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\uic.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\qmake_use.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\file_copies.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\win32\windows.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\testcase_targets.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\exceptions.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\yacc.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\lex.prf Defender.pro ..\..\..\..\Qt\6.4.3\mingw_64\lib\Qt6Widgets.prl ..\..\..\..\Qt\6.4.3\mingw_64\lib\Qt6Gui.prl ..\..\..\..\Qt\6.4.3\mingw_64\lib\Qt6Core.prl ..\..\..\..\Qt\6.4.3\mingw_64\lib\Qt6EntryPoint.prl    ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\data\dummy.cpp Box2D\Box2D.h Box2D\Collision\Shapes\b2ChainShape.h Box2D\Collision\Shapes\b2CircleShape.h Box2D\Collision\Shapes\b2EdgeShape.h Box2D\Collision\Shapes\b2PolygonShape.h Box2D\Collision\Shapes\b2Shape.h Box2D\Collision\b2BroadPhase.h Box2D\Collision\b2Collision.h Box2D\Collision\b2Distance.h Box2D\Collision\b2DynamicTree.h Box2D\Collision\b2TimeOfImpact.h Box2D\Common\b2BlockAllocator.h Box2D\Common\b2Draw.h Box2D\Common\b2GrowableStack.h Box2D\Common\b2Math.h Box2D\Common\b2Settings.h Box2D\Common\b2StackAllocator.h Box2D\Common\b2Timer.h Box2D\Dynamics\Contacts\b2ChainAndCircleContact.h Box2D\Dynamics\Contacts\b2ChainAndPolygonContact.h Box2D\Dynamics\Contacts\b2CircleContact.h Box2D\Dynamics\Contacts\b2Contact.h Box2D\Dynamics\Contacts\b2ContactSolver.h Box2D\Dynamics\Contacts\b2EdgeAndCircleContact.h Box2D\Dynamics\Contacts\b2EdgeAndPolygonContact.h Box2D\Dynamics\Contacts\b2PolygonAndCircleContact.h Box2D\Dynamics\Contacts\b2PolygonContact.h Box2D\Dynamics\Joints\b2DistanceJoint.h Box2D\Dynamics\Joints\b2FrictionJoint.h Box2D\Dynamics\Joints\b2GearJoint.h Box2D\Dynamics\Joints\b2Joint.h Box2D\Dynamics\Joints\b2MotorJoint.h Box2D\Dynamics\Joints\b2MouseJoint.h Box2D\Dynamics\Joints\b2PrismaticJoint.h Box2D\Dynamics\Joints\b2PulleyJoint.h Box2D\Dynamics\Joints\b2RevoluteJoint.h Box2D\Dynamics\Joints\b2RopeJoint.h Box2D\Dynamics\Joints\b2WeldJoint.h Box2D\Dynamics\Joints\b2WheelJoint.h Box2D\Dynamics\b2Body.h Box2D\Dynamics\b2ContactManager.h Box2D\Dynamics\b2Fixture.h Box2D\Dynamics\b2Island.h Box2D\Dynamics\b2TimeStep.h Box2D\Dynamics\b2World.h Box2D\Dynamics\b2WorldCallbacks.h Box2D\Rope\b2Rope.h CONFIG.h CONSTANTS.h GameManager.h Projectile.h STATICMETHODS.h converter.h enemy.h gameObject.h inputObject.h mainwindow.h model.h player.h scenemanager.h vehicle.h vehiclepicker.h weapon.h windowmanager.h  Box2D\Collision\Shapes\b2ChainShape.cpp Box2D\Collision\Shapes\b2CircleShape.cpp Box2D\Collision\Shapes\b2EdgeShape.cpp Box2D\Collision\Shapes\b2PolygonShape.cpp Box2D\Collision\b2BroadPhase.cpp Box2D\Collision\b2CollideCircle.cpp Box2D\Collision\b2CollideEdge.cpp Box2D\Collision\b2CollidePolygon.cpp Box2D\Collision\b2Collision.cpp Box2D\Collision\b2Distance.cpp Box2D\Collision\b2DynamicTree.cpp Box2D\Collision\b2TimeOfImpact.cpp Box2D\Common\b2BlockAllocator.cpp Box2D\Common\b2Draw.cpp Box2D\Common\b2Math.cpp Box2D\Common\b2Settings.cpp Box2D\Common\b2StackAllocator.cpp Box2D\Common\b2Timer.cpp Box2D\Dynamics\Contacts\b2ChainAndCircleContact.cpp Box2D\Dynamics\Contacts\b2ChainAndPolygonContact.cpp Box2D\Dynamics\Contacts\b2CircleContact.cpp Box2D\Dynamics\Contacts\b2Contact.cpp Box2D\Dynamics\Contacts\b2ContactSolver.cpp Box2D\Dynamics\Contacts\b2EdgeAndCircleContact.cpp Box2D\Dynamics\Contacts\b2EdgeAndPolygonContact.cpp Box2D\Dynamics\Contacts\b2PolygonAndCircleContact.cpp Box2D\Dynamics\Contacts\b2PolygonContact.cpp Box2D\Dynamics\Joints\b2DistanceJoint.cpp Box2D\Dynamics\Joints\b2FrictionJoint.cpp Box2D\Dynamics\Joints\b2GearJoint.cpp Box2D\Dynamics\Joints\b2Joint.cpp Box2D\Dynamics\Joints\b2MotorJoint.cpp Box2D\Dynamics\Joints\b2MouseJoint.cpp Box2D\Dynamics\Joints\b2PrismaticJoint.cpp Box2D\Dynamics\Joints\b2PulleyJoint.cpp Box2D\Dynamics\Joints\b2RevoluteJoint.cpp Box2D\Dynamics\Joints\b2RopeJoint.cpp Box2D\Dynamics\Joints\b2WeldJoint.cpp Box2D\Dynamics\Joints\b2WheelJoint.cpp Box2D\Dynamics\b2Body.cpp Box2D\Dynamics\b2ContactManager.cpp Box2D\Dynamics\b2Fixture.cpp Box2D\Dynamics\b2Island.cpp Box2D\Dynamics\b2World.cpp Box2D\Dynamics\b2WorldCallbacks.cpp Box2D\Rope\b2Rope.cpp Projectile.cpp converter.cpp enemy.cpp gameObject.cpp gamemanager.cpp main.cpp mainwindow.cpp model.cpp player.cpp scenemanager.cpp vehicle.cpp vehiclepicker.cpp weapon.cpp windowmanager.cpp mainwindow.ui    
+	$(ZIP) Defender.zip $(SOURCES) $(DIST) Defender.pro ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\spec_pre.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\device_config.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\common\sanitize.conf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\common\gcc-base.conf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\common\g++-base.conf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\win32\windows_vulkan_sdk.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\common\windows-vulkan.conf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\common\g++-win32.conf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\common\windows-desktop.conf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\qconfig.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_ext_freetype.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_ext_libjpeg.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_ext_libpng.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_concurrent.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_concurrent_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_core.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_core_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_dbus.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_dbus_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_designer.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_designer_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_designercomponents_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_devicediscovery_support_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_entrypoint_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_fb_support_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_freetype_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_gui.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_gui_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_harfbuzz_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_help.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_help_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_jpeg_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_labsanimation.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_labsanimation_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_labsfolderlistmodel.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_labsfolderlistmodel_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_labsqmlmodels.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_labsqmlmodels_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_labssettings.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_labssettings_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_labssharedimage.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_labssharedimage_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_labswavefrontmesh.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_labswavefrontmesh_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_linguist.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_linguist_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_network.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_network_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_opengl.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_opengl_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_openglwidgets.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_openglwidgets_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_packetprotocol_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_png_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_printsupport.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_printsupport_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_qml.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_qml_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_qmlcompiler_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_qmlcore.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_qmlcore_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_qmldebug_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_qmldom_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_qmlintegration.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_qmlintegration_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_qmllocalstorage.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_qmllocalstorage_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_qmlmodels.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_qmlmodels_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_qmltest.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_qmltest_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_qmlworkerscript.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_qmlworkerscript_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_qmlxmllistmodel.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_qmlxmllistmodel_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_quick.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_quick_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2impl.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_quickcontrols2impl_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_quickcontrolstestutilsprivate_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_quickdialogs2.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_quickdialogs2_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_quickdialogs2quickimpl.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_quickdialogs2quickimpl_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_quickdialogs2utils.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_quickdialogs2utils_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_quicklayouts.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_quicklayouts_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_quickparticles_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_quickshapes_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_quicktemplates2.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_quicktemplates2_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_quicktestutilsprivate_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_quickwidgets.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_quickwidgets_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_sql.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_sql_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_svg.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_svg_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_svgwidgets.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_svgwidgets_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_testlib.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_testlib_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_tools_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_uiplugin.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_uitools.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_uitools_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_widgets.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_widgets_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_xml.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_xml_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\modules\qt_lib_zlib_private.pri ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\qt_functions.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\qt_config.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\win32-g++\qmake.conf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\spec_post.prf .qmake.stash ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\exclusive_builds.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\toolchain.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\default_pre.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\win32\default_pre.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\resolve_config.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\exclusive_builds_post.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\default_post.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\build_pass.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\qml_debug.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\entrypoint.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\precompile_header.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\warn_on.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\qt.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\resources_functions.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\resources.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\moc.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\win32\opengl.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\uic.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\qmake_use.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\file_copies.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\win32\windows.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\testcase_targets.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\exceptions.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\yacc.prf ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\lex.prf Defender.pro ..\..\..\..\Qt\6.4.3\mingw_64\lib\Qt6Widgets.prl ..\..\..\..\Qt\6.4.3\mingw_64\lib\Qt6Gui.prl ..\..\..\..\Qt\6.4.3\mingw_64\lib\Qt6Core.prl ..\..\..\..\Qt\6.4.3\mingw_64\lib\Qt6EntryPoint.prl    ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\data\dummy.cpp Box2D\Box2D.h Box2D\Collision\Shapes\b2ChainShape.h Box2D\Collision\Shapes\b2CircleShape.h Box2D\Collision\Shapes\b2EdgeShape.h Box2D\Collision\Shapes\b2PolygonShape.h Box2D\Collision\Shapes\b2Shape.h Box2D\Collision\b2BroadPhase.h Box2D\Collision\b2Collision.h Box2D\Collision\b2Distance.h Box2D\Collision\b2DynamicTree.h Box2D\Collision\b2TimeOfImpact.h Box2D\Common\b2BlockAllocator.h Box2D\Common\b2Draw.h Box2D\Common\b2GrowableStack.h Box2D\Common\b2Math.h Box2D\Common\b2Settings.h Box2D\Common\b2StackAllocator.h Box2D\Common\b2Timer.h Box2D\Dynamics\Contacts\b2ChainAndCircleContact.h Box2D\Dynamics\Contacts\b2ChainAndPolygonContact.h Box2D\Dynamics\Contacts\b2CircleContact.h Box2D\Dynamics\Contacts\b2Contact.h Box2D\Dynamics\Contacts\b2ContactSolver.h Box2D\Dynamics\Contacts\b2EdgeAndCircleContact.h Box2D\Dynamics\Contacts\b2EdgeAndPolygonContact.h Box2D\Dynamics\Contacts\b2PolygonAndCircleContact.h Box2D\Dynamics\Contacts\b2PolygonContact.h Box2D\Dynamics\Joints\b2DistanceJoint.h Box2D\Dynamics\Joints\b2FrictionJoint.h Box2D\Dynamics\Joints\b2GearJoint.h Box2D\Dynamics\Joints\b2Joint.h Box2D\Dynamics\Joints\b2MotorJoint.h Box2D\Dynamics\Joints\b2MouseJoint.h Box2D\Dynamics\Joints\b2PrismaticJoint.h Box2D\Dynamics\Joints\b2PulleyJoint.h Box2D\Dynamics\Joints\b2RevoluteJoint.h Box2D\Dynamics\Joints\b2RopeJoint.h Box2D\Dynamics\Joints\b2WeldJoint.h Box2D\Dynamics\Joints\b2WheelJoint.h Box2D\Dynamics\b2Body.h Box2D\Dynamics\b2ContactManager.h Box2D\Dynamics\b2Fixture.h Box2D\Dynamics\b2Island.h Box2D\Dynamics\b2TimeStep.h Box2D\Dynamics\b2World.h Box2D\Dynamics\b2WorldCallbacks.h Box2D\Rope\b2Rope.h CONFIG.h CONSTANTS.h GameManager.h Projectile.h STATICMETHODS.h components.h converter.h enemy.h engine.h gameObject.h inputObject.h inputmanager.h mainwindow.h model.h player.h scenemanager.h updatemanager.h vehicle.h vehiclepicker.h weapon.h windowmanager.h  Box2D\Collision\Shapes\b2ChainShape.cpp Box2D\Collision\Shapes\b2CircleShape.cpp Box2D\Collision\Shapes\b2EdgeShape.cpp Box2D\Collision\Shapes\b2PolygonShape.cpp Box2D\Collision\b2BroadPhase.cpp Box2D\Collision\b2CollideCircle.cpp Box2D\Collision\b2CollideEdge.cpp Box2D\Collision\b2CollidePolygon.cpp Box2D\Collision\b2Collision.cpp Box2D\Collision\b2Distance.cpp Box2D\Collision\b2DynamicTree.cpp Box2D\Collision\b2TimeOfImpact.cpp Box2D\Common\b2BlockAllocator.cpp Box2D\Common\b2Draw.cpp Box2D\Common\b2Math.cpp Box2D\Common\b2Settings.cpp Box2D\Common\b2StackAllocator.cpp Box2D\Common\b2Timer.cpp Box2D\Dynamics\Contacts\b2ChainAndCircleContact.cpp Box2D\Dynamics\Contacts\b2ChainAndPolygonContact.cpp Box2D\Dynamics\Contacts\b2CircleContact.cpp Box2D\Dynamics\Contacts\b2Contact.cpp Box2D\Dynamics\Contacts\b2ContactSolver.cpp Box2D\Dynamics\Contacts\b2EdgeAndCircleContact.cpp Box2D\Dynamics\Contacts\b2EdgeAndPolygonContact.cpp Box2D\Dynamics\Contacts\b2PolygonAndCircleContact.cpp Box2D\Dynamics\Contacts\b2PolygonContact.cpp Box2D\Dynamics\Joints\b2DistanceJoint.cpp Box2D\Dynamics\Joints\b2FrictionJoint.cpp Box2D\Dynamics\Joints\b2GearJoint.cpp Box2D\Dynamics\Joints\b2Joint.cpp Box2D\Dynamics\Joints\b2MotorJoint.cpp Box2D\Dynamics\Joints\b2MouseJoint.cpp Box2D\Dynamics\Joints\b2PrismaticJoint.cpp Box2D\Dynamics\Joints\b2PulleyJoint.cpp Box2D\Dynamics\Joints\b2RevoluteJoint.cpp Box2D\Dynamics\Joints\b2RopeJoint.cpp Box2D\Dynamics\Joints\b2WeldJoint.cpp Box2D\Dynamics\Joints\b2WheelJoint.cpp Box2D\Dynamics\b2Body.cpp Box2D\Dynamics\b2ContactManager.cpp Box2D\Dynamics\b2Fixture.cpp Box2D\Dynamics\b2Island.cpp Box2D\Dynamics\b2World.cpp Box2D\Dynamics\b2WorldCallbacks.cpp Box2D\Rope\b2Rope.cpp Projectile.cpp converter.cpp enemy.cpp engine.cpp gameObject.cpp gamemanager.cpp inputmanager.cpp main.cpp mainwindow.cpp model.cpp player.cpp scenemanager.cpp updatemanager.cpp vehicle.cpp vehiclepicker.cpp weapon.cpp windowmanager.cpp mainwindow.ui    
 
 clean: compiler_clean 
-	-$(DEL_FILE) debug\b2ChainShape.o debug\b2CircleShape.o debug\b2EdgeShape.o debug\b2PolygonShape.o debug\b2BroadPhase.o debug\b2CollideCircle.o debug\b2CollideEdge.o debug\b2CollidePolygon.o debug\b2Collision.o debug\b2Distance.o debug\b2DynamicTree.o debug\b2TimeOfImpact.o debug\b2BlockAllocator.o debug\b2Draw.o debug\b2Math.o debug\b2Settings.o debug\b2StackAllocator.o debug\b2Timer.o debug\b2ChainAndCircleContact.o debug\b2ChainAndPolygonContact.o debug\b2CircleContact.o debug\b2Contact.o debug\b2ContactSolver.o debug\b2EdgeAndCircleContact.o debug\b2EdgeAndPolygonContact.o debug\b2PolygonAndCircleContact.o debug\b2PolygonContact.o debug\b2DistanceJoint.o debug\b2FrictionJoint.o debug\b2GearJoint.o debug\b2Joint.o debug\b2MotorJoint.o debug\b2MouseJoint.o debug\b2PrismaticJoint.o debug\b2PulleyJoint.o debug\b2RevoluteJoint.o debug\b2RopeJoint.o debug\b2WeldJoint.o debug\b2WheelJoint.o debug\b2Body.o debug\b2ContactManager.o debug\b2Fixture.o debug\b2Island.o debug\b2World.o debug\b2WorldCallbacks.o debug\b2Rope.o debug\Projectile.o debug\converter.o debug\enemy.o debug\gameObject.o debug\gamemanager.o debug\main.o debug\mainwindow.o debug\model.o debug\player.o debug\scenemanager.o debug\vehicle.o debug\vehiclepicker.o debug\weapon.o debug\windowmanager.o debug\moc_Projectile.o debug\moc_gameObject.o debug\moc_mainwindow.o
+	-$(DEL_FILE) debug\b2ChainShape.o debug\b2CircleShape.o debug\b2EdgeShape.o debug\b2PolygonShape.o debug\b2BroadPhase.o debug\b2CollideCircle.o debug\b2CollideEdge.o debug\b2CollidePolygon.o debug\b2Collision.o debug\b2Distance.o debug\b2DynamicTree.o debug\b2TimeOfImpact.o debug\b2BlockAllocator.o debug\b2Draw.o debug\b2Math.o debug\b2Settings.o debug\b2StackAllocator.o debug\b2Timer.o debug\b2ChainAndCircleContact.o debug\b2ChainAndPolygonContact.o debug\b2CircleContact.o debug\b2Contact.o debug\b2ContactSolver.o debug\b2EdgeAndCircleContact.o debug\b2EdgeAndPolygonContact.o debug\b2PolygonAndCircleContact.o debug\b2PolygonContact.o debug\b2DistanceJoint.o debug\b2FrictionJoint.o debug\b2GearJoint.o debug\b2Joint.o debug\b2MotorJoint.o debug\b2MouseJoint.o debug\b2PrismaticJoint.o debug\b2PulleyJoint.o debug\b2RevoluteJoint.o debug\b2RopeJoint.o debug\b2WeldJoint.o debug\b2WheelJoint.o debug\b2Body.o debug\b2ContactManager.o debug\b2Fixture.o debug\b2Island.o debug\b2World.o debug\b2WorldCallbacks.o debug\b2Rope.o debug\Projectile.o debug\converter.o debug\enemy.o debug\engine.o debug\gameObject.o debug\gamemanager.o debug\inputmanager.o debug\main.o debug\mainwindow.o debug\model.o debug\player.o debug\scenemanager.o debug\updatemanager.o debug\vehicle.o debug\vehiclepicker.o debug\weapon.o debug\windowmanager.o debug\moc_Projectile.o debug\moc_gameObject.o debug\moc_mainwindow.o debug\moc_updatemanager.o debug\moc_vehicle.o
 
 distclean: clean 
 	-$(DEL_FILE) .qmake.stash
@@ -769,9 +786,9 @@ compiler_moc_predefs_clean:
 debug/moc_predefs.h: ../../../../Qt/6.4.3/mingw_64/mkspecs/features/data/dummy.cpp
 	g++ -fno-keep-inline-dllexport -g -std=gnu++1z -Wall -Wextra -Wextra -dM -E -o debug\moc_predefs.h ..\..\..\..\Qt\6.4.3\mingw_64\mkspecs\features\data\dummy.cpp
 
-compiler_moc_header_make_all: debug/moc_Projectile.cpp debug/moc_gameObject.cpp debug/moc_mainwindow.cpp
+compiler_moc_header_make_all: debug/moc_Projectile.cpp debug/moc_gameObject.cpp debug/moc_mainwindow.cpp debug/moc_updatemanager.cpp debug/moc_vehicle.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) debug\moc_Projectile.cpp debug\moc_gameObject.cpp debug\moc_mainwindow.cpp
+	-$(DEL_FILE) debug\moc_Projectile.cpp debug\moc_gameObject.cpp debug\moc_mainwindow.cpp debug\moc_updatemanager.cpp debug\moc_vehicle.cpp
 debug/moc_Projectile.cpp: Projectile.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/QGraphicsRectItem \
 		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qgraphicsitem.h \
@@ -1079,6 +1096,7 @@ debug/moc_gameObject.cpp: gameObject.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtGui/qinputmethod.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtCore/qlocale.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtGui/qguiapplication_platform.h \
+		Box2D/Common/b2Draw.h \
 		vehiclepicker.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtCore/QPointF \
 		Model.h \
@@ -1227,6 +1245,420 @@ debug/moc_mainwindow.cpp: mainwindow.h \
 		debug/moc_predefs.h \
 		../../../../Qt/6.4.3/mingw_64/bin/moc.exe
 	C:\Qt\6.4.3\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/vchar/Documents/Defender/debug/moc_predefs.h -IC:/Qt/6.4.3/mingw_64/mkspecs/win32-g++ -IC:/Users/vchar/Documents/Defender -IC:/Qt/6.4.3/mingw_64/include -IC:/Qt/6.4.3/mingw_64/include/QtWidgets -IC:/Qt/6.4.3/mingw_64/include/QtGui -IC:/Qt/6.4.3/mingw_64/include/QtCore -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include mainwindow.h -o debug\moc_mainwindow.cpp
+
+debug/moc_updatemanager.cpp: updatemanager.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/QObject \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qobject.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qobjectdefs.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qnamespace.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qglobal.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qconfig-bootstrapped.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qconfig.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qtcore-config.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qtconfigmacros.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qtcoreexports.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qsystemdetection.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qprocessordetection.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qcompilerdetection.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qtypeinfo.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qcontainerfwd.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qsysinfo.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qlogging.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qflags.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qcompare_impl.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qatomic.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qbasicatomic.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qatomic_bootstrap.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qgenericatomic.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qatomic_cxx11.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qglobalstatic.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qnumeric.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qversiontagging.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qforeach.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qtmetamacros.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qobjectdefs_impl.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qstring.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qchar.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qstringview.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qbytearray.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qrefcount.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qarraydata.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qpair.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qarraydatapointer.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qarraydataops.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qcontainertools_impl.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qbytearrayalgorithms.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qbytearrayview.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qstringfwd.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qstringliteral.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qstringalgorithms.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qanystringview.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qutf8stringview.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qstringtokenizer.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qstringbuilder.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qlist.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qhashfunctions.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qiterator.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qbytearraylist.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qstringlist.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qalgorithms.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qstringmatcher.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qcoreevent.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qscopedpointer.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qmetatype.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qcompare.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qscopeguard.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qdatastream.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qiodevicebase.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qiterable.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qmetacontainer.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qcontainerinfo.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qtaggedpointer.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qmath.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qobject_impl.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qbindingstorage.h \
+		scenemanager.h \
+		Box2D/Collision/Shapes/b2PolygonShape.h \
+		Box2D/Collision/Shapes/b2Shape.h \
+		Box2D/Common/b2BlockAllocator.h \
+		Box2D/Common/b2Settings.h \
+		Box2D/Common/b2Math.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/QVector2D \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qvectornd.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qtguiglobal.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qtgui-config.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qtguiexports.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qpoint.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qrect.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qmargins.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qsize.h \
+		Box2D/Collision/b2Collision.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/QGraphicsView \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qgraphicsview.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qtwidgetsglobal.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qtwidgets-config.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qtwidgetsexports.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qpainter.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qpixmap.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qpaintdevice.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qwindowdefs.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qwindowdefs_win.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qcolor.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qrgb.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qrgba64.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qsharedpointer.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qshareddata.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qsharedpointer_impl.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qimage.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qpixelformat.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qtransform.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qpolygon.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qregion.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qline.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qtextoption.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qpen.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qbrush.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qfontinfo.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qfont.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qfontmetrics.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qscrollarea.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qframe.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qwidget.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qaction.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qkeysequence.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qicon.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qvariant.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qdebug.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qtextstream.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qstringconverter_base.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qcontiguouscache.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qmap.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qshareddata_impl.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qset.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qhash.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qvarlengtharray.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qpalette.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qsizepolicy.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qcursor.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qbitmap.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qevent.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qiodevice.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qpointer.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qurl.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qeventpoint.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qvector2d.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qpointingdevice.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qinputdevice.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qscreen.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/QList \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/QRect \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/QSize \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/QSizeF \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/QTransform \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qnativeinterface.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qgraphicsscene.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/QGraphicsItem \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qgraphicsitem.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qpainterpath.h \
+		Box2D/Dynamics/b2Body.h \
+		Box2D/Dynamics/b2World.h \
+		Box2D/Common/b2StackAllocator.h \
+		Box2D/Dynamics/b2ContactManager.h \
+		Box2D/Collision/b2BroadPhase.h \
+		Box2D/Collision/b2DynamicTree.h \
+		Box2D/Common/b2GrowableStack.h \
+		Box2D/Dynamics/b2WorldCallbacks.h \
+		Box2D/Dynamics/b2TimeStep.h \
+		windowmanager.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/QScreen \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/QApplication \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qapplication.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qcoreapplication.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qeventloop.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qcoreapplication_platform.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qjnitypes.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qfuture.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qfutureinterface.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qmutex.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qtsan_impl.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qresultstore.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qfuture_impl.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qthreadpool.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qthread.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qdeadlinetimer.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qelapsedtimer.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qrunnable.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qexception.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qpromise.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qguiapplication.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qinputmethod.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qlocale.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qguiapplication_platform.h \
+		CONFIG.h \
+		Box2D/Common/b2Draw.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qtimer.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qbasictimer.h \
+		debug/moc_predefs.h \
+		../../../../Qt/6.4.3/mingw_64/bin/moc.exe
+	C:\Qt\6.4.3\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/vchar/Documents/Defender/debug/moc_predefs.h -IC:/Qt/6.4.3/mingw_64/mkspecs/win32-g++ -IC:/Users/vchar/Documents/Defender -IC:/Qt/6.4.3/mingw_64/include -IC:/Qt/6.4.3/mingw_64/include/QtWidgets -IC:/Qt/6.4.3/mingw_64/include/QtGui -IC:/Qt/6.4.3/mingw_64/include/QtCore -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include updatemanager.h -o debug\moc_updatemanager.cpp
+
+debug/moc_vehicle.cpp: vehicle.h \
+		Box2D/Dynamics/b2Body.h \
+		Box2D/Common/b2Math.h \
+		Box2D/Common/b2Settings.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/QVector2D \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qvectornd.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qtguiglobal.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qglobal.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qconfig-bootstrapped.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qconfig.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qtcore-config.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qtconfigmacros.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qtcoreexports.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qsystemdetection.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qprocessordetection.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qcompilerdetection.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qtypeinfo.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qcontainerfwd.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qsysinfo.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qlogging.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qflags.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qcompare_impl.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qatomic.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qbasicatomic.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qatomic_bootstrap.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qgenericatomic.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qatomic_cxx11.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qglobalstatic.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qnumeric.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qversiontagging.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qforeach.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qtgui-config.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qtguiexports.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qpoint.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qnamespace.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qtmetamacros.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qrect.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qhashfunctions.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qstring.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qchar.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qstringview.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qbytearray.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qrefcount.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qarraydata.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qpair.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qarraydatapointer.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qarraydataops.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qcontainertools_impl.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qbytearrayalgorithms.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qbytearrayview.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qstringfwd.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qstringliteral.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qstringalgorithms.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qanystringview.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qutf8stringview.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qstringtokenizer.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qstringbuilder.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qmargins.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qsize.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qmath.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qalgorithms.h \
+		Box2D/Collision/Shapes/b2Shape.h \
+		Box2D/Common/b2BlockAllocator.h \
+		Box2D/Collision/b2Collision.h \
+		components.h \
+		weapon.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/QPolygonF \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qpolygon.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qlist.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qiterator.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qbytearraylist.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qstringlist.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qstringmatcher.h \
+		inputObject.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/QGraphicsScene \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qgraphicsscene.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qtwidgetsglobal.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qtwidgets-config.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qtwidgetsexports.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qobject.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qobjectdefs.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qobjectdefs_impl.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qcoreevent.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qscopedpointer.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qmetatype.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qcompare.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qscopeguard.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qdatastream.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qiodevicebase.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qiterable.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qmetacontainer.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qcontainerinfo.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qtaggedpointer.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qobject_impl.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qbindingstorage.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qbrush.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qcolor.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qrgb.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qrgba64.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qimage.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qpaintdevice.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qwindowdefs.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qwindowdefs_win.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qpixelformat.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qtransform.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qregion.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qline.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qpixmap.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qsharedpointer.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qshareddata.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qsharedpointer_impl.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qfont.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qpen.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/QKeyEvent \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qevent.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qiodevice.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qpointer.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qurl.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qvariant.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qdebug.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qtextstream.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qstringconverter_base.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qcontiguouscache.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qmap.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qshareddata_impl.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qset.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qhash.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qvarlengtharray.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qeventpoint.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qvector2d.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qpointingdevice.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qinputdevice.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qscreen.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/QList \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/QObject \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/QRect \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/QSize \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/QSizeF \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/QTransform \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qnativeinterface.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qkeysequence.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/QGraphicsPolygonItem \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qgraphicsitem.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qpainterpath.h \
+		Projectile.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/QGraphicsRectItem \
+		GameObject.h \
+		converter.h \
+		CONFIG.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qtimer.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qbasictimer.h \
+		scenemanager.h \
+		Box2D/Collision/Shapes/b2PolygonShape.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/QGraphicsView \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qgraphicsview.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qpainter.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qtextoption.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qfontinfo.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qfontmetrics.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qscrollarea.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qframe.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qwidget.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qaction.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qicon.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qpalette.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qsizepolicy.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qcursor.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qbitmap.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/QGraphicsItem \
+		Box2D/Dynamics/b2World.h \
+		Box2D/Common/b2StackAllocator.h \
+		Box2D/Dynamics/b2ContactManager.h \
+		Box2D/Collision/b2BroadPhase.h \
+		Box2D/Collision/b2DynamicTree.h \
+		Box2D/Common/b2GrowableStack.h \
+		Box2D/Dynamics/b2WorldCallbacks.h \
+		Box2D/Dynamics/b2TimeStep.h \
+		windowmanager.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/QScreen \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/QApplication \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qapplication.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qcoreapplication.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qeventloop.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qcoreapplication_platform.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qjnitypes.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qfuture.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qfutureinterface.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qmutex.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qtsan_impl.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qresultstore.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qfuture_impl.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qthreadpool.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qthread.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qdeadlinetimer.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qelapsedtimer.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qrunnable.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qexception.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qpromise.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qguiapplication.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qinputmethod.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qlocale.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qguiapplication_platform.h \
+		Box2D/Common/b2Draw.h \
+		vehiclepicker.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/QPointF \
+		Model.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/QQuaternion \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qquaternion.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qgenericmatrix.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qvector3d.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qvector4d.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/QTimer \
+		debug/moc_predefs.h \
+		../../../../Qt/6.4.3/mingw_64/bin/moc.exe
+	C:\Qt\6.4.3\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/vchar/Documents/Defender/debug/moc_predefs.h -IC:/Qt/6.4.3/mingw_64/mkspecs/win32-g++ -IC:/Users/vchar/Documents/Defender -IC:/Qt/6.4.3/mingw_64/include -IC:/Qt/6.4.3/mingw_64/include/QtWidgets -IC:/Qt/6.4.3/mingw_64/include/QtGui -IC:/Qt/6.4.3/mingw_64/include/QtCore -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include vehicle.h -o debug\moc_vehicle.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
@@ -4423,6 +4855,68 @@ debug/converter.o: converter.cpp converter.h \
 debug/enemy.o: enemy.cpp enemy.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\enemy.o enemy.cpp
 
+debug/engine.o: engine.cpp engine.h \
+		Box2D/Common/b2Math.h \
+		Box2D/Common/b2Settings.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/QVector2D \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qvectornd.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qtguiglobal.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qglobal.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qconfig-bootstrapped.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qconfig.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qtcore-config.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qtconfigmacros.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qtcoreexports.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qsystemdetection.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qprocessordetection.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qcompilerdetection.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qtypeinfo.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qcontainerfwd.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qsysinfo.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qlogging.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qflags.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qcompare_impl.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qatomic.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qbasicatomic.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qatomic_bootstrap.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qgenericatomic.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qatomic_cxx11.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qglobalstatic.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qnumeric.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qversiontagging.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qforeach.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qtgui-config.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qtguiexports.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qpoint.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qnamespace.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qtmetamacros.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qrect.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qhashfunctions.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qstring.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qchar.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qstringview.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qbytearray.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qrefcount.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qarraydata.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qpair.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qarraydatapointer.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qarraydataops.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qcontainertools_impl.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qbytearrayalgorithms.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qbytearrayview.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qstringfwd.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qstringliteral.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qstringalgorithms.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qanystringview.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qutf8stringview.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qstringtokenizer.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qstringbuilder.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qmargins.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qsize.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qmath.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qalgorithms.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\engine.o engine.cpp
+
 debug/gameObject.o: gameObject.cpp gameObject.h \
 		Box2D/Dynamics/b2Body.h \
 		Box2D/Common/b2Math.h \
@@ -4616,10 +5110,12 @@ debug/gameObject.o: gameObject.cpp gameObject.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtGui/qinputmethod.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtCore/qlocale.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtGui/qguiapplication_platform.h \
+		Box2D/Common/b2Draw.h \
 		vehiclepicker.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtCore/QPointF \
 		Model.h \
-		../../../../Qt/6.4.3/mingw_64/include/QtCore/qDebug
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qDebug \
+		Box2D/Dynamics/b2Fixture.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\gameObject.o gameObject.cpp
 
 debug/gamemanager.o: gamemanager.cpp gamemanager.h \
@@ -4817,10 +5313,14 @@ debug/gamemanager.o: gamemanager.cpp gamemanager.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtGui/qinputmethod.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtCore/qlocale.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtGui/qguiapplication_platform.h \
+		Box2D/Common/b2Draw.h \
 		vehiclepicker.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtCore/QPointF \
 		Model.h \
+		InputManager.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/QWidget \
 		vehicle.h \
+		components.h \
 		weapon.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtGui/QPolygonF \
 		inputObject.h \
@@ -4835,8 +5335,147 @@ debug/gamemanager.o: gamemanager.cpp gamemanager.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtGui/qvector3d.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtGui/qvector4d.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtCore/QTimer \
-		VehiclePicker.h
+		inputmanager.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\gamemanager.o gamemanager.cpp
+
+debug/inputmanager.o: inputmanager.cpp inputmanager.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/QWidget \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qwidget.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qtwidgetsglobal.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qtguiglobal.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qglobal.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qconfig-bootstrapped.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qconfig.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qtcore-config.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qtconfigmacros.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qtcoreexports.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qsystemdetection.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qprocessordetection.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qcompilerdetection.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qtypeinfo.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qcontainerfwd.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qsysinfo.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qlogging.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qflags.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qcompare_impl.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qatomic.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qbasicatomic.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qatomic_bootstrap.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qgenericatomic.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qatomic_cxx11.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qglobalstatic.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qnumeric.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qversiontagging.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qforeach.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qtgui-config.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qtguiexports.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qtwidgets-config.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qtwidgetsexports.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qwindowdefs.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qobjectdefs.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qnamespace.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qtmetamacros.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qobjectdefs_impl.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qwindowdefs_win.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qobject.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qstring.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qchar.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qstringview.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qbytearray.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qrefcount.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qarraydata.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qpair.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qarraydatapointer.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qarraydataops.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qcontainertools_impl.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qbytearrayalgorithms.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qbytearrayview.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qstringfwd.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qstringliteral.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qstringalgorithms.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qanystringview.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qutf8stringview.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qstringtokenizer.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qstringbuilder.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qlist.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qhashfunctions.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qiterator.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qbytearraylist.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qstringlist.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qalgorithms.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qstringmatcher.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qcoreevent.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qscopedpointer.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qmetatype.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qcompare.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qscopeguard.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qdatastream.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qiodevicebase.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qiterable.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qmetacontainer.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qcontainerinfo.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qtaggedpointer.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qmath.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qobject_impl.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qbindingstorage.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qmargins.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qaction.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qkeysequence.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qicon.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qsize.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qpixmap.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qpaintdevice.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qrect.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qpoint.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qcolor.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qrgb.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qrgba64.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qsharedpointer.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qshareddata.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qsharedpointer_impl.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qimage.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qpixelformat.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qtransform.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qpolygon.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qregion.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qline.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qvariant.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qdebug.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qtextstream.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qstringconverter_base.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qcontiguouscache.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qmap.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qshareddata_impl.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qset.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qhash.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qvarlengtharray.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qpalette.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qbrush.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qfont.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qfontmetrics.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qfontinfo.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qsizepolicy.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qcursor.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qbitmap.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qevent.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qiodevice.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qpointer.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qurl.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qeventpoint.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qvector2d.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qvectornd.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qpointingdevice.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qinputdevice.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qscreen.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/QList \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/QObject \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/QRect \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/QSize \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/QSizeF \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/QTransform \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qnativeinterface.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qDebug
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\inputmanager.o inputmanager.cpp
 
 debug/main.o: main.cpp GameManager.h \
 		Player.h \
@@ -5033,10 +5672,14 @@ debug/main.o: main.cpp GameManager.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtGui/qinputmethod.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtCore/qlocale.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtGui/qguiapplication_platform.h \
+		Box2D/Common/b2Draw.h \
 		vehiclepicker.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtCore/QPointF \
 		Model.h \
+		InputManager.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/QWidget \
 		vehicle.h \
+		components.h \
 		weapon.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtGui/QPolygonF \
 		inputObject.h \
@@ -5051,11 +5694,11 @@ debug/main.o: main.cpp GameManager.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtGui/qvector3d.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtGui/qvector4d.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtCore/QTimer \
-		VehiclePicker.h \
+		inputmanager.h \
 		SceneManager.h \
+		UpdateManager.h \
 		WindowManager.h \
 		Box2D/Box2D.h \
-		Box2D/Common/b2Draw.h \
 		Box2D/Common/b2Timer.h \
 		Box2D/Collision/Shapes/b2CircleShape.h \
 		Box2D/Collision/Shapes/b2EdgeShape.h \
@@ -5216,7 +5859,37 @@ debug/mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtGui/QTransform \
 		../../../../Qt/6.4.3/mingw_64/include/QtCore/qnativeinterface.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qtabwidget.h \
-		ui_mainwindow.h
+		ui_mainwindow.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/QVariant \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/QApplication \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qapplication.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qcoreapplication.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qeventloop.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qcoreapplication_platform.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qjnitypes.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qfuture.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qfutureinterface.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qmutex.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qtsan_impl.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qresultstore.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qfuture_impl.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qthreadpool.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qthread.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qdeadlinetimer.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qelapsedtimer.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qrunnable.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qexception.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qpromise.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qguiapplication.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qinputmethod.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qlocale.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qguiapplication_platform.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/QMenuBar \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qmenubar.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qmenu.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/QStatusBar \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qstatusbar.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/QWidget
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\mainwindow.o mainwindow.cpp
 
 debug/model.o: model.cpp model.h \
@@ -5247,7 +5920,7 @@ debug/model.o: model.cpp model.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtCore/qversiontagging.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtCore/qforeach.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtCore/qtmetamacros.h \
-		Box2D/Dynamics/b2Body.h \
+		converter.h \
 		Box2D/Common/b2Math.h \
 		Box2D/Common/b2Settings.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtGui/QVector2D \
@@ -5280,9 +5953,63 @@ debug/model.o: model.cpp model.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtCore/qsize.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtCore/qmath.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtCore/qalgorithms.h \
+		Box2D/Dynamics/b2Body.h \
 		Box2D/Collision/Shapes/b2Shape.h \
 		Box2D/Common/b2BlockAllocator.h \
-		Box2D/Collision/b2Collision.h
+		Box2D/Collision/b2Collision.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qdebug.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qtextstream.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qiodevicebase.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qscopedpointer.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qstringconverter_base.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qcontiguouscache.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qsharedpointer.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qshareddata.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qsharedpointer_impl.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qmetatype.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qcompare.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qscopeguard.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qdatastream.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qiterable.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qmetacontainer.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qcontainerinfo.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qtaggedpointer.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qobjectdefs.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qobjectdefs_impl.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qlist.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qiterator.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qbytearraylist.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qstringlist.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qstringmatcher.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qmap.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qshareddata_impl.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qset.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qhash.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qvarlengtharray.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qgraphicsitem.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qtwidgetsglobal.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qtwidgets-config.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qtwidgetsexports.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qobject.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qcoreevent.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qobject_impl.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qbindingstorage.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qvariant.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qpainterpath.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qtransform.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qpolygon.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qregion.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qwindowdefs.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qwindowdefs_win.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qline.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qpixmap.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qpaintdevice.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qcolor.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qrgb.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qrgba64.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qimage.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qpixelformat.h \
+		Box2D/Collision/Shapes/b2PolygonShape.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\model.o model.cpp
 
 debug/player.o: player.cpp Player.h \
@@ -5479,10 +6206,14 @@ debug/player.o: player.cpp Player.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtGui/qinputmethod.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtCore/qlocale.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtGui/qguiapplication_platform.h \
+		Box2D/Common/b2Draw.h \
 		vehiclepicker.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtCore/QPointF \
 		Model.h \
+		InputManager.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/QWidget \
 		vehicle.h \
+		components.h \
 		weapon.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtGui/QPolygonF \
 		inputObject.h \
@@ -5496,8 +6227,7 @@ debug/player.o: player.cpp Player.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtGui/qgenericmatrix.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtGui/qvector3d.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtGui/qvector4d.h \
-		../../../../Qt/6.4.3/mingw_64/include/QtCore/QTimer \
-		VehiclePicker.h
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/QTimer
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\player.o player.cpp
 
 debug/scenemanager.o: scenemanager.cpp scenemanager.h \
@@ -5687,8 +6417,207 @@ debug/scenemanager.o: scenemanager.cpp scenemanager.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtGui/qguiapplication.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtGui/qinputmethod.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtCore/qlocale.h \
-		../../../../Qt/6.4.3/mingw_64/include/QtGui/qguiapplication_platform.h
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qguiapplication_platform.h \
+		CONFIG.h \
+		Box2D/Common/b2Draw.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qtimer.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qbasictimer.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\scenemanager.o scenemanager.cpp
+
+debug/updatemanager.o: updatemanager.cpp updatemanager.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/QObject \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qobject.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qobjectdefs.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qnamespace.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qglobal.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qconfig-bootstrapped.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qconfig.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qtcore-config.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qtconfigmacros.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qtcoreexports.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qsystemdetection.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qprocessordetection.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qcompilerdetection.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qtypeinfo.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qcontainerfwd.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qsysinfo.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qlogging.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qflags.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qcompare_impl.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qatomic.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qbasicatomic.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qatomic_bootstrap.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qgenericatomic.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qatomic_cxx11.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qglobalstatic.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qnumeric.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qversiontagging.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qforeach.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qtmetamacros.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qobjectdefs_impl.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qstring.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qchar.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qstringview.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qbytearray.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qrefcount.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qarraydata.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qpair.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qarraydatapointer.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qarraydataops.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qcontainertools_impl.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qbytearrayalgorithms.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qbytearrayview.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qstringfwd.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qstringliteral.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qstringalgorithms.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qanystringview.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qutf8stringview.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qstringtokenizer.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qstringbuilder.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qlist.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qhashfunctions.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qiterator.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qbytearraylist.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qstringlist.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qalgorithms.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qstringmatcher.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qcoreevent.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qscopedpointer.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qmetatype.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qcompare.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qscopeguard.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qdatastream.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qiodevicebase.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qiterable.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qmetacontainer.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qcontainerinfo.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qtaggedpointer.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qmath.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qobject_impl.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qbindingstorage.h \
+		scenemanager.h \
+		Box2D/Collision/Shapes/b2PolygonShape.h \
+		Box2D/Collision/Shapes/b2Shape.h \
+		Box2D/Common/b2BlockAllocator.h \
+		Box2D/Common/b2Settings.h \
+		Box2D/Common/b2Math.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/QVector2D \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qvectornd.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qtguiglobal.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qtgui-config.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qtguiexports.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qpoint.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qrect.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qmargins.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qsize.h \
+		Box2D/Collision/b2Collision.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/QGraphicsView \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qgraphicsview.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qtwidgetsglobal.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qtwidgets-config.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qtwidgetsexports.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qpainter.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qpixmap.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qpaintdevice.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qwindowdefs.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qwindowdefs_win.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qcolor.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qrgb.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qrgba64.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qsharedpointer.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qshareddata.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qsharedpointer_impl.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qimage.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qpixelformat.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qtransform.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qpolygon.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qregion.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qline.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qtextoption.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qpen.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qbrush.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qfontinfo.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qfont.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qfontmetrics.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qscrollarea.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qabstractscrollarea.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qframe.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qwidget.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qaction.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qkeysequence.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qicon.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qvariant.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qdebug.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qtextstream.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qstringconverter_base.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qcontiguouscache.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qmap.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qshareddata_impl.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qset.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qhash.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qvarlengtharray.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qpalette.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qsizepolicy.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qcursor.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qbitmap.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qevent.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qiodevice.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qpointer.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qurl.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qeventpoint.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qvector2d.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qpointingdevice.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qinputdevice.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qscreen.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/QList \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/QRect \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/QSize \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/QSizeF \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/QTransform \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qnativeinterface.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qgraphicsscene.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/QGraphicsItem \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qgraphicsitem.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qpainterpath.h \
+		Box2D/Dynamics/b2Body.h \
+		Box2D/Dynamics/b2World.h \
+		Box2D/Common/b2StackAllocator.h \
+		Box2D/Dynamics/b2ContactManager.h \
+		Box2D/Collision/b2BroadPhase.h \
+		Box2D/Collision/b2DynamicTree.h \
+		Box2D/Common/b2GrowableStack.h \
+		Box2D/Dynamics/b2WorldCallbacks.h \
+		Box2D/Dynamics/b2TimeStep.h \
+		windowmanager.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/QScreen \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/QApplication \
+		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qapplication.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qcoreapplication.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qeventloop.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qcoreapplication_platform.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qjnitypes.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qfuture.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qfutureinterface.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qmutex.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qtsan_impl.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qresultstore.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qfuture_impl.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qthreadpool.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qthread.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qdeadlinetimer.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qelapsedtimer.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qrunnable.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qexception.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qpromise.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qguiapplication.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qinputmethod.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qlocale.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtGui/qguiapplication_platform.h \
+		CONFIG.h \
+		Box2D/Common/b2Draw.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qtimer.h \
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/qbasictimer.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\updatemanager.o updatemanager.cpp
 
 debug/vehicle.o: vehicle.cpp vehicle.h \
 		Box2D/Dynamics/b2Body.h \
@@ -5754,6 +6683,7 @@ debug/vehicle.o: vehicle.cpp vehicle.h \
 		Box2D/Collision/Shapes/b2Shape.h \
 		Box2D/Common/b2BlockAllocator.h \
 		Box2D/Collision/b2Collision.h \
+		components.h \
 		weapon.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtGui/QPolygonF \
 		../../../../Qt/6.4.3/mingw_64/include/QtGui/qpolygon.h \
@@ -5833,11 +6763,11 @@ debug/vehicle.o: vehicle.cpp vehicle.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/QGraphicsPolygonItem \
 		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qgraphicsitem.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtGui/qpainterpath.h \
-		CONFIG.h \
 		Projectile.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/QGraphicsRectItem \
 		GameObject.h \
 		converter.h \
+		CONFIG.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtCore/qtimer.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtCore/qbasictimer.h \
 		scenemanager.h \
@@ -5892,6 +6822,7 @@ debug/vehicle.o: vehicle.cpp vehicle.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtGui/qinputmethod.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtCore/qlocale.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtGui/qguiapplication_platform.h \
+		Box2D/Common/b2Draw.h \
 		vehiclepicker.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtCore/QPointF \
 		Model.h \
@@ -5900,8 +6831,7 @@ debug/vehicle.o: vehicle.cpp vehicle.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtGui/qgenericmatrix.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtGui/qvector3d.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtGui/qvector4d.h \
-		../../../../Qt/6.4.3/mingw_64/include/QtCore/QTimer \
-		VehiclePicker.h
+		../../../../Qt/6.4.3/mingw_64/include/QtCore/QTimer
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\vehicle.o vehicle.cpp
 
 debug/vehiclepicker.o: vehiclepicker.cpp vehiclepicker.h \
@@ -6176,6 +7106,12 @@ debug/moc_gameObject.o: debug/moc_gameObject.cpp
 
 debug/moc_mainwindow.o: debug/moc_mainwindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\moc_mainwindow.o debug\moc_mainwindow.cpp
+
+debug/moc_updatemanager.o: debug/moc_updatemanager.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\moc_updatemanager.o debug\moc_updatemanager.cpp
+
+debug/moc_vehicle.o: debug/moc_vehicle.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\moc_vehicle.o debug\moc_vehicle.cpp
 
 ####### Install
 

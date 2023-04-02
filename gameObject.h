@@ -11,13 +11,13 @@
 #include <Model.h>
 
 
- class GameObject : public QObject
+ class GameObject : public  QObject
 {
 	Q_OBJECT
 	protected:
 
-		Model* model;
-
+		 //Model* model ={nullptr}; TODO: determine if model is needed after construction -- Other todo in GenerateObject() can be uncommented to re-implement
+		 QTimer* timer = {nullptr};
 
         virtual void moveForward();
         virtual void moveBackward();
@@ -25,7 +25,7 @@
         virtual void turnRight();
         virtual void strafeLeft();
         virtual void strafeRight();
-
+		 Model* model = {nullptr};
 		GameObject(struct Model model_);
 		GameObject(Model* m);
 
@@ -47,10 +47,7 @@ public:
 		virtual float getTurnSpeed() const;
 		virtual void setTurnSpeed(float newturnSpeed);
 
-	//FIX:	virtual b2Body getBody()	{return body;	}
-
-
-		 void GenerateObject();
+		 void GenerateObject(Model* m);
 
 	 private:
         float forwardSpeed=200;
@@ -60,11 +57,11 @@ public:
 		float accelerationSpeed =1;
 		QPolygonF* buildPoly(std::list<QPointF>* points);
 		QPolygonF* buildPoly(struct Model* m);
-		QTimer* timer;
+		QPolygonF* buildPoly();
+
 
 	 protected slots:
 		void update();
-		void MyTimerSlot();
  };
 
 

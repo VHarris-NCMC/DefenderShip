@@ -8,6 +8,9 @@
 #include <Box2D/Dynamics/b2World.h>
 #include <mutex>
 #include <windowmanager.h>
+#include<CONFIG.h>
+#include <Box2D/Common/b2Draw.h>
+#include <qtimer.h>
 
 class SceneManager
 {
@@ -15,7 +18,11 @@ class SceneManager
 	public:
 
 		friend class GameManager;
+		friend class UpdateManager;
+
+		void safeStep();
 		// Get Singleton Instance
+
 		static SceneManager* Instance()
 		{
 			//lock
@@ -26,8 +33,8 @@ class SceneManager
 			return _instance_;
 		}
 
-		b2World* getWorld() const;
-		QGraphicsScene* getScene() const;
+		b2World* getWorld();
+		QGraphicsScene* getScene();
 
 
 		void addToScene(QGraphicsItem* graphic);
@@ -42,7 +49,7 @@ class SceneManager
 		static inline SceneManager* _instance_{nullptr};
 		static inline std::mutex mutex_;
 		//Prevent Singleton from being copied.
-		SceneManager(SceneManager const&){};
+		SceneManager(SceneManager const&)=delete;
 		void operator=(SceneManager const&) {};
 
 		//Member Functions
@@ -56,13 +63,13 @@ class SceneManager
 		b2BodyDef groundBodyDef;
 		b2PolygonShape groundBox;
 
-
-
+		//UpdateManager* updater ={nullptr};
 
 		void keyEventHandler(QKeyEvent* event);
         void keyPressEvent(QKeyEvent* event);
         void add(QGraphicsItem q);
 
+		void step();
 
 
 

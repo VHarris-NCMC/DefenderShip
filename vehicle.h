@@ -2,26 +2,32 @@
 #define VEHICLE_H
 
 #include "Box2D/Dynamics/b2Body.h"
+#include "components.h"
 #include "weapon.h"
 #include <inputObject.h>
 #include <QGraphicsPolygonItem>
-#include <CONFIG.h>
 #include <QVector2D>
 #include <Projectile.h>
 #include <GameObject.h>
 #include <Box2D/Collision/Shapes/b2PolygonShape.h>
 #include <QQuaternion>
 #include <QTimer>
-#include <QVector2D>
-#include <VehiclePicker.h>
 
-class Vehicle :  public GameObject
+
+
+class Vehicle :  public  GameObject
 {
+		Q_OBJECT
     public:
-		Vehicle();
+		explicit Vehicle();
+	   explicit Vehicle(struct Model* m);
        QGraphicsPolygonItem* getPoly();
-       b2Body* body;
        b2BodyDef* getBodyDef();
+
+	  void  startInput(QTimer* timer_,  QKeyEvent* event_);
+	   void stopInput(QTimer* timer_, QKeyEvent* event_);
+
+
 
 	public slots:
        void move();
@@ -49,68 +55,82 @@ class Vehicle :  public GameObject
 
 
 	   }
+	protected slots:
+
+	   virtual void moveForward()
+	   {
+		   auto body = model->getBody();
+
+		   auto poly = model->getPoly();
+		   if(body==nullptr)
+		   {
+			   qDebug() << "Body is null";
+			   return;
+		   }
+		qDebug() << "Body Position: "  << body->GetPosition().x << body->GetPosition().y ;
+		qDebug() << "Poly Position: " << poly->pos().rx()<<poly->pos().ry();
+
+		auto world =  body->GetWorld();
+		b2Vec2 forceDirection= body-> GetWorldVector(b2Vec2(0,1));
+	 qDebug() << world->GetBodyList();
+
+		 forceDirection = getForwardSpd() * forceDirection;
+		 b2Vec2 pointOfImpulse = body->GetPosition();
+		 pointOfImpulse.y -= 5;
+		 body->ApplyLinearImpulse(forceDirection, body->GetPosition(), true);
+
+
+		 if(body->GetLinearDamping()>=0)
+		 {
+			 body->SetLinearDamping(body->GetLinearDamping()-1);
+		 }
+}
+	   virtual void moveBackward()
+	   {
+		   auto body = model->getBody();
+		   if (body->GetLinearDamping() <=5){
+			   body->SetLinearDamping(body->GetLinearDamping()+1);
+
+		   }
+
+
+	   }
+	   virtual void strafeLeft()
+	   {
+
+
+	   }
+	   virtual void strafeRight()
+	   {
+
+	   }
+	   virtual void turnLeft()
+	   {
+
+		   //body->ApplyTorque(float32(getTurnSpeed()), true);
+	   }
+	   virtual void turnRight()
+	   {
+		   //body->ApplyTorque(float32(-getTurnSpeed()), true);
+	   }
+	   void fire();
+
 
     private:
         Weapon* BulletWeapons[2] = {new Weapon(-4, 5), new Weapon(4, 5)};
         const Weapon* MissileWeapons[0] = {};
         const Weapon* RocketWeapons[0] = {};
         const Weapon* AreaWeapons[0] = {};
+		const components::Engine* engines[2]= {
 
-
-
+			new components::Engine(new b2Vec2(-4, 4), new components::Thrust(0.5f, 1000.0f)),
+			new components::Engine()new b2Vec2(4, 4), new components::Thrust(0.5f, 1000.0f)};
+		//vehicle controls
         void drawVehicle();
         void configureWeapons();
         void keyPressEvent(QKeyEvent* event);
         void handleInput(QKeyEvent* event);
         bool isPlayerVehicle;
-        virtual void moveForward()
-        {
-
-            b2Vec2 forceDirection = body->GetWorldVector( b2Vec2(0,1));
-
-            forceDirection = getForwardSpd() * forceDirection;
-            body->ApplyLinearImpulse(forceDirection, body->GetPosition(), true);
-
-            if(body->GetLinearDamping()>=0)
-            {
-                body->SetLinearDamping(body->GetLinearDamping()-1);
-            }
-
-
-
-
-        }
-
-        virtual void moveBackward()
-        {
-
-            if (body->GetLinearDamping() <=5){
-                body->SetLinearDamping(body->GetLinearDamping()+1);
-
-            }
-
-
-        }
-        virtual void strafeLeft()
-        {
-
-
-        }
-        virtual void strafeRight()
-        {
-
-        }
-        virtual void turnLeft()
-        {
-
-			//body->ApplyTorque(float32(getTurnSpeed()), true);
-        }
-        virtual void turnRight()
-        {
-			//body->ApplyTorque(float32(-getTurnSpeed()), true);
-        }
-        void fire();
-
 
 };
 #endif // VEHICLE_H

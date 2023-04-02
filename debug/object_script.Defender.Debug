@@ -47,13 +47,16 @@ debug/b2Rope.o
 debug/Projectile.o
 debug/converter.o
 debug/enemy.o
+debug/engine.o
 debug/gameObject.o
 debug/gamemanager.o
+debug/inputmanager.o
 debug/main.o
 debug/mainwindow.o
 debug/model.o
 debug/player.o
 debug/scenemanager.o
+debug/updatemanager.o
 debug/vehicle.o
 debug/vehiclepicker.o
 debug/weapon.o
@@ -61,3 +64,5 @@ debug/windowmanager.o
 debug/moc_Projectile.o
 debug/moc_gameObject.o
 debug/moc_mainwindow.o
+debug/moc_updatemanager.o
+debug/moc_vehicle.o

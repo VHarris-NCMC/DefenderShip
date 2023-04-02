@@ -1,6 +1,8 @@
 #include <gameObject.h>
 #include <qDebug>
 
+#include <Box2D/Dynamics/b2Fixture.h>
+
 
 
 
@@ -21,30 +23,47 @@
 //	timer->start(CONFIG::GameSpeed());
 //	qDebug() << "Object Created";
 //}
-void GameObject::GenerateObject()
+void GameObject::GenerateObject(Model* model_)
 {
-	b2BodyDef* bodyDef_ = new b2BodyDef();
+	model = model_;
+	if (model == nullptr)
+	{
+		qDebug() << "Model not found, exiting";
+		return;
+	}
+	// if model does not contain body, default body will be used
+	if (model->getBodyDef() == nullptr){
 
-	// body = SceneManager::Instance()->getWorld()->CreateBody(bodyDef_);
+		qDebug() << "body definition not specified, using default body for object";
+	}
 
+	b2PolygonShape shape;
+	b2FixtureDef fixDef;
+	shape.SetAsBox(2,2);
+	fixDef.shape = &shape;
+	fixDef.friction = 0;
+	fixDef.density = .5;
+	model->setBody(SceneManager::Instance()->getWorld()->CreateBody(model->getBodyDef()));
+	model->getBody()->CreateFixture(&fixDef);
+
+
+
+	QPolygonF* polyF = (model->getVertices() == nullptr) ? buildPoly() : buildPoly(model->getVertices());
 	//set graphic*
 	auto graphic_ = new QGraphicsPolygonItem();
-	auto poly = graphic_;
-
-
-	QPolygonF* polyF = buildPoly(model->getVertices());
 	graphic_->setPolygon(*polyF);
 	graphic_->show();
 	//notify SM that object was created
-	SceneManager::Instance()->addToScene(poly);
+	model->setPoly(graphic_);
+	SceneManager::Instance()->addToScene(graphic_);
 
 
 	//Start Timer
 	timer = new QTimer();
 	connect(timer, SIGNAL(timeout()),this,SLOT(update()));
-	connect(timer,SIGNAL(timeout()), this,SLOT(MyTimerSlot()));
+
 	timer->start(CONFIG::GameSpeed());
-	qDebug() << "Object Created";
+
 
 }
 
@@ -54,23 +73,12 @@ GameObject::GameObject(Model* m)
 	{
 		qDebug() << "Model is null";
 	}
-	model = m;
-	GenerateObject();
-}
-//GameObject::GameObject(std::pair<QGraphicsPolygonItem*, b2BodyDef*>* model)
-//{
-//	qDebug() << "GameObject Constructor 1";
-//	GenerateObject(model->first, model->second);
-//}
-//GameObject::GameObject(bool isPlayer, b2BodyDef* bodyDef_, QGraphicsPolygonItem* graphic_)
-//{
-//	qDebug() << "GameObject Constructor 2";
-//	if(isPlayer)
-//	{
-//	}
 
-//	//set body*
-//	auto body= SceneManager::Instance()->getWorld()->CreateBody(bodyDef_);
+
+	GenerateObject(m);
+
+}
+
 
 
 
@@ -82,10 +90,6 @@ GameObject::GameObject(Model* m)
 //}
 
 
-void GameObject::MyTimerSlot()
-{
-	qDebug() << "Timer...";
-}
 
 void GameObject::moveForward()
 {
@@ -94,10 +98,15 @@ void GameObject::moveForward()
 void GameObject::update()
 {
 
+
+	SceneManager::Instance()->getWorld()->DrawDebugData();
+
+
+
 		// Adjust Angle & Position of GraphicPolygon  to match body
-		//poly->setRotation(body->GetAngle());
+	//->setRotation(body->GetAngle());
 		//auto pos = QPointF(converter::convert(body->GetPosition()));
-	//poly->setPos(pos);
+		//->setPos(pos);
 		//qDebug() << poly->pos();
 
 
@@ -160,20 +169,16 @@ float GameObject::getTurnSpeed() const
 
 void GameObject::setTurnSpeed(float speed)
 {
-    turnSpeed = speed;
+	turnSpeed = speed;
 }
+
 
 
 /* Best to use Model as parameter, but in leaving the method that accepts points for objects
  * that may not have bodys in the future */
 QPolygonF* GameObject::buildPoly(struct Model* m)
 {
-	QPolygonF* pts = new QPolygonF();
-	*pts << QPointF(10,10) << QPointF(-10,10) << QPointF(-10,-10) << QPointF(10,-10);
-	return pts;
-}
-QPolygonF* GameObject::buildPoly(std::list<QPointF>* pts)
-{
+	auto pts = m->getVertices();
 	if (pts == nullptr)
 	{
 		qDebug() << "QPoints list are null";
@@ -191,6 +196,29 @@ QPolygonF* GameObject::buildPoly(std::list<QPointF>* pts)
 		p.setX( p.x() *-1);
 		*pt << p;
 	}
+	return pt;
+}
+
+QPolygonF* GameObject::buildPoly(std::list<QPointF>* pts)
+{
+	qDebug() << "Model definition not found, using default model";
+	QPolygonF* pt = new QPolygonF();
+	for (QPointF p : *pts)
+	{
+		*pt << p;
+	}
+	for (QPointF p : *pts)
+	{
+		p.setX( p.x() *-1);
+		*pt << p;
+	}
+	return pt;
+}
+// Construct GameObject with default poly (x-shape)
+QPolygonF* GameObject::buildPoly()
+{
+	QPolygonF* pt = new QPolygonF();
+	*pt << QPointF(0,0) << QPointF(-10,-10)<< QPointF(10,10)<< QPointF(0,0)<< QPointF(-10,10)<< QPointF(10,-10);
 	return pt;
 }
 

@@ -3,6 +3,7 @@
 
 #include <Player.h>
 #include <mutex>
+#include <inputmanager.h>
 
 
 
@@ -10,6 +11,7 @@ class GameManager{
 
 	private:
 		 Player* player = nullptr;
+		 inline static InputManager* input{ nullptr};
 		 GameManager();
 
 
@@ -24,6 +26,7 @@ class GameManager{
 
 	public:
 		void addPlayerToScene();
+		void update();
 		static GameManager* Instance()
 		{
 			//lock
@@ -33,7 +36,6 @@ class GameManager{
 			// return signleton instance;
 			return _instance_;
 		}
-
 
 
 };

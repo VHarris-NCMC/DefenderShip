@@ -6,6 +6,8 @@
 GameManager::GameManager()
 {
 	InitializePlayer();
+
+
 }
 
 

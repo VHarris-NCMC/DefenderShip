@@ -59,13 +59,16 @@ SOURCES += \
 	Projectile.cpp \
 	converter.cpp \
 	enemy.cpp \
+	engine.cpp \
 	gameObject.cpp \
 	gamemanager.cpp \
+	inputmanager.cpp \
     main.cpp \
 	mainwindow.cpp \
 	model.cpp \
 	player.cpp \
 	scenemanager.cpp \
+	updatemanager.cpp \
 	vehicle.cpp \
 	vehiclepicker.cpp \
 	weapon.cpp \
@@ -127,14 +130,18 @@ HEADERS += \
 	GameManager.h \
 	Projectile.h \
 	STATICMETHODS.h \
+	components.h \
 	converter.h \
 	enemy.h \
+	engine.h \
 	gameObject.h \
 	inputObject.h \
+	inputmanager.h \
 	mainwindow.h \
 	model.h \
 	player.h \
 	scenemanager.h \
+	updatemanager.h \
 	vehicle.h \
 	vehiclepicker.h \
 	weapon.h \
