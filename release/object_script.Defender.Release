@@ -47,7 +47,6 @@ release/b2Rope.o
 release/Projectile.o
 release/converter.o
 release/enemy.o
-release/engine.o
 release/gameObject.o
 release/gamemanager.o
 release/inputmanager.o

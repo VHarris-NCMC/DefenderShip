@@ -6,22 +6,31 @@
 
 namespace components
 {
-	struct Thrust (float x, float y);
+	class  Thrust
+	{
+		public:
+			float acceleration;
+			float maxThrust;
+			float  maxSpeed;
+			Thrust(float acceleration, float maxThrust_, float maxSpeed_) : acceleration(acceleration), maxThrust(maxThrust_), maxSpeed(maxSpeed_){};
 
-
+	};
 	class Engine
 	{
 
 
-		public:
-			Engine(b2Vec2* localPos, Thrust* thrust_);
+	public:
+			Engine(b2Vec2* localPos, Thrust* thrust_);;
 
-			//components::Thrust thust;
+		Thrust* thust;
+		b2Vec2* positionOnVehicle;
 
+		float getForce(float32 currentSpeed);
+		b2Vec2* getGlobalPosition(b2Vec2 bodyPosition);
 
 		private:
 
-			float currentThrust;
+		float currentThrust;
 
 
 			void Ignite(bool b)
@@ -31,26 +40,26 @@ namespace components
 
 					//constexpr lerp(currentThrust, thust.max, thrust.min);
 				}
-
 			}
-
-
-
-
-
 	};
-	components::Thrust(float accel_, float max_)
+
+	inline Engine::Engine(b2Vec2* localPos, Thrust* thrust_) : thust(thrust_), positionOnVehicle(localPos) {}
+	inline float Engine::getForce(float32 currentSpeed)
 	{
-
+		return 1000;
 	}
+	inline b2Vec2* Engine::getGlobalPosition( b2Vec2 bodyPosition )
+	{
+		b2Vec2* rPos = new b2Vec2();
+		rPos->x = bodyPosition.x + positionOnVehicle->x;
+		rPos->y = bodyPosition.y + positionOnVehicle->y;
 
-
-
-
-
-
-
+		return rPos;
+	}
 }
+
+
+
 
 
 

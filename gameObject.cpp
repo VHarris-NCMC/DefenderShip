@@ -103,11 +103,11 @@ void GameObject::update()
 
 
 
-		// Adjust Angle & Position of GraphicPolygon  to match body
-	//->setRotation(body->GetAngle());
-		//auto pos = QPointF(converter::convert(body->GetPosition()));
-		//->setPos(pos);
-		//qDebug() << poly->pos();
+//		 Adjust Angle & Position of GraphicPolygon  to match body
+//	->setRotation(body->GetAngle());
+//		auto pos = QPointF(converter::convert(body->GetPosition()));
+//		->setPos(pos);
+//		qDebug() << poly->pos();
 
 
 

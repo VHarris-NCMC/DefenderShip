@@ -59,7 +59,6 @@ SOURCES += \
 	Projectile.cpp \
 	converter.cpp \
 	enemy.cpp \
-	engine.cpp \
 	gameObject.cpp \
 	gamemanager.cpp \
 	inputmanager.cpp \
@@ -133,7 +132,6 @@ HEADERS += \
 	components.h \
 	converter.h \
 	enemy.h \
-	engine.h \
 	gameObject.h \
 	inputObject.h \
 	inputmanager.h \

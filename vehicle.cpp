@@ -1,6 +1,5 @@
 #include <vehicle.h>
 
-
 //Updates based on game speed, adjust vehicle graphics position / rotation
 void Vehicle::move()
 {
@@ -10,12 +9,10 @@ void Vehicle::move()
 Vehicle::Vehicle() : GameObject(new struct Model(1))
 {
 	qDebug() << "Vehicle Constructor 1";
-
 }
 Vehicle::Vehicle(struct Model* m) : GameObject(m)
 {
 	qDebug() << "Vehicle Constructor 1";
-
 }
 
 void Vehicle::startInput(QTimer* timer_, QKeyEvent* event)
@@ -26,6 +23,11 @@ void Vehicle::startInput(QTimer* timer_, QKeyEvent* event)
 	{
 
 		connect(timer_, SIGNAL(timeout()),this,SLOT(moveForward()));
+	}
+	if (event->key() == Qt::Key_Q)
+	{
+
+		connect(timer_, SIGNAL(timeout()),this,SLOT(strafeLeft()));
 	}
 }
 

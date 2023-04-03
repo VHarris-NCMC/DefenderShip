@@ -47,7 +47,6 @@ debug/b2Rope.o
 debug/Projectile.o
 debug/converter.o
 debug/enemy.o
-debug/engine.o
 debug/gameObject.o
 debug/gamemanager.o
 debug/inputmanager.o

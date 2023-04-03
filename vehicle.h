@@ -12,7 +12,8 @@
 #include <Box2D/Collision/Shapes/b2PolygonShape.h>
 #include <QQuaternion>
 #include <QTimer>
-
+#include <components.h>
+using namespace components;
 
 
 class Vehicle :  public  GameObject
@@ -26,8 +27,6 @@ class Vehicle :  public  GameObject
 
 	  void  startInput(QTimer* timer_,  QKeyEvent* event_);
 	   void stopInput(QTimer* timer_, QKeyEvent* event_);
-
-
 
 	public slots:
        void move();
@@ -71,7 +70,7 @@ class Vehicle :  public  GameObject
 		qDebug() << "Poly Position: " << poly->pos().rx()<<poly->pos().ry();
 
 		auto world =  body->GetWorld();
-		b2Vec2 forceDirection= body-> GetWorldVector(b2Vec2(0,1));
+		b2Vec2 forceDirection= body-> GetWorldVector(body->GetPosition());
 	 qDebug() << world->GetBodyList();
 
 		 forceDirection = getForwardSpd() * forceDirection;
@@ -97,8 +96,24 @@ class Vehicle :  public  GameObject
 	   }
 	   virtual void strafeLeft()
 	   {
+		   auto body = model->getBody();
+			auto poly = model->getPoly();
+			b2Vec2 currentVelocity = body->GetLinearVelocityFromLocalPoint(body->GetPosition());
+		   for (components::Engine* e  : engines)
+		   {
 
+			   b2Vec2 rPos = *e->getGlobalPosition(b2Vec2 (body->GetPosition()));
+			   b2Vec2*  force = new b2Vec2(0, e->getForce(currentVelocity.y));
+			   body->ApplyForce(
+						   *force,
+						   rPos,
+						   true);
+			   qDebug() << "Engine RPosition: " << rPos.x << ", "<<rPos.y;
 
+		   }
+		   qDebug() << "Body Position: "  << body->GetPosition().x << body->GetPosition().y ;
+			qDebug() << "Current Velocity: "  << currentVelocity.x << ", " <<currentVelocity.y ;
+		   qDebug() << "Poly Position: " << poly->pos().rx()<<poly->pos().ry();
 	   }
 	   virtual void strafeRight()
 	   {
@@ -121,16 +136,15 @@ class Vehicle :  public  GameObject
         const Weapon* MissileWeapons[0] = {};
         const Weapon* RocketWeapons[0] = {};
         const Weapon* AreaWeapons[0] = {};
-		const components::Engine* engines[2]= {
-
-			new components::Engine(new b2Vec2(-4, 4), new components::Thrust(0.5f, 1000.0f)),
-			new components::Engine()new b2Vec2(4, 4), new components::Thrust(0.5f, 1000.0f)};
+		components::Engine* engines[2]= {
+			new components::Engine(new b2Vec2(-4, 4), new components::Thrust(0.5f, 1000.0f, 500.0f)),
+			new components::Engine(new b2Vec2(4, 4), new components::Thrust(0.5f, 1000.0f, 500.0f))
+		};
 		//vehicle controls
         void drawVehicle();
         void configureWeapons();
         void keyPressEvent(QKeyEvent* event);
         void handleInput(QKeyEvent* event);
         bool isPlayerVehicle;
-
 };
 #endif // VEHICLE_H
