@@ -57,8 +57,10 @@ SOURCES += \
     Box2D/Dynamics/b2WorldCallbacks.cpp \
     Box2D/Rope/b2Rope.cpp \
 	Projectile.cpp \
+	component.cpp \
 	converter.cpp \
 	enemy.cpp \
+	engine.cpp \
 	gameObject.cpp \
 	gamemanager.cpp \
 	inputmanager.cpp \
@@ -66,7 +68,9 @@ SOURCES += \
 	mainwindow.cpp \
 	model.cpp \
 	player.cpp \
+	plume.cpp \
 	scenemanager.cpp \
+	thruster.cpp \
 	updatemanager.cpp \
 	vehicle.cpp \
 	vehiclepicker.cpp \
@@ -124,21 +128,25 @@ HEADERS += \
     Box2D/Dynamics/b2World.h \
     Box2D/Dynamics/b2WorldCallbacks.h \
     Box2D/Rope/b2Rope.h \
+	COMPONENTS.h \
 	CONFIG.h \
 	CONSTANTS.h \
 	GameManager.h \
 	Projectile.h \
 	STATICMETHODS.h \
-	components.h \
+	component.h \
 	converter.h \
 	enemy.h \
+	engine.h \
 	gameObject.h \
 	inputObject.h \
 	inputmanager.h \
 	mainwindow.h \
 	model.h \
 	player.h \
+	plume.h \
 	scenemanager.h \
+	thruster.h \
 	updatemanager.h \
 	vehicle.h \
 	vehiclepicker.h \
@@ -577,7 +585,8 @@ DISTFILES += \
     Box2D/B2.cflags \
     Box2D/B2.cxxflags \
     Box2D/Box2DConfig.cmake \
-    Box2D/CMakeLists.txt
+    Box2D/CMakeLists.txt \
+    src/plume.gif
 
 SUBDIRS += \
     Box2D/B2D.pro

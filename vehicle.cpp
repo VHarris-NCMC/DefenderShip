@@ -17,27 +17,85 @@ Vehicle::Vehicle(struct Model* m) : GameObject(m)
 
 void Vehicle::startInput(QTimer* timer_, QKeyEvent* event)
 {
-	qDebug()<<"Begin Key: " << event->key();
+    QObject::dumpObjectInfo();
 
-	if (event->key() == Qt::Key_W)
-	{
+    switch(event->key())
+    {
+    case Qt::Key_Q:
 
-		connect(timer_, SIGNAL(timeout()),this,SLOT(moveForward()));
-	}
-	if (event->key() == Qt::Key_Q)
-	{
+        connect(timer_, SIGNAL(timeout()),this,SLOT(strafeLeft()));
 
-		connect(timer_, SIGNAL(timeout()),this,SLOT(strafeLeft()));
-	}
+        break;
+
+    case Qt::Key_W:
+        connect(timer_, SIGNAL(timeout()),this,SLOT(moveForward()));
+
+        break;
+
+    case Qt::Key_E:
+        connect(timer_, SIGNAL(timeout()),this,SLOT(strafeRight()));
+
+        break;
+
+    case Qt::Key_A:
+        connect(timer_, SIGNAL(timeout()),this,SLOT(turnLeft()));
+
+        break;
+
+    case Qt::Key_S:
+        connect(timer_, SIGNAL(timeout()),this,SLOT(moveBackward()));
+
+        break;
+
+    case Qt::Key_D:
+        connect(timer_, SIGNAL(timeout()),this,SLOT(turnRight()));
+
+        break;
+    }
 }
 
 void Vehicle::stopInput(QTimer* timer_, QKeyEvent* event)
 {
 	qDebug()<<"End Key: " << event->key();
-	if (event->key() == Qt::Key_W)
-	{
-		disconnect(timer_, SIGNAL(timeout()),this,SLOT(moveForward()));
-	}
+    switch(event->key())
+    {
+    case Qt::Key_Q:
+        disconnect(timer_, SIGNAL(timeout()),this,SLOT(strafeLeft()));
+        this->killEngines();
+        break;
+
+    case Qt::Key_W:
+        disconnect(timer_, SIGNAL(timeout()),this,SLOT(moveForward()));
+        this->killEngines();
+        break;
+
+    case Qt::Key_E:
+        disconnect(timer_, SIGNAL(timeout()),this,SLOT(strafeRight()));
+        this->killEngines();
+        break;
+
+    case Qt::Key_A:
+        disconnect(timer_, SIGNAL(timeout()),this,SLOT(turnLeft()));
+        this->killEngines();
+        break;
+
+    case Qt::Key_S:
+        disconnect(timer_, SIGNAL(timeout()),this,SLOT(moveBackward()));
+        this->killEngines();
+        break;
+
+    case Qt::Key_D:
+        disconnect(timer_, SIGNAL(timeout()),this,SLOT(turnRight()));
+        this->killEngines();
+        break;
+    }
+}
+void Vehicle::killEngines()
+{
+    for (Engine* e : engines)
+    {
+        e->setActive(false);
+    }
 }
 
 //void Vehicle::setBody(b2Body* b)

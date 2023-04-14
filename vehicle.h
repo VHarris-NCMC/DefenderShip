@@ -10,10 +10,11 @@
 #include <Projectile.h>
 #include <GameObject.h>
 #include <Box2D/Collision/Shapes/b2PolygonShape.h>
+#include <Engine.h>
+#include <Plume.h>
 #include <QQuaternion>
 #include <QTimer>
-#include <components.h>
-using namespace components;
+#include <COMPONENTS.h>
 
 
 class Vehicle :  public  GameObject
@@ -28,7 +29,8 @@ class Vehicle :  public  GameObject
 	  void  startInput(QTimer* timer_,  QKeyEvent* event_);
 	   void stopInput(QTimer* timer_, QKeyEvent* event_);
 
-	public slots:
+
+  public slots:
        void move();
 	protected:
 	   virtual std::pair<QGraphicsPolygonItem*, b2BodyDef*>* Model(std::list<QPointF>* points)
@@ -60,30 +62,22 @@ class Vehicle :  public  GameObject
 	   {
 		   auto body = model->getBody();
 
-		   auto poly = model->getPoly();
-		   if(body==nullptr)
+           for (Engine* e  : engines)
 		   {
-			   qDebug() << "Body is null";
-			   return;
-		   }
-		qDebug() << "Body Position: "  << body->GetPosition().x << body->GetPosition().y ;
-		qDebug() << "Poly Position: " << poly->pos().rx()<<poly->pos().ry();
 
-		auto world =  body->GetWorld();
-		b2Vec2 forceDirection= body-> GetWorldVector(body->GetPosition());
-	 qDebug() << world->GetBodyList();
+               b2Vec2 rPos = *e->Component::getGlobalPosition();
+               b2Vec2*  force = new b2Vec2(0, e->getForce());
+			   force->y *= -2;
+			   body->ApplyForce(
+						   *force,
+						   rPos,
+						   true);
+               Plume* p = &e->getPlume();
+               //p->setPos(converter::convert(*e->Component::getGlobalPosition()));
+               p->engineIsOn(true);
 
-		 forceDirection = getForwardSpd() * forceDirection;
-		 b2Vec2 pointOfImpulse = body->GetPosition();
-		 pointOfImpulse.y -= 5;
-		 body->ApplyLinearImpulse(forceDirection, body->GetPosition(), true);
-
-
-		 if(body->GetLinearDamping()>=0)
-		 {
-			 body->SetLinearDamping(body->GetLinearDamping()-1);
-		 }
-}
+       }
+        }
 	   virtual void moveBackward()
 	   {
 		   auto body = model->getBody();
@@ -95,25 +89,13 @@ class Vehicle :  public  GameObject
 
 	   }
 	   virtual void strafeLeft()
-	   {
-		   auto body = model->getBody();
-			auto poly = model->getPoly();
-			b2Vec2 currentVelocity = body->GetLinearVelocityFromLocalPoint(body->GetPosition());
-		   for (components::Engine* e  : engines)
-		   {
+       {
+           for (Engine* e  : engines)
+           {
+               e->setActive(true);
+               e->go();
 
-			   b2Vec2 rPos = *e->getGlobalPosition(b2Vec2 (body->GetPosition()));
-			   b2Vec2*  force = new b2Vec2(0, e->getForce(currentVelocity.y));
-			   body->ApplyForce(
-						   *force,
-						   rPos,
-						   true);
-			   qDebug() << "Engine RPosition: " << rPos.x << ", "<<rPos.y;
-
-		   }
-		   qDebug() << "Body Position: "  << body->GetPosition().x << body->GetPosition().y ;
-			qDebug() << "Current Velocity: "  << currentVelocity.x << ", " <<currentVelocity.y ;
-		   qDebug() << "Poly Position: " << poly->pos().rx()<<poly->pos().ry();
+           }
 	   }
 	   virtual void strafeRight()
 	   {
@@ -136,15 +118,17 @@ class Vehicle :  public  GameObject
         const Weapon* MissileWeapons[0] = {};
         const Weapon* RocketWeapons[0] = {};
         const Weapon* AreaWeapons[0] = {};
-		components::Engine* engines[2]= {
-			new components::Engine(new b2Vec2(-4, 4), new components::Thrust(0.5f, 1000.0f, 500.0f)),
-			new components::Engine(new b2Vec2(4, 4), new components::Thrust(0.5f, 1000.0f, 500.0f))
+        Engine* engines[2]= {
+                              new Engine(new b2Vec2(-4, 4), model->getBody(), new Thruster(components::THRUSTER_1)),
+            new Engine(new b2Vec2(4, 4), model->getBody(), new Thruster(components::THRUSTER_1))
 		};
+        Plume* plume;
 		//vehicle controls
         void drawVehicle();
         void configureWeapons();
         void keyPressEvent(QKeyEvent* event);
         void handleInput(QKeyEvent* event);
+        void killEngines();
         bool isPlayerVehicle;
 };
 #endif // VEHICLE_H

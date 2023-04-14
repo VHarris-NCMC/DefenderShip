@@ -44,12 +44,14 @@ struct Model
 			auto body = new b2BodyDef();
 			body->active = true;
 			body->awake = true;
+
 			return body;
 		};
 		inline static b2BodyDef* playerBodyDef(){
 			auto body = new b2BodyDef();
 			body->type = b2BodyType::b2_dynamicBody;
 			body->linearVelocity(10);
+			body->linearDamping =.001;
 			//FIX: size set for testing
 			b2PolygonShape dynamicBox;
 			dynamicBox.SetAsBox(50,50);

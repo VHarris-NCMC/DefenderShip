@@ -97,21 +97,11 @@ void GameObject::moveForward()
 }
 void GameObject::update()
 {
-
-
-	SceneManager::Instance()->getWorld()->DrawDebugData();
-
-
-
 //		 Adjust Angle & Position of GraphicPolygon  to match body
-//	->setRotation(body->GetAngle());
-//		auto pos = QPointF(converter::convert(body->GetPosition()));
-//		->setPos(pos);
-//		qDebug() << poly->pos();
-
-
-
-
+	model->getPoly()->setRotation(model->getBody()->GetAngle());
+	auto pos = QPointF(converter::convert(model->getBody()->GetPosition()));
+	model->getPoly()->setPos(pos);
+	//qDebug() << model->getPoly()->pos();
 }
 void GameObject::moveBackward()
 {
