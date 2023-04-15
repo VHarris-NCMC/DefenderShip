@@ -17,7 +17,7 @@ Vehicle::Vehicle(struct Model* m) : GameObject(m)
 
 void Vehicle::startInput(QTimer* timer_, QKeyEvent* event)
 {
-    QObject::dumpObjectInfo();
+
 
     switch(event->key())
     {
@@ -39,7 +39,7 @@ void Vehicle::startInput(QTimer* timer_, QKeyEvent* event)
 
     case Qt::Key_A:
         connect(timer_, SIGNAL(timeout()),this,SLOT(turnLeft()));
-
+        engines[0]->applyBrake();
         break;
 
     case Qt::Key_S:
@@ -72,16 +72,19 @@ void Vehicle::stopInput(QTimer* timer_, QKeyEvent* event)
     case Qt::Key_E:
         disconnect(timer_, SIGNAL(timeout()),this,SLOT(strafeRight()));
         this->killEngines();
+        this->releaseBrake();
         break;
 
     case Qt::Key_A:
         disconnect(timer_, SIGNAL(timeout()),this,SLOT(turnLeft()));
         this->killEngines();
+        engines[0]->stopBrake();
         break;
 
     case Qt::Key_S:
         disconnect(timer_, SIGNAL(timeout()),this,SLOT(moveBackward()));
         this->killEngines();
+
         break;
 
     case Qt::Key_D:

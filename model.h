@@ -26,6 +26,7 @@ struct Model
 		void setBody(b2Body body_){body = &body_;};
 		void setBody(b2Body* body_){ body = body_;};
 		void setBody(const b2Body& body_){body = new b2Body(body_);};
+        void syncTransform();
 	private:
 		b2Body* body = {nullptr};
 		std::list<QPointF> vertices;
@@ -43,18 +44,28 @@ struct Model
 		inline static b2BodyDef* defaultBodyDef(){
 			auto body = new b2BodyDef();
 			body->active = true;
-			body->awake = true;
-
+            body->awake = true;
+            body->type = b2BodyType::b2_dynamicBody;
+            body->linearVelocity(0);
+            body->linearDamping =1000;
+            body->angularDamping = 0;
+            body->fixedRotation = false;
 			return body;
 		};
 		inline static b2BodyDef* playerBodyDef(){
 			auto body = new b2BodyDef();
 			body->type = b2BodyType::b2_dynamicBody;
-			body->linearVelocity(10);
-			body->linearDamping =.001;
+            body->linearVelocity(5);
+            body->linearDamping =50;
+            body->angularDamping = .1;
+            body->active = true;
+            body->awake = true;
+            body->fixedRotation = false;
+
 			//FIX: size set for testing
 			b2PolygonShape dynamicBox;
 			dynamicBox.SetAsBox(50,50);
+
 			/* TODO: Make boxes polygonal (logic is done, but there is a max polygon limit per object
 			b2Vec2 points[playerObject.size()];
 			int i = 0;

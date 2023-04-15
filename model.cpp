@@ -12,6 +12,15 @@ Model::Model(int i)
 	default:
 		vertices = defaultObject;
 		bodyDef = defaultBodyDef();
-			break;
-	}
+            break;
+    }
+}
+
+void Model::syncTransform()
+{
+    b2Transform t = body->GetTransform();
+    poly->setRotation(qRadiansToDegrees(body->GetAngle()));
+    auto pos = QPointF(converter::convert(t.p));
+    poly->setPos(pos);
+//    qDebug() << "Model::syncTransform() : notify: ANGLE:" << t.q.GetAngle() << ".. Y-AXIS: " << t.q.GetYAxis().x << "," << t.q.GetYAxis().y << ".. X-AXIS: "<< t.q.GetXAxis().x << "," << t.q.GetXAxis().y;
 }

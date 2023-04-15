@@ -27,11 +27,10 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 namespace {
 struct qt_meta_stringdata_Plume_t {
-    uint offsetsAndSizes[8];
+    uint offsetsAndSizes[6];
     char stringdata0[6];
     char stringdata1[16];
     char stringdata2[1];
-    char stringdata3[15];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_Plume_t::offsetsAndSizes) + ofs), len 
@@ -39,13 +38,11 @@ Q_CONSTINIT static const qt_meta_stringdata_Plume_t qt_meta_stringdata_Plume = {
     {
         QT_MOC_LITERAL(0, 5),  // "Plume"
         QT_MOC_LITERAL(6, 15),  // "updateComponent"
-        QT_MOC_LITERAL(22, 0),  // ""
-        QT_MOC_LITERAL(23, 14)   // "updatePosition"
+        QT_MOC_LITERAL(22, 0)   // ""
     },
     "Plume",
     "updateComponent",
-    "",
-    "updatePosition"
+    ""
 };
 #undef QT_MOC_LITERAL
 } // unnamed namespace
@@ -56,7 +53,7 @@ Q_CONSTINIT static const uint qt_meta_data_Plume[] = {
       10,       // revision
        0,       // classname
        0,    0, // classinfo
-       2,   14, // methods
+       1,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -64,11 +61,9 @@ Q_CONSTINIT static const uint qt_meta_data_Plume[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   26,    2, 0x09,    1 /* Protected */,
-       3,    0,   27,    2, 0x09,    2 /* Protected */,
+       1,    0,   20,    2, 0x09,    1 /* Protected */,
 
  // slots: parameters
-    QMetaType::Void,
     QMetaType::Void,
 
        0        // eod
@@ -84,8 +79,6 @@ Q_CONSTINIT const QMetaObject Plume::staticMetaObject = { {
         // Q_OBJECT / Q_GADGET
         QtPrivate::TypeAndForceComplete<Plume, std::true_type>,
         // method 'updateComponent'
-        QtPrivate::TypeAndForceComplete<void, std::false_type>,
-        // method 'updatePosition'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -98,7 +91,6 @@ void Plume::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, void 
         (void)_t;
         switch (_id) {
         case 0: _t->updateComponent(); break;
-        case 1: _t->updatePosition(); break;
         default: ;
         }
     }
@@ -126,13 +118,13 @@ int Plume::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 2)
+        if (_id < 1)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 2;
+        _id -= 1;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 2)
+        if (_id < 1)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 2;
+        _id -= 1;
     }
     return _id;
 }

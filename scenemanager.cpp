@@ -69,7 +69,8 @@ void SceneManager::wakeWorld()
 
 void SceneManager::step()
 {
-world->Step(10, 5, 4);
+    auto timeStep = 1.0f/10.0f;
+world->Step(timeStep, 4, 4);
 }
 
 void SceneManager::InitializeScene()

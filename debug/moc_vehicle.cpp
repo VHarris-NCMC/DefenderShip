@@ -27,7 +27,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 namespace {
 struct qt_meta_stringdata_Vehicle_t {
-    uint offsetsAndSizes[20];
+    uint offsetsAndSizes[22];
     char stringdata0[8];
     char stringdata1[5];
     char stringdata2[1];
@@ -38,6 +38,7 @@ struct qt_meta_stringdata_Vehicle_t {
     char stringdata7[9];
     char stringdata8[10];
     char stringdata9[5];
+    char stringdata10[13];
 };
 #define QT_MOC_LITERAL(ofs, len) \
     uint(sizeof(qt_meta_stringdata_Vehicle_t::offsetsAndSizes) + ofs), len 
@@ -52,7 +53,8 @@ Q_CONSTINIT static const qt_meta_stringdata_Vehicle_t qt_meta_stringdata_Vehicle
         QT_MOC_LITERAL(50, 11),  // "strafeRight"
         QT_MOC_LITERAL(62, 8),  // "turnLeft"
         QT_MOC_LITERAL(71, 9),  // "turnRight"
-        QT_MOC_LITERAL(81, 4)   // "fire"
+        QT_MOC_LITERAL(81, 4),  // "fire"
+        QT_MOC_LITERAL(86, 12)   // "releaseBrake"
     },
     "Vehicle",
     "move",
@@ -63,7 +65,8 @@ Q_CONSTINIT static const qt_meta_stringdata_Vehicle_t qt_meta_stringdata_Vehicle
     "strafeRight",
     "turnLeft",
     "turnRight",
-    "fire"
+    "fire",
+    "releaseBrake"
 };
 #undef QT_MOC_LITERAL
 } // unnamed namespace
@@ -74,7 +77,7 @@ Q_CONSTINIT static const uint qt_meta_data_Vehicle[] = {
       10,       // revision
        0,       // classname
        0,    0, // classinfo
-       8,   14, // methods
+       9,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -82,16 +85,18 @@ Q_CONSTINIT static const uint qt_meta_data_Vehicle[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags, initial metatype offsets
-       1,    0,   62,    2, 0x0a,    1 /* Public */,
-       3,    0,   63,    2, 0x09,    2 /* Protected */,
-       4,    0,   64,    2, 0x09,    3 /* Protected */,
-       5,    0,   65,    2, 0x09,    4 /* Protected */,
-       6,    0,   66,    2, 0x09,    5 /* Protected */,
-       7,    0,   67,    2, 0x09,    6 /* Protected */,
-       8,    0,   68,    2, 0x09,    7 /* Protected */,
-       9,    0,   69,    2, 0x09,    8 /* Protected */,
+       1,    0,   68,    2, 0x0a,    1 /* Public */,
+       3,    0,   69,    2, 0x09,    2 /* Protected */,
+       4,    0,   70,    2, 0x09,    3 /* Protected */,
+       5,    0,   71,    2, 0x09,    4 /* Protected */,
+       6,    0,   72,    2, 0x09,    5 /* Protected */,
+       7,    0,   73,    2, 0x09,    6 /* Protected */,
+       8,    0,   74,    2, 0x09,    7 /* Protected */,
+       9,    0,   75,    2, 0x09,    8 /* Protected */,
+      10,    0,   76,    2, 0x09,    9 /* Protected */,
 
  // slots: parameters
+    QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
@@ -128,6 +133,8 @@ Q_CONSTINIT const QMetaObject Vehicle::staticMetaObject = { {
         // method 'turnRight'
         QtPrivate::TypeAndForceComplete<void, std::false_type>,
         // method 'fire'
+        QtPrivate::TypeAndForceComplete<void, std::false_type>,
+        // method 'releaseBrake'
         QtPrivate::TypeAndForceComplete<void, std::false_type>
     >,
     nullptr
@@ -147,6 +154,7 @@ void Vehicle::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, voi
         case 5: _t->turnLeft(); break;
         case 6: _t->turnRight(); break;
         case 7: _t->fire(); break;
+        case 8: _t->releaseBrake(); break;
         default: ;
         }
     }
@@ -172,13 +180,13 @@ int Vehicle::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 8)
+        if (_id < 9)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 8;
+        _id -= 9;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 8)
+        if (_id < 9)
             *reinterpret_cast<QMetaType *>(_a[0]) = QMetaType();
-        _id -= 8;
+        _id -= 9;
     }
     return _id;
 }

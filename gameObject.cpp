@@ -42,9 +42,12 @@ void GameObject::GenerateObject(Model* model_)
 	shape.SetAsBox(2,2);
 	fixDef.shape = &shape;
 	fixDef.friction = 0;
-	fixDef.density = .5;
+    fixDef.density = 1;
 	model->setBody(SceneManager::Instance()->getWorld()->CreateBody(model->getBodyDef()));
 	model->getBody()->CreateFixture(&fixDef);
+    auto mass = new b2MassData();
+    mass->mass = 1;
+    model->getBody()->SetMassData(mass);
 
 
 
@@ -98,10 +101,11 @@ void GameObject::moveForward()
 void GameObject::update()
 {
 //		 Adjust Angle & Position of GraphicPolygon  to match body
-	model->getPoly()->setRotation(model->getBody()->GetAngle());
-	auto pos = QPointF(converter::convert(model->getBody()->GetPosition()));
-	model->getPoly()->setPos(pos);
-	//qDebug() << model->getPoly()->pos();
+    //model->getPoly()->setRotation(model->getBody()->GetWorldVector(b2Vec2(0,1)).y);
+    model->syncTransform();
+
+
+
 }
 void GameObject::moveBackward()
 {

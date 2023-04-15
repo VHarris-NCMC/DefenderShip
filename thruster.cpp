@@ -7,25 +7,32 @@ Thruster::Thruster()
 }
 qreal Thruster::thrust(bool engineOn)
 {
+    float max = (!isBraking) ? maxThrust : maxThrust * BRAKE_VALUE;
     if (engineOn)
     {
-        if (currentThrust < maxThrust)
+        if (currentThrust < max)
         {
             currentThrust += acceleration;
+        }
+        if (currentThrust > max)
+        {
+            currentThrust -= acceleration;
         }
     }
     else
     {
         if (currentThrust >= 0)
         {
-            currentThrust-= acceleration*2;
+            currentThrust-= acceleration;
 
         }
         else
         {
             currentThrust = 0;
         }
+        return currentThrust / max;
     }
 
-    return currentThrust / maxThrust;
+    qreal out = currentThrust / maxThrust;
+    return out;
 }

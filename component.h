@@ -5,6 +5,9 @@
 #include <GameObject.h>
 #include <QObject>
 
+#include <Box2D/Dynamics/Joints/b2DistanceJoint.h>
+#include <Box2D/Dynamics/Joints/b2WeldJoint.h>
+
 
 
 class Component : public QObject
@@ -18,19 +21,21 @@ public:
 
 
 protected:
-    const b2Vec2* mlocalPosition;
+    const b2Vec2* mRelativePosition;
     b2Body* parent;
-
+     b2Body* mBody;
 private:
 
+    b2WeldJoint* weldJoint;
+    void weld();
 
 protected slots:
-    virtual void updatePosition();
+    //virtual void updatePosition();
     virtual void updateComponent();
 
 
 };
 inline void Component::updateComponent(){}
-inline void Component::updatePosition(){}
+//inline void Component::updatePosition(){}
 
 #endif // COMPONENT_H

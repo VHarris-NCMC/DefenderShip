@@ -1118,6 +1118,9 @@ debug/moc_component.cpp: component.h \
 		vehiclepicker.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtCore/QPointF \
 		Model.h \
+		Box2D/Dynamics/Joints/b2DistanceJoint.h \
+		Box2D/Dynamics/Joints/b2Joint.h \
+		Box2D/Dynamics/Joints/b2WeldJoint.h \
 		debug/moc_predefs.h \
 		../../../../Qt/6.4.3/mingw_64/bin/moc.exe
 	C:\Qt\6.4.3\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/vchar/Documents/Defender/debug/moc_predefs.h -IC:/Qt/6.4.3/mingw_64/mkspecs/win32-g++ -IC:/Users/vchar/Documents/Defender -IC:/Qt/6.4.3/mingw_64/include -IC:/Qt/6.4.3/mingw_64/include/QtWidgets -IC:/Qt/6.4.3/mingw_64/include/QtGui -IC:/Qt/6.4.3/mingw_64/include/QtCore -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include component.h -o debug\moc_component.cpp
@@ -1682,6 +1685,9 @@ debug/moc_plume.cpp: plume.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qrubberband.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtCore/qabstractitemmodel.h \
 		Component.h \
+		Box2D/Dynamics/Joints/b2DistanceJoint.h \
+		Box2D/Dynamics/Joints/b2Joint.h \
+		Box2D/Dynamics/Joints/b2WeldJoint.h \
 		debug/moc_predefs.h \
 		../../../../Qt/6.4.3/mingw_64/bin/moc.exe
 	C:\Qt\6.4.3\mingw_64\bin\moc.exe $(DEFINES) --include C:/Users/vchar/Documents/Defender/debug/moc_predefs.h -IC:/Qt/6.4.3/mingw_64/mkspecs/win32-g++ -IC:/Users/vchar/Documents/Defender -IC:/Qt/6.4.3/mingw_64/include -IC:/Qt/6.4.3/mingw_64/include/QtWidgets -IC:/Qt/6.4.3/mingw_64/include/QtGui -IC:/Qt/6.4.3/mingw_64/include/QtCore -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++ -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/x86_64-w64-mingw32 -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include/c++/backward -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include -IC:/Qt/Tools/mingw1120_64/lib/gcc/x86_64-w64-mingw32/11.2.0/include-fixed -IC:/Qt/Tools/mingw1120_64/x86_64-w64-mingw32/include plume.h -o debug\moc_plume.cpp
@@ -2084,6 +2090,9 @@ debug/moc_vehicle.cpp: vehicle.h \
 		vehiclepicker.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtCore/QPointF \
 		Model.h \
+		Box2D/Dynamics/Joints/b2DistanceJoint.h \
+		Box2D/Dynamics/Joints/b2Joint.h \
+		Box2D/Dynamics/Joints/b2WeldJoint.h \
 		weapon.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtGui/QPolygonF \
 		inputObject.h \
@@ -5450,7 +5459,11 @@ debug/component.o: component.cpp component.h \
 		Box2D/Common/b2Draw.h \
 		vehiclepicker.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtCore/QPointF \
-		Model.h
+		Model.h \
+		Box2D/Dynamics/Joints/b2DistanceJoint.h \
+		Box2D/Dynamics/Joints/b2Joint.h \
+		Box2D/Dynamics/Joints/b2WeldJoint.h \
+		Box2D/Dynamics/b2Fixture.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\component.o component.cpp
 
 debug/converter.o: converter.cpp converter.h \
@@ -5717,6 +5730,9 @@ debug/engine.o: engine.cpp engine.h \
 		vehiclepicker.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtCore/QPointF \
 		Model.h \
+		Box2D/Dynamics/Joints/b2DistanceJoint.h \
+		Box2D/Dynamics/Joints/b2Joint.h \
+		Box2D/Dynamics/Joints/b2WeldJoint.h \
 		Plume.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qlabel.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtGui/qpicture.h \
@@ -6145,6 +6161,9 @@ debug/gamemanager.o: gamemanager.cpp gamemanager.h \
 		components.h \
 		Thruster.h \
 		Component.h \
+		Box2D/Dynamics/Joints/b2DistanceJoint.h \
+		Box2D/Dynamics/Joints/b2Joint.h \
+		Box2D/Dynamics/Joints/b2WeldJoint.h \
 		weapon.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtGui/QPolygonF \
 		inputObject.h \
@@ -6527,6 +6546,9 @@ debug/main.o: main.cpp GameManager.h \
 		components.h \
 		Thruster.h \
 		Component.h \
+		Box2D/Dynamics/Joints/b2DistanceJoint.h \
+		Box2D/Dynamics/Joints/b2Joint.h \
+		Box2D/Dynamics/Joints/b2WeldJoint.h \
 		weapon.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtGui/QPolygonF \
 		inputObject.h \
@@ -6575,8 +6597,6 @@ debug/main.o: main.cpp GameManager.h \
 		Box2D/Collision/b2TimeOfImpact.h \
 		Box2D/Dynamics/b2Fixture.h \
 		Box2D/Dynamics/Contacts/b2Contact.h \
-		Box2D/Dynamics/Joints/b2DistanceJoint.h \
-		Box2D/Dynamics/Joints/b2Joint.h \
 		Box2D/Dynamics/Joints/b2FrictionJoint.h \
 		Box2D/Dynamics/Joints/b2GearJoint.h \
 		Box2D/Dynamics/Joints/b2MotorJoint.h \
@@ -6585,7 +6605,6 @@ debug/main.o: main.cpp GameManager.h \
 		Box2D/Dynamics/Joints/b2PulleyJoint.h \
 		Box2D/Dynamics/Joints/b2RevoluteJoint.h \
 		Box2D/Dynamics/Joints/b2RopeJoint.h \
-		Box2D/Dynamics/Joints/b2WeldJoint.h \
 		Box2D/Dynamics/Joints/b2WheelJoint.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\main.o main.cpp
 
@@ -6727,37 +6746,7 @@ debug/mainwindow.o: mainwindow.cpp mainwindow.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtGui/QTransform \
 		../../../../Qt/6.4.3/mingw_64/include/QtCore/qnativeinterface.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qtabwidget.h \
-		ui_mainwindow.h \
-		../../../../Qt/6.4.3/mingw_64/include/QtCore/QVariant \
-		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/QApplication \
-		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qapplication.h \
-		../../../../Qt/6.4.3/mingw_64/include/QtCore/qcoreapplication.h \
-		../../../../Qt/6.4.3/mingw_64/include/QtCore/qeventloop.h \
-		../../../../Qt/6.4.3/mingw_64/include/QtCore/qcoreapplication_platform.h \
-		../../../../Qt/6.4.3/mingw_64/include/QtCore/qjnitypes.h \
-		../../../../Qt/6.4.3/mingw_64/include/QtCore/qfuture.h \
-		../../../../Qt/6.4.3/mingw_64/include/QtCore/qfutureinterface.h \
-		../../../../Qt/6.4.3/mingw_64/include/QtCore/qmutex.h \
-		../../../../Qt/6.4.3/mingw_64/include/QtCore/qtsan_impl.h \
-		../../../../Qt/6.4.3/mingw_64/include/QtCore/qresultstore.h \
-		../../../../Qt/6.4.3/mingw_64/include/QtCore/qfuture_impl.h \
-		../../../../Qt/6.4.3/mingw_64/include/QtCore/qthreadpool.h \
-		../../../../Qt/6.4.3/mingw_64/include/QtCore/qthread.h \
-		../../../../Qt/6.4.3/mingw_64/include/QtCore/qdeadlinetimer.h \
-		../../../../Qt/6.4.3/mingw_64/include/QtCore/qelapsedtimer.h \
-		../../../../Qt/6.4.3/mingw_64/include/QtCore/qrunnable.h \
-		../../../../Qt/6.4.3/mingw_64/include/QtCore/qexception.h \
-		../../../../Qt/6.4.3/mingw_64/include/QtCore/qpromise.h \
-		../../../../Qt/6.4.3/mingw_64/include/QtGui/qguiapplication.h \
-		../../../../Qt/6.4.3/mingw_64/include/QtGui/qinputmethod.h \
-		../../../../Qt/6.4.3/mingw_64/include/QtCore/qlocale.h \
-		../../../../Qt/6.4.3/mingw_64/include/QtGui/qguiapplication_platform.h \
-		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/QMenuBar \
-		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qmenubar.h \
-		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qmenu.h \
-		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/QStatusBar \
-		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qstatusbar.h \
-		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/QWidget
+		ui_mainwindow.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\mainwindow.o mainwindow.cpp
 
 debug/model.o: model.cpp model.h \
@@ -7084,6 +7073,9 @@ debug/player.o: player.cpp Player.h \
 		components.h \
 		Thruster.h \
 		Component.h \
+		Box2D/Dynamics/Joints/b2DistanceJoint.h \
+		Box2D/Dynamics/Joints/b2Joint.h \
+		Box2D/Dynamics/Joints/b2WeldJoint.h \
 		weapon.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtGui/QPolygonF \
 		inputObject.h \
@@ -7337,7 +7329,10 @@ debug/plume.o: plume.cpp plume.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qtabwidget.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtWidgets/qrubberband.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtCore/qabstractitemmodel.h \
-		Component.h
+		Component.h \
+		Box2D/Dynamics/Joints/b2DistanceJoint.h \
+		Box2D/Dynamics/Joints/b2Joint.h \
+		Box2D/Dynamics/Joints/b2WeldJoint.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\plume.o plume.cpp
 
 debug/scenemanager.o: scenemanager.cpp scenemanager.h \
@@ -7732,7 +7727,10 @@ debug/thruster.o: thruster.cpp thruster.h \
 		Box2D/Common/b2Draw.h \
 		vehiclepicker.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtCore/QPointF \
-		Model.h
+		Model.h \
+		Box2D/Dynamics/Joints/b2DistanceJoint.h \
+		Box2D/Dynamics/Joints/b2Joint.h \
+		Box2D/Dynamics/Joints/b2WeldJoint.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\thruster.o thruster.cpp
 
 debug/updatemanager.o: updatemanager.cpp updatemanager.h \
@@ -8131,6 +8129,9 @@ debug/vehicle.o: vehicle.cpp vehicle.h \
 		vehiclepicker.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtCore/QPointF \
 		Model.h \
+		Box2D/Dynamics/Joints/b2DistanceJoint.h \
+		Box2D/Dynamics/Joints/b2Joint.h \
+		Box2D/Dynamics/Joints/b2WeldJoint.h \
 		weapon.h \
 		../../../../Qt/6.4.3/mingw_64/include/QtGui/QPolygonF \
 		inputObject.h \

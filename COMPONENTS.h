@@ -6,7 +6,7 @@
 
 namespace components {
 
-const static Thruster THRUSTER_1 = Thruster(4.3f, 100.0f, 500.0f);
+const static Thruster* THRUSTER_1 = new Thruster(2.3f, 50.0f, 500.0f);
 
 
 

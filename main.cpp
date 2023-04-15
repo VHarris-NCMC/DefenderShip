@@ -14,10 +14,10 @@ int main(int argc, char *argv[])
     QApplication a(argc, argv);
 
     //create a sceneManager
-	WindowManager* windowManager = WindowManager::Instance();
-	SceneManager * sceneManager = SceneManager::Instance();
-	GameManager* gameManager = GameManager::Instance();
-	UpdateManager* UPDATER = new UpdateManager();
+    WindowManager* windowManager = WindowManager::Instance();
+    SceneManager * sceneManager = SceneManager::Instance();
+       GameManager* gameManager = GameManager::Instance();
+     UpdateManager* UPDATER = new UpdateManager();
 
 
 

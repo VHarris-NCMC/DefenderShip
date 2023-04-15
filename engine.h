@@ -16,23 +16,30 @@ public:
 
 
     float getForce();
-    b2Vec2* getGlobalPosition(b2Vec2 bodyPosition);
 
     void setActive(bool b);
     Plume& getPlume();
     void go();
+    void applyBrake();
+    void stopBrake();
+    b2Body* getBody();
 private:
-    Plume mPlume = Plume(mlocalPosition, parent);
+    Plume mPlume = Plume(&mBody->GetPosition(), parent);
     Thruster* mThruster;
     bool isActive;
 
 
+
     // Component interface
 protected slots:
-    void updatePosition()override{};
+//    void updatePosition()override{
+//        mBody->SetTransform(mBody->GetPosition(), parent->GetAngle());
+//        qDebug()<< "Engine" << mBody->GetPosition().x << "," << mBody->GetPosition().y;
+//    };
     void updateComponent()override{
-
-        mPlume.getThrust(mThruster->thrust(isActive));
+        
+        
+        mPlume.setPlumeThrust(mThruster->thrust(isActive));
 
     };
 };

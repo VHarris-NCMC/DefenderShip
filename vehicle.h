@@ -29,13 +29,11 @@ class Vehicle :  public  GameObject
 	  void  startInput(QTimer* timer_,  QKeyEvent* event_);
 	   void stopInput(QTimer* timer_, QKeyEvent* event_);
 
-
   public slots:
        void move();
 	protected:
 	   virtual std::pair<QGraphicsPolygonItem*, b2BodyDef*>* Model(std::list<QPointF>* points)
 	   {
-
 		   QPolygonF polygon;
 		   for (QPointF p : *points)
 		   {
@@ -49,69 +47,70 @@ class Vehicle :  public  GameObject
 		   }
 		   b2BodyDef* bodyDef = new  b2BodyDef();
 		   bodyDef->fixedRotation = false;
-		   //FIX: set position correctly, for testing only.
-		   bodyDef->position.Set(0,0);
-
+           //FIX: set position correctly, for testing only.
+           bodyDef->position.SetZero();
 		   return new std::pair<QGraphicsPolygonItem*, b2BodyDef*>(new QGraphicsPolygonItem(polygon),bodyDef);
 
 
 	   }
-	protected slots:
+protected slots:
 
-	   virtual void moveForward()
-	   {
-		   auto body = model->getBody();
-
+//       virtual void moveForward()
+//    {
+//        auto body = model->getBody();
+//           for (Engine* e  : engines)
+//		   {
+//               b2Vec2 rPos = *e->Component::getGlobalPosition();
+//               b2Vec2*  force = new b2Vec2(0, e->getForce());
+//			   force->y *= -2;
+//			   body->ApplyForce(*force, rPos, true);
+//               Plume* p = &e->getPlume();
+//               //p->setPos(converter::convert(*e->Component::getGlobalPosition()));
+//               p->engineIsOn(true);
+//       }
+//        }
+    virtual void moveForward()
+    {
            for (Engine* e  : engines)
-		   {
-
-               b2Vec2 rPos = *e->Component::getGlobalPosition();
-               b2Vec2*  force = new b2Vec2(0, e->getForce());
-			   force->y *= -2;
-			   body->ApplyForce(
-						   *force,
-						   rPos,
-						   true);
-               Plume* p = &e->getPlume();
-               //p->setPos(converter::convert(*e->Component::getGlobalPosition()));
-               p->engineIsOn(true);
-
-       }
-        }
+           {
+               e->setActive(true);
+               e->go();
+           }
+    }
 	   virtual void moveBackward()
 	   {
 		   auto body = model->getBody();
 		   if (body->GetLinearDamping() <=5){
 			   body->SetLinearDamping(body->GetLinearDamping()+1);
-
 		   }
 
 
 	   }
 	   virtual void strafeLeft()
        {
-           for (Engine* e  : engines)
-           {
-               e->setActive(true);
-               e->go();
 
-           }
 	   }
 	   virtual void strafeRight()
 	   {
 
 	   }
 	   virtual void turnLeft()
-	   {
+          {
 
-		   //body->ApplyTorque(float32(getTurnSpeed()), true);
-	   }
+          }
 	   virtual void turnRight()
 	   {
 		   //body->ApplyTorque(float32(-getTurnSpeed()), true);
 	   }
 	   void fire();
 
+       void releaseBrake()
+       {
+           for (Engine* e : engines)
+           {
+               e->stopBrake();
+           }
+       }
 
     private:
         Weapon* BulletWeapons[2] = {new Weapon(-4, 5), new Weapon(4, 5)};
@@ -119,9 +118,9 @@ class Vehicle :  public  GameObject
         const Weapon* RocketWeapons[0] = {};
         const Weapon* AreaWeapons[0] = {};
         Engine* engines[2]= {
-                              new Engine(new b2Vec2(-4, 4), model->getBody(), new Thruster(components::THRUSTER_1)),
-            new Engine(new b2Vec2(4, 4), model->getBody(), new Thruster(components::THRUSTER_1))
-		};
+                              new Engine(new b2Vec2(-6 + model->getBody()->GetPosition().x, model->getBody()->GetPosition().y+4), model->getBody(), new Thruster(*components::THRUSTER_1)),
+            new Engine(new b2Vec2(6 + model->getBody()->GetPosition().x, 4 + model->getBody()->GetPosition().y), model->getBody(), new Thruster(*components::THRUSTER_1))
+        };
         Plume* plume;
 		//vehicle controls
         void drawVehicle();
