@@ -1,22 +1,13 @@
 #include "weapon.h"
 
-Weapon::Weapon(float rx, float ry)
+Weapon::Weapon(const b2Vec2* localPos, b2Body* parent_, ProjectileDef* projectileDef) : Component(localPos, parent_)
 {
-    relativeX = rx;
-    relativeY = ry;
-
+    //projectile = *projectileDef;
 }
-
-float Weapon::getRelativeX() const
+void Weapon::Fire()
 {
-    return relativeX;
+   //Projectile(1, projectile);
 }
-
-float Weapon::getRelativeY() const
-{
-    return relativeY;
-}
-
 
 
 

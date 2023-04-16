@@ -1,21 +1,19 @@
 #ifndef WEAPON_H
 #define WEAPON_H
 
+#include <Component.h>
+#include <Projectile.h>
+#include <ProjectileDef.h>
 #include <QPolygonF>
 
-class Weapon
+class Weapon : public Component
 {
     public:
-        explicit Weapon(float rx, float ry);
-
-        void fireProjectile(qreal qx, qreal qy);
-        float getRelativeX() const;
-
-        float getRelativeY() const;
-
+    explicit Weapon(const b2Vec2* localPos, b2Body* parent, ProjectileDef* projectileDef);
+        void Fire();
     private:
-        float relativeX;
-        float relativeY;
+    ProjectileDef projectile;
+
 };
 
 #endif // WEAPON_H

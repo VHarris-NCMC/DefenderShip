@@ -6,8 +6,6 @@
 GameManager::GameManager()
 {
 	InitializePlayer();
-
-
 }
 
 
@@ -21,3 +19,5 @@ void GameManager::InitializePlayer()
 		player = new Player();
 	}
 }
+
+

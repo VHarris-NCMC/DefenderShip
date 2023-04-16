@@ -45,8 +45,12 @@ debug/b2World.o
 debug/b2WorldCallbacks.o
 debug/b2Rope.o
 debug/Projectile.o
+debug/SPRITES.o
 debug/component.o
 debug/converter.o
+debug/dashboard.o
+debug/dashboardfield.o
+debug/debugger.o
 debug/enemy.o
 debug/engine.o
 debug/gameObject.o
@@ -57,7 +61,9 @@ debug/mainwindow.o
 debug/model.o
 debug/player.o
 debug/plume.o
+debug/projectiledef.o
 debug/scenemanager.o
+debug/sprite.o
 debug/thruster.o
 debug/updatemanager.o
 debug/vehicle.o
@@ -66,8 +72,9 @@ debug/weapon.o
 debug/windowmanager.o
 debug/moc_Projectile.o
 debug/moc_component.o
+debug/moc_dashboard.o
 debug/moc_gameObject.o
 debug/moc_mainwindow.o
-debug/moc_plume.o
+debug/moc_sprite.o
 debug/moc_updatemanager.o
 debug/moc_vehicle.o

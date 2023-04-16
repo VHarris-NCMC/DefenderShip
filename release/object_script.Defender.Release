@@ -45,8 +45,12 @@ release/b2World.o
 release/b2WorldCallbacks.o
 release/b2Rope.o
 release/Projectile.o
+release/SPRITES.o
 release/component.o
 release/converter.o
+release/dashboard.o
+release/dashboardfield.o
+release/debugger.o
 release/enemy.o
 release/engine.o
 release/gameObject.o
@@ -57,7 +61,9 @@ release/mainwindow.o
 release/model.o
 release/player.o
 release/plume.o
+release/projectiledef.o
 release/scenemanager.o
+release/sprite.o
 release/thruster.o
 release/updatemanager.o
 release/vehicle.o
@@ -66,8 +72,9 @@ release/weapon.o
 release/windowmanager.o
 release/moc_Projectile.o
 release/moc_component.o
+release/moc_dashboard.o
 release/moc_gameObject.o
 release/moc_mainwindow.o
-release/moc_plume.o
+release/moc_sprite.o
 release/moc_updatemanager.o
 release/moc_vehicle.o

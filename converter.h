@@ -9,9 +9,10 @@
 class converter
 {
 	public:
-		converter();
-		static QPointF convert(b2Vec2 vector);
+        converter();
+        static QPointF convertToQPointF(b2Vec2 vector);
 		static b2Vec2 convertToB2Point(QPointF Qpoints);
+
 };
 
 #endif // CONVERTER_H

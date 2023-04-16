@@ -57,8 +57,12 @@ SOURCES += \
     Box2D/Dynamics/b2WorldCallbacks.cpp \
     Box2D/Rope/b2Rope.cpp \
 	Projectile.cpp \
+	SPRITES.cpp \
 	component.cpp \
 	converter.cpp \
+	dashboard.cpp \
+	dashboardfield.cpp \
+	debugger.cpp \
 	enemy.cpp \
 	engine.cpp \
 	gameObject.cpp \
@@ -69,7 +73,9 @@ SOURCES += \
 	model.cpp \
 	player.cpp \
 	plume.cpp \
+	projectiledef.cpp \
 	scenemanager.cpp \
+	sprite.cpp \
 	thruster.cpp \
 	updatemanager.cpp \
 	vehicle.cpp \
@@ -136,6 +142,9 @@ HEADERS += \
 	STATICMETHODS.h \
 	component.h \
 	converter.h \
+	dashboard.h \
+	dashboardfield.h \
+	debugger.h \
 	enemy.h \
 	engine.h \
 	gameObject.h \
@@ -145,7 +154,9 @@ HEADERS += \
 	model.h \
 	player.h \
 	plume.h \
+	projectiledef.h \
 	scenemanager.h \
+	sprite.h \
 	thruster.h \
 	updatemanager.h \
 	vehicle.h \

@@ -5,7 +5,7 @@ converter::converter()
 {
 }
 
-QPointF converter::convert(b2Vec2 vector)
+QPointF converter::convertToQPointF(b2Vec2 vector)
 {
 	auto qpf = (QPointF(vector.x,vector.y));
 		return qpf;

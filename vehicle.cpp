@@ -12,13 +12,11 @@ Vehicle::Vehicle() : GameObject(new struct Model(1))
 }
 Vehicle::Vehicle(struct Model* m) : GameObject(m)
 {
-	qDebug() << "Vehicle Constructor 1";
+    qDebug() << "Vehicle Constructor 2";
 }
 
 void Vehicle::startInput(QTimer* timer_, QKeyEvent* event)
 {
-
-
     switch(event->key())
     {
     case Qt::Key_Q:
@@ -38,25 +36,27 @@ void Vehicle::startInput(QTimer* timer_, QKeyEvent* event)
         break;
 
     case Qt::Key_A:
-        connect(timer_, SIGNAL(timeout()),this,SLOT(turnLeft()));
+        turnLeft();
         engines[0]->applyBrake();
         break;
 
     case Qt::Key_S:
         connect(timer_, SIGNAL(timeout()),this,SLOT(moveBackward()));
-
+        fullBrake();
         break;
 
     case Qt::Key_D:
-        connect(timer_, SIGNAL(timeout()),this,SLOT(turnRight()));
-
+        turnRight();
+        break;
+    case Qt::Key_Space:
+        fire();
         break;
     }
 }
 
 void Vehicle::stopInput(QTimer* timer_, QKeyEvent* event)
 {
-	qDebug()<<"End Key: " << event->key();
+    //qDebug()<<"End Key: " << event->key();
     switch(event->key())
     {
     case Qt::Key_Q:
@@ -78,18 +78,22 @@ void Vehicle::stopInput(QTimer* timer_, QKeyEvent* event)
     case Qt::Key_A:
         disconnect(timer_, SIGNAL(timeout()),this,SLOT(turnLeft()));
         this->killEngines();
-        engines[0]->stopBrake();
+        stopTurnLeft();
+
         break;
 
     case Qt::Key_S:
         disconnect(timer_, SIGNAL(timeout()),this,SLOT(moveBackward()));
-        this->killEngines();
-
+        stopFullBrake();
         break;
 
     case Qt::Key_D:
         disconnect(timer_, SIGNAL(timeout()),this,SLOT(turnRight()));
-        this->killEngines();
+        stopTurnRight();
+
+        break;
+    case Qt::Key_X:
+
         break;
     }
 }
@@ -119,19 +123,34 @@ void Vehicle::killEngines()
 
 void Vehicle::fire()
 {
-	//TODO: re-add fire effect
-//    for (Weapon* w : BulletWeapons)
-//    {
-//        auto pos = this->pos();
-//        pos.setX(pos.rx() + w->getRelativeX());
-//        pos.setY(pos.ry() + w->getRelativeY());
-
-//        Projectile* p = new Projectile(pos);
-//        scene()->addItem(p);
+    //TODO: re-add fire effect
+        for(Weapon * w : BulletWeapons)
+    {
+        w->Fire();
+    }
 
 
 
-//    }
+}
+void Vehicle::stopFullBrake(){
+    for (Engine* e : engines)
+    {
+        e->stopBrake();
+    }
+}
+
+void Vehicle::fullBrake(){
+    for (Engine* e : engines)
+    {
+        e->applyBrake();
+    }
+}
+void Vehicle::stopTurnRight()
+{
+    engines[1]->stopBrake();
+}
+void Vehicle::stopTurnLeft(){
+    engines[0]->stopBrake();
 }
 
 

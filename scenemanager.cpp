@@ -1,14 +1,9 @@
 #include "scenemanager.h"
 
-
-
-
-
 // Initialize Singleton and mutex
 SceneManager::SceneManager()
 {
-	InitializeScene();
-
+    InitializeScene();
 
    //groundBodyDef.position.Set(0.0f, 0.0f);
    //groundBody = world->CreateBody(&groundBodyDef);
@@ -18,7 +13,7 @@ SceneManager::SceneManager()
 	QTimer* timer = new QTimer();
     wakeWorld();
 
-	//ob->connect(timer,SIGNAL(timeout()),this,SLOT(step()));
+    //ob->connect(timer,SIGNAL(timeout()),this,SLOT(step()));
 	timer->start(CONFIG::GameSpeed());
 
 }
@@ -50,13 +45,10 @@ b2World* SceneManager::getWorld()
 }
 void SceneManager::addToScene(QGraphicsItem* graphic)
 {
-
 	scene->addItem(graphic);
-
 	graphic->show();
-
-
 }
+
 void SceneManager::wakeWorld()
 {
     for (b2Body* b = world->GetBodyList(); b; b = b->GetNext())
@@ -64,13 +56,20 @@ void SceneManager::wakeWorld()
         b->SetAwake(true);
         b->SetActive(true);
 	}
+    world->SetDebugDraw(&debug);
+    debug.SetFlags(b2Draw::e_shapeBit);
 
 }
 
 void SceneManager::step()
 {
     auto timeStep = 1.0f/10.0f;
+
 world->Step(timeStep, 4, 4);
+    debug.Clear();
+    world->DrawDebugData();
+
+
 }
 
 void SceneManager::InitializeScene()
@@ -86,9 +85,7 @@ void SceneManager::InitializeScene()
 	gravity = new b2Vec2(0.0f, 0.0f);
 	world = new b2World(*gravity);
 
-
-
-	WindowManager::getView()->setScene(scene);
+    WindowManager::getView()->setScene(scene);
 
 }
 

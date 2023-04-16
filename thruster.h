@@ -10,7 +10,7 @@
 class  Thruster
 {
 public:
-    const float BRAKE_VALUE = .5f;
+    const float BRAKE_VALUE = .6f;
     float acceleration;
     float maxThrust;
     float  maxSpeed;

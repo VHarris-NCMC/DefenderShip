@@ -1,18 +1,26 @@
 #ifndef PROJECTILE_H
 #define PROJECTILE_H
 
+#include <GameObject.h>
 #include<QGraphicsRectItem>
 #include<QObject>
-
-class Projectile : public QObject, public QGraphicsRectItem
+#include <ProjectileDef.h>
+class Projectile : public GameObject, public QGraphicsRectItem
 {
         Q_OBJECT
     public:
-        Projectile(QPointF q);
+        explicit Projectile(int model, ProjectileDef def);
+        explicit Projectile(struct Model* m);
+        Projectile(const Projectile &) = delete;
+        Projectile(Projectile &&) = delete;
+        Projectile &operator =(Projectile&&) =delete;
+        Projectile &operator =(Projectile&) = delete;
 
-        enum MissileType{
+        const static Projectile* Bullet1();
+       enum MissileType{
             Bullet = 0, Missile = 1, Rocket = 2, Area = 3
         };
+        Projectile(Projectile* pProj);
     public slots:
         void move();
     private:

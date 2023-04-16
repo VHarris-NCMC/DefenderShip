@@ -9,7 +9,7 @@
 #include <scenemanager.h>
 #include <vehiclepicker.h>
 #include <Model.h>
-
+#include<debugger.h>
 
  class GameObject : public  QObject
 {
@@ -30,30 +30,16 @@
 		GameObject(Model* m);
 
 
-		 virtual ~GameObject(){qDebug() << "Error, Gameobject destroyed";};
+        virtual ~GameObject(){qDebug() <<  "Error, Gameobject destroyed";};
 
 public:
 
 		 friend class Player;
-		virtual float getForwardSpd() const;
-		virtual void setForwardSpd(float newforwardSpd);
 
-		virtual float getBackwardSpeed() const;
-		virtual void setBackwardSpeed(float newbackwardSpeed);
-
-		virtual float getStrafeSpeed() const;
-		virtual void setStrafeSpeed(float newstrafeSpeed);
-
-		virtual float getTurnSpeed() const;
-		virtual void setTurnSpeed(float newturnSpeed);
 
 		 void GenerateObject(Model* m);
 
 	 private:
-        float forwardSpeed=200;
-        float backwardSpeed=-1;
-        float strafeSpeed =1;
-        float turnSpeed =1;
 		float accelerationSpeed =1;
 		QPolygonF* buildPoly(std::list<QPointF>* points);
 		QPolygonF* buildPoly(struct Model* m);

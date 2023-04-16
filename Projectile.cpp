@@ -2,10 +2,11 @@
 #include <QTimer>
 #include <CONFIG.h>
 
-Projectile::Projectile(QPointF q)
+
+Projectile::Projectile(int model, ProjectileDef def) : GameObject(new struct Model(model))
 {
     //draw and place  rect
-    this->setRect(q.x(), q.y(),2,4);
+
 
     //connect slot
     QTimer* timer = new QTimer();
@@ -16,6 +17,7 @@ Projectile::Projectile(QPointF q)
     lifespan = 1000;
 
 }
+
 
 void Projectile::move()
 {

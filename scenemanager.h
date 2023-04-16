@@ -10,7 +10,10 @@
 #include <windowmanager.h>
 #include<CONFIG.h>
 #include <Box2D/Common/b2Draw.h>
+#include <debugger.h>
 #include <qtimer.h>
+#include<QBrush>
+#include <QPen>
 
 class SceneManager
 {
@@ -33,7 +36,7 @@ class SceneManager
 			return _instance_;
 		}
 
-		b2World* getWorld();
+        b2World* getWorld();
 		QGraphicsScene* getScene();
 
 
@@ -52,16 +55,20 @@ class SceneManager
 		SceneManager(SceneManager const&)=delete;
 		void operator=(SceneManager const&) {};
 
+
 		//Member Functions
 		void InitializeScene();
 		void wakeWorld();
 		//Member fields
 		QGraphicsScene* scene;
-		b2World* world;
+        b2World* world;
 		b2Vec2* gravity;
 		b2Body* groundBody;
 		b2BodyDef groundBodyDef;
 		b2PolygonShape groundBox;
+
+        // debug Stuff
+        debugger debug;
 
 		//UpdateManager* updater ={nullptr};
 

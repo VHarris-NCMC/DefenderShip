@@ -1,25 +1,14 @@
 #ifndef PLUME_H
 #define PLUME_H
 
-#include <qlabel.h>
-#include <qpixmap.h>
-#include<QPainter>
-#include <qgraphicsitem.h>
-#include <qvector2d.h>
-#include <GameObject.h>
-#include <QLabel>
-#include <QPixmap>
-#include <QStyleOptionGraphicsItem>
-#include <Component.h>
+#include <Sprite.h>
 
-class Plume :  public Component, public QGraphicsPixmapItem
+class Plume :   public Sprite
 {
 
-
-Q_OBJECT
 public:
 
-Plume(const b2Vec2* localPosition_,  b2Body* anchor);
+explicit Plume(const b2Vec2* localPosition_,  b2Body* anchor);
         void engineIsOn(bool b);
         void stop();
         void setPlumeThrust(qreal thrust_);

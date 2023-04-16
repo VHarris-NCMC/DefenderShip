@@ -5,7 +5,9 @@
 #include <QScreen>
 #include<QApplication>
 #include <qgraphicsview.h>
-
+#include <QBoxLayout>
+#include <mainwindow.h>>
+#include <dashboard.h>
 class WindowManager
 {
 	public:
@@ -26,9 +28,10 @@ class WindowManager
 
 		static QSize getCurrentScreenSize()
 		{
-			return qApp->primaryScreen()->availableSize();
-		};
-	private:
+            return qApp->primaryScreen()->availableSize();
+        };
+
+    private:
 		WindowManager();
 		~WindowManager();
 		inline static std::mutex mutex_;
@@ -36,8 +39,8 @@ class WindowManager
 		//Prevent Singleton from being copied.
 		WindowManager(WindowManager const&);;
 		void operator=(WindowManager const&);;
-
 		QGraphicsView* view;
+        MainWindow* window;
 
 
 		void InitializeWIndow();

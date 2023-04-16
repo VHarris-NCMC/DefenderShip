@@ -69,7 +69,7 @@ Q_CONSTINIT static const uint qt_meta_data_Projectile[] = {
 };
 
 Q_CONSTINIT const QMetaObject Projectile::staticMetaObject = { {
-    QMetaObject::SuperData::link<QObject::staticMetaObject>(),
+    QMetaObject::SuperData::link<GameObject::staticMetaObject>(),
     qt_meta_stringdata_Projectile.offsetsAndSizes,
     qt_meta_data_Projectile,
     qt_static_metacall,
@@ -108,12 +108,12 @@ void *Projectile::qt_metacast(const char *_clname)
         return static_cast<void*>(this);
     if (!strcmp(_clname, "QGraphicsRectItem"))
         return static_cast< QGraphicsRectItem*>(this);
-    return QObject::qt_metacast(_clname);
+    return GameObject::qt_metacast(_clname);
 }
 
 int Projectile::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
 {
-    _id = QObject::qt_metacall(_c, _id, _a);
+    _id = GameObject::qt_metacall(_c, _id, _a);
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {

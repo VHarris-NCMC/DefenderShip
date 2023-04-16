@@ -9,16 +9,17 @@
 
 class GameManager{
 
-	private:
-		 Player* player = nullptr;
-		 inline static InputManager* input{ nullptr};
+    private:
+    Player* player = nullptr;
+
+        inline static InputManager* input{ nullptr};
 		 GameManager();
 
 
 		 ~GameManager(){};
 		 inline static std::mutex mutex_;
 		 inline static GameManager* _instance_{nullptr};
-		void InitializePlayer();
+        void InitializePlayer();
 
 		 //Prevent Singleton from being copied.
 		 GameManager(GameManager const&){};
@@ -27,6 +28,7 @@ class GameManager{
 	public:
 		void addPlayerToScene();
 		void update();
+
 		static GameManager* Instance()
 		{
 			//lock

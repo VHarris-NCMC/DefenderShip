@@ -23,6 +23,14 @@
 //	timer->start(CONFIG::GameSpeed());
 //	qDebug() << "Object Created";
 //}
+GameObject::GameObject(Model* m)
+{
+    if (m == nullptr)
+    {
+        qDebug() << "Model is null";
+    }
+    GenerateObject(m);
+}
 void GameObject::GenerateObject(Model* model_)
 {
 	model = model_;
@@ -33,54 +41,38 @@ void GameObject::GenerateObject(Model* model_)
 	}
 	// if model does not contain body, default body will be used
 	if (model->getBodyDef() == nullptr){
-
 		qDebug() << "body definition not specified, using default body for object";
-	}
+    }
+    b2PolygonShape* shape = new b2PolygonShape(*model->getShape());
+    b2FixtureDef fixDef;
 
-	b2PolygonShape shape;
-	b2FixtureDef fixDef;
-	shape.SetAsBox(2,2);
-	fixDef.shape = &shape;
+        fixDef.shape = shape;
 	fixDef.friction = 0;
-    fixDef.density = 1;
-	model->setBody(SceneManager::Instance()->getWorld()->CreateBody(model->getBodyDef()));
-	model->getBody()->CreateFixture(&fixDef);
-    auto mass = new b2MassData();
-    mass->mass = 1;
-    model->getBody()->SetMassData(mass);
+    fixDef.density = .5;
 
 
+    model->setBody(SceneManager::Instance()->getWorld()->CreateBody(model->getBodyDef()));
+    model->getBody()->CreateFixture(&fixDef);
 
-	QPolygonF* polyF = (model->getVertices() == nullptr) ? buildPoly() : buildPoly(model->getVertices());
-	//set graphic*
-	auto graphic_ = new QGraphicsPolygonItem();
-	graphic_->setPolygon(*polyF);
-	graphic_->show();
-	//notify SM that object was created
+    QPolygonF* polyF = (model->getVertices() == nullptr) ? buildPoly() : buildPoly(model->getVertices());
+
+            //set graphic*
+    auto graphic_ = new QGraphicsPolygonItem();
+    graphic_->setPolygon(*polyF);
+    graphic_->show();
+
+    //notify SM that object was created
 	model->setPoly(graphic_);
 	SceneManager::Instance()->addToScene(graphic_);
-
 
 	//Start Timer
 	timer = new QTimer();
 	connect(timer, SIGNAL(timeout()),this,SLOT(update()));
-
 	timer->start(CONFIG::GameSpeed());
 
-
 }
 
-GameObject::GameObject(Model* m)
-{
-	if (m == nullptr)
-	{
-		qDebug() << "Model is null";
-	}
 
-
-	GenerateObject(m);
-
-}
 
 
 
@@ -126,45 +118,7 @@ void GameObject::strafeRight()
 void GameObject::strafeLeft()
 {
 }
-float GameObject::getForwardSpd() const
-{
-    return forwardSpeed;
-}
 
-void GameObject::setForwardSpd(float speed)
-{
-    forwardSpeed = speed;
-}
-
-float GameObject::getBackwardSpeed() const
-{
-    return backwardSpeed;
-}
-
-void GameObject::setBackwardSpeed(float speed)
-{
-    backwardSpeed = speed;
-}
-
-float GameObject::getStrafeSpeed() const
-{
-    return strafeSpeed;
-}
-
-void GameObject::setStrafeSpeed(float speed)
-{
-    strafeSpeed = speed;
-}
-
-float GameObject::getTurnSpeed() const
-{
-    return turnSpeed;
-}
-
-void GameObject::setTurnSpeed(float speed)
-{
-	turnSpeed = speed;
-}
 
 
 
@@ -206,6 +160,7 @@ QPolygonF* GameObject::buildPoly(std::list<QPointF>* pts)
 		p.setX( p.x() *-1);
 		*pt << p;
 	}
+
 	return pt;
 }
 // Construct GameObject with default poly (x-shape)

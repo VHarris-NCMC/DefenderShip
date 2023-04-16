@@ -9,6 +9,7 @@
 #include <qdebug.h>
 #include <qgraphicsitem.h>
 #include <Box2D/Collision/Shapes/b2PolygonShape.h>
+#include <Box2D/Collision/Shapes/b2Shape.h>
 
 
 
@@ -21,14 +22,17 @@ struct Model
 		std::list<QPointF>* getVertices(){return &vertices;};
 		b2BodyDef* getBodyDef(){return bodyDef;};
 		b2Body* getBody(){return body;};
-		QGraphicsPolygonItem* getPoly(){return poly;};
+        b2PolygonShape* getShape();
+        QGraphicsPolygonItem* getPoly(){return poly;};
 		void setPoly(QGraphicsPolygonItem* poly_){poly = poly_;};
 		void setBody(b2Body body_){body = &body_;};
 		void setBody(b2Body* body_){ body = body_;};
 		void setBody(const b2Body& body_){body = new b2Body(body_);};
+
         void syncTransform();
 	private:
 		b2Body* body = {nullptr};
+        b2PolygonShape* shape = { nullptr };
 		std::list<QPointF> vertices;
 		b2BodyDef*  bodyDef = {nullptr};
 		QGraphicsPolygonItem* poly={nullptr};
@@ -39,32 +43,31 @@ struct Model
 											   QPointF(-7.5,-15), QPointF(-4, -15), QPointF(-4, -4), QPointF(-2, -4),
 											   QPointF(-2, -6), QPointF(0, -7), QPointF(0,0)
 											};
-		inline static std::list<QPointF> defaultObject= { QPointF(10,10),  QPointF(-10,10), QPointF(-10,-10), QPointF(10,-10), QPointF(10,10)};
+        inline static std::list<QPointF> defaultObject= { QPointF(-10,10),  QPointF(-10,-10)};
 
 		inline static b2BodyDef* defaultBodyDef(){
-			auto body = new b2BodyDef();
-			body->active = true;
-            body->awake = true;
-            body->type = b2BodyType::b2_dynamicBody;
-            body->linearVelocity(0);
-            body->linearDamping =1000;
-            body->angularDamping = 0;
-            body->fixedRotation = false;
-			return body;
+            auto _bodyDef_default = new b2BodyDef();
+            _bodyDef_default->active = true;
+            _bodyDef_default->awake = true;
+            _bodyDef_default->type = b2BodyType::b2_dynamicBody;
+            _bodyDef_default->linearVelocity(0);
+            _bodyDef_default->linearDamping =100;
+            _bodyDef_default->angularDamping = 0;
+            _bodyDef_default->fixedRotation = false;
+            return _bodyDef_default;
 		};
-		inline static b2BodyDef* playerBodyDef(){
-			auto body = new b2BodyDef();
-			body->type = b2BodyType::b2_dynamicBody;
-            body->linearVelocity(5);
-            body->linearDamping =50;
-            body->angularDamping = .1;
-            body->active = true;
-            body->awake = true;
-            body->fixedRotation = false;
-
+        inline static b2BodyDef* playerBodyDef(){
+            auto _bodyDef = new b2BodyDef();
+            _bodyDef->type = b2BodyType::b2_dynamicBody;
+            _bodyDef->linearVelocity(0);
+            _bodyDef->linearDamping =0.8f;
+            _bodyDef->angularDamping = 6;
+            _bodyDef->active = true;
+            _bodyDef->awake = true;
+            _bodyDef->fixedRotation = false;
+            _bodyDef->gravityScale = 0;
 			//FIX: size set for testing
-			b2PolygonShape dynamicBox;
-			dynamicBox.SetAsBox(50,50);
+
 
 			/* TODO: Make boxes polygonal (logic is done, but there is a max polygon limit per object
 			b2Vec2 points[playerObject.size()];
@@ -76,7 +79,7 @@ struct Model
 			}
 			dynamicBox.Set(points, playerObject.size());
 */
-			return body;
+            return _bodyDef;
 		}
 
 

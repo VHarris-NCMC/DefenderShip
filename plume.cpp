@@ -1,16 +1,17 @@
 #include <plume.h>
 
-Plume::Plume(const b2Vec2* localPosition_,  b2Body* anchor) : Component(localPosition_, anchor)
+Plume::Plume(const b2Vec2* localPosition_,  b2Body* anchor) : Sprite(localPosition_, anchor)
 {
+setPixmap(QPixmap("src/plume_with_smoke.gif", "gif", Qt::AutoColor));
+    center();
+    //setPixmap(QPixmap("src/plume.gif", "gif", Qt::AutoColor ));
 
 
-    setPixmap(QPixmap("src/plume.gif", "gif", Qt::AutoColor ));
-    SceneManager::Instance()->addToScene(this);
     engineIsOn(false);
-    QTimer* timer = new QTimer();
-    setOffset(-pixmap().size().rwidth() /2, -pixmap().size().rheight()/2);
-    show();
-    timer->start(CONFIG::GameSpeed());
+//    QTimer* timer = new QTimer();
+//    setOffset(-pixmap().size().rwidth() /2, +pixmap().size().rheight()/3);
+//    show();
+//    timer->start(CONFIG::GameSpeed());
 
 
 }
@@ -22,7 +23,7 @@ void Plume::showPlume()
 {
     setRotation(qRadiansToDegrees(mBody->GetAngle()));
     setScale(maxScale * thrust);
-    setPos(converter::convert(mBody->GetPosition()));
+    setPos(converter::convertToQPointF(mBody->GetPosition()));
 }
 void Plume::setPlumeThrust(qreal thrust_)
 {
