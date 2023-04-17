@@ -50,6 +50,7 @@ debug/component.o
 debug/converter.o
 debug/dashboard.o
 debug/dashboardfield.o
+debug/dashpanel.o
 debug/debugger.o
 debug/enemy.o
 debug/engine.o

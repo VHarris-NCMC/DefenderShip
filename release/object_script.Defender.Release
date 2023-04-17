@@ -50,6 +50,7 @@ release/component.o
 release/converter.o
 release/dashboard.o
 release/dashboardfield.o
+release/dashpanel.o
 release/debugger.o
 release/enemy.o
 release/engine.o

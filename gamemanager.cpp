@@ -5,7 +5,7 @@
 
 GameManager::GameManager()
 {
-	InitializePlayer();
+    InitializePlayer();
 }
 
 
@@ -16,8 +16,16 @@ void GameManager::InitializePlayer()
 {
 	if  (player == nullptr)
 	{
-		player = new Player();
-	}
+        player = new Player();
+    }
+}
+Player& GameManager::getPlayerInstance()
+{
+    return *player;
+}
+Player* GameManager::getPlayer()
+{
+    return player;
 }
 
 

@@ -8,8 +8,16 @@ Player::Player()
 		QWidget::grabKeyboard();
 		vehicle = new Vehicle(new Model(1));
 		InputTimer = new QTimer();
-		InputTimer->start(25);
-    //draw the player vehicle
+        InputTimer->start(25);
+        //draw the player vehicle
+
+
+
+}
+
+Vehicle* Player::getVehicle()
+{
+        return vehicle;
 }
 void Player::InitializeInput()
 {
@@ -33,8 +41,13 @@ void Player::keyReleaseEvent(QKeyEvent* event)
 }
 void Player::startKeyAction(QKeyEvent* event)
 {
-	vehicle->startInput(InputTimer, event);
-};
+    vehicle->startInput(InputTimer, event);
+}
+
+void Player::increaseMass()
+    {
+
+    };
 void Player::stopKeyAction(QKeyEvent* event)
 {
 	vehicle->stopInput(InputTimer, event);

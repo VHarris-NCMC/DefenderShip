@@ -2,19 +2,28 @@
 #ifndef DEBUGGER_H
 #define DEBUGGER_H
 
-#include "qgraphicsitem.h"
 #include <Box2D/Common/b2Draw.h>
-#include<QDebug>
 
+#include <qgraphicsitem.h>
+#include <converter.h>
+#include <qbrush.h>
+#include <converter.h>
 
 
 
 class debugger : public b2Draw
 {
+    friend class SceneManager;
+    friend class GameManager;
+    friend class Player;
+    friend class Vehicle;
+
 public:
     debugger();
     ~debugger();
     void log(int level, QString s);
+    void debug();
+    static const bool DEBUGGING = true;
 private:
     const int debugLevel = 0;
     std::list<QGraphicsItem*> debug_items = std::list<QGraphicsItem*>();

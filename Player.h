@@ -6,13 +6,16 @@
 #include <vehicle.h>
 #include <QTimer>
 #include <qobjectdefs.h>
+#include <debug_mass_dashboard.h>
 
+class Player : public QWidget{
 
-class Player : QWidget{
-    public:
+Q_OBJECT
+public:
 
-		 Player();
-
+         explicit Player();
+    virtual ~Player(){};
+        Vehicle* getVehicle();
 
     private:
 		int score;
@@ -25,7 +28,10 @@ class Player : QWidget{
 		void stopKeyAction(QKeyEvent* event);
 		void startKeyAction(QKeyEvent* event);
 
-		QTimer* InputTimer;
+        QTimer* InputTimer;
+    private slots:
+
+        void increaseMass();
 
 };
 #endif // PLAYER_H

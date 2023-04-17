@@ -1,17 +1,14 @@
 
-#include "debugger.h"
+#include "scenemanager.h"
+#include <GameManager.h>
 
-#include <qgraphicsitem.h>
-#include <qpolygon.h>
-#include <converter.h>
-#include <SceneManager.h>
 
-debugger::debugger() : b2Draw()
+SceneManager::debugger::debugger() : b2Draw()
 {
 
 }
-debugger::~debugger(){}
-void debugger::log(int level, QString s)
+SceneManager::debugger::~debugger(){}
+void SceneManager::debugger::log(int level, QString s)
 {
     if (level >= debugLevel)
     {
@@ -19,7 +16,7 @@ void debugger::log(int level, QString s)
         qDebug() << s;
     }
 }
-void debugger::DrawPolygon(const b2Vec2* vertices, int32 vertexCount, const b2Color& color)
+void SceneManager::debugger::DrawPolygon(const b2Vec2* vertices, int32 vertexCount, const b2Color& color)
 {
 
     QPolygonF* pt = new QPolygonF();
@@ -29,7 +26,7 @@ void debugger::DrawPolygon(const b2Vec2* vertices, int32 vertexCount, const b2Co
     graphic_->setPolygon(*pt);
     graphic_->show();
 }
-void debugger::DrawSolidPolygon(const b2Vec2* vertices, int32 vertexCount, const b2Color& color)
+void SceneManager::debugger::DrawSolidPolygon(const b2Vec2* vertices, int32 vertexCount, const b2Color& color)
     {
 
     QPolygonF* pts = new QPolygonF();
@@ -48,23 +45,23 @@ void debugger::DrawSolidPolygon(const b2Vec2* vertices, int32 vertexCount, const
     SceneManager::Instance()->addToScene(graphic_);
 
     };
-void debugger::DrawCircle(const b2Vec2& center, float32 radius, const b2Color& color)
+void SceneManager::debugger::DrawCircle(const b2Vec2& center, float32 radius, const b2Color& color)
     {
         qDebug()<< "Hello2";
     };
-void debugger::DrawSolidCircle(const b2Vec2& center, float32 radius, const b2Vec2& axis, const b2Color& color)
+void SceneManager::debugger::DrawSolidCircle(const b2Vec2& center, float32 radius, const b2Vec2& axis, const b2Color& color)
     {
         qDebug()<< "Hello3";
     };
-void debugger::DrawSegment(const b2Vec2& p1, const b2Vec2& p2, const b2Color& color)
+void SceneManager::debugger::DrawSegment(const b2Vec2& p1, const b2Vec2& p2, const b2Color& color)
     {
         qDebug()<< "Hello4";
     };
-void debugger::DrawTransform(const b2Transform& xf)
+void SceneManager::debugger::DrawTransform(const b2Transform& xf)
     {
         qDebug()<< "Hello5";
     };
-    void debugger::Clear()
+    void SceneManager::debugger::Clear()
     {
         if (!debug_items.empty())
         {
@@ -75,3 +72,16 @@ void debugger::DrawTransform(const b2Transform& xf)
         }
         debug_items.clear();
     }
+
+    void SceneManager::debugger::debug()
+    {
+
+    }
+
+    int SceneManager::debugger::debugMass(int change)
+    {
+        auto def = GameManager::Instance()->player->getVehicle()->changeMass(change);
+
+
+    }
+

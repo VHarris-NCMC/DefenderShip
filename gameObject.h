@@ -9,7 +9,6 @@
 #include <scenemanager.h>
 #include <vehiclepicker.h>
 #include <Model.h>
-#include<debugger.h>
 
  class GameObject : public  QObject
 {

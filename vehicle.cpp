@@ -97,6 +97,23 @@ void Vehicle::stopInput(QTimer* timer_, QKeyEvent* event)
         break;
     }
 }
+
+int Vehicle::changeMass(int change)
+{
+    auto mass = model->getBody()->GetMass();
+    auto data = b2MassData();
+
+    if (data.mass < - change)
+    {
+        data.mass = mass  + change;
+        data.mass = 0;
+    }
+        model->getBody()->SetMassData(&data);
+    return data.mass;
+
+
+
+}
 void Vehicle::killEngines()
 {
     for (Engine* e : engines)

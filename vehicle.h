@@ -14,11 +14,11 @@
 #include <Plume.h>
 #include <QQuaternion>
 #include <QTimer>
-#include <COMPONENTS.h>
 
 
 class Vehicle :  public  GameObject
 {
+
 		Q_OBJECT
     public:
         explicit Vehicle();
@@ -33,6 +33,7 @@ class Vehicle :  public  GameObject
         void startInput(QTimer *timer_, QKeyEvent *event_);
         void stopInput(QTimer *timer_, QKeyEvent *event_);
 
+        int changeMass(int change);
 
     public slots:
         void move();

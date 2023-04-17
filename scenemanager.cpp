@@ -56,6 +56,7 @@ void SceneManager::wakeWorld()
         b->SetAwake(true);
         b->SetActive(true);
 	}
+
     world->SetDebugDraw(&debug);
     debug.SetFlags(b2Draw::e_shapeBit);
 

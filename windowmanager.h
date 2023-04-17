@@ -6,7 +6,7 @@
 #include<QApplication>
 #include <qgraphicsview.h>
 #include <QBoxLayout>
-#include <mainwindow.h>>
+#include <mainwindow.h>
 #include <dashboard.h>
 class WindowManager
 {

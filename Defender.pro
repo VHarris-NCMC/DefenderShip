@@ -62,6 +62,8 @@ SOURCES += \
 	converter.cpp \
 	dashboard.cpp \
 	dashboardfield.cpp \
+	dashpanel.cpp \
+	debug_mass_dashboard.cpp \
 	debugger.cpp \
 	enemy.cpp \
 	engine.cpp \
@@ -144,6 +146,8 @@ HEADERS += \
 	converter.h \
 	dashboard.h \
 	dashboardfield.h \
+	dashpanel.h \
+	debug_mass_dashboard.h \
 	debugger.h \
 	enemy.h \
 	engine.h \
