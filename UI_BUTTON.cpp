@@ -1,9 +1,9 @@
 
-#include "dashboardfield.h"
+#include "UI_BUTTON.h"
 
 
 
-DashboardField::DashboardField(QWidget* parent, QString fieldName, QWidget* contentWidget) : QWidget(parent)
+UI_BUTTON::UI_BUTTON(QWidget* parent, QString fieldName, QWidget* contentWidget) : QWidget(parent)
 {
     upButton = new QPushButton("+");
     QFont f = upButton->font();

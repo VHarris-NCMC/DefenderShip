@@ -8,7 +8,7 @@ class Plume :   public Sprite
 
 public:
 
-explicit Plume(const b2Vec2* localPosition_,  b2Body* anchor);
+explicit Plume(b2Vec2* localPosition_,  b2Body* anchor);
         void engineIsOn(bool b);
         void stop();
         void setPlumeThrust(qreal thrust_);

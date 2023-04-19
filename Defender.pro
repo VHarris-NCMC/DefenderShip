@@ -56,12 +56,13 @@ SOURCES += \
     Box2D/Dynamics/b2World.cpp \
     Box2D/Dynamics/b2WorldCallbacks.cpp \
     Box2D/Rope/b2Rope.cpp \
+    MenuDock.cpp \
 	Projectile.cpp \
 	SPRITES.cpp \
+    UI_BUTTON.cpp \
 	component.cpp \
 	converter.cpp \
 	dashboard.cpp \
-	dashboardfield.cpp \
 	dashpanel.cpp \
 	debug_dashboard.cpp \
 	debugger.cpp \
@@ -72,7 +73,9 @@ SOURCES += \
 	gamemanager.cpp \
 	inputmanager.cpp \
     main.cpp \
+    maincontroller.cpp \
 	mainwindow.cpp \
+    menubutton.cpp \
 	model.cpp \
 	player.cpp \
 	plume.cpp \
@@ -80,7 +83,6 @@ SOURCES += \
 	scenemanager.cpp \
 	sprite.cpp \
 	thruster.cpp \
-	updatemanager.cpp \
 	vehicle.cpp \
 	vehiclepicker.cpp \
 	weapon.cpp \
@@ -141,12 +143,13 @@ HEADERS += \
 	CONFIG.h \
 	CONSTANTS.h \
 	GameManager.h \
+    MenuDock.h \
 	Projectile.h \
 	STATICMETHODS.h \
+    UI_BUTTON.h \
 	component.h \
 	converter.h \
 	dashboard.h \
-	dashboardfield.h \
 	dashpanel.h \
 	debug_dashboard.h \
 	debugger.h \
@@ -156,7 +159,9 @@ HEADERS += \
 	gameObject.h \
 	inputObject.h \
 	inputmanager.h \
+    maincontroller.h \
 	mainwindow.h \
+    menubutton.h \
 	model.h \
 	player.h \
 	plume.h \
@@ -164,7 +169,6 @@ HEADERS += \
 	scenemanager.h \
 	sprite.h \
 	thruster.h \
-	updatemanager.h \
 	vehicle.h \
 	vehiclepicker.h \
 	weapon.h \

@@ -1,8 +1,9 @@
 
 #include "exceptions.cpp"
 #include "scenemanager.h"
-#include <GameManager.h>
+#include <maincontroller.h>
 #include <QLineF>
+
 
 
 SceneManager::debugger::debugger() : b2Draw()
@@ -47,7 +48,7 @@ void SceneManager::debugger::DrawSolidPolygon(const b2Vec2* vertices, int32 vert
 
     debug_items.push_back(graphic_);
     graphic_->setBrush(QBrush(Qt::red));
-    SceneManager::Instance()->addToScene(graphic_);
+    MAINCONTROLLER::ADD_TO_SCENE(graphic_);
 
     };
 void SceneManager::debugger::DrawCircle(const b2Vec2& center, float32 radius, const b2Color& color)
@@ -70,7 +71,7 @@ void SceneManager::debugger::DrawSegment(const b2Vec2& p1, const b2Vec2& p2, con
 
         debug_items.push_back(graphic_);
         graphic_->setPen(QPen(Qt::blue));
-        SceneManager::Instance()->addToScene(graphic_);
+        MAINCONTROLLER::ADD_TO_SCENE(graphic_);
     };
 void SceneManager::debugger::DrawTransform(const b2Transform& xf)
     {
@@ -89,30 +90,57 @@ void SceneManager::debugger::DrawTransform(const b2Transform& xf)
         debug_items.clear();
     }
 
-    void SceneManager::debugger::debug()
-    {
-
-    }
     float32 SceneManager::debugger::debugMass(double change)
     {
-        if (GameManager::GetPlayer() == nullptr) { return 0;}
-        else{ return GameManager::GetPlayer()->getVehicle()->debugChangeMass(change);}
+        try {
+        Player* player = GameManager::GetPlayer();
+        if (player == nullptr) {
+        throw std::runtime_error("Player not instantiated");
+        }
+        return player->getVehicle()->debugChangeMass(change);
+        } catch (const std::exception& ex) {
+        qDebug() << "Error debugging mass: " << ex.what();
+        return 0;
+        }
     }
-
     float32 SceneManager::debugger::debugThrust(double change)
     {
-        if (GameManager::GetPlayer() == nullptr) { return 0;}
-        else{ return GameManager::GetPlayer()->getVehicle()->debugChangeThrust(change);}
+        try {
+        Player* player = GameManager::GetPlayer();
+        if (player == nullptr) {
+        throw std::runtime_error("Player not instantiated");
+        }
+        return GameManager::GetPlayer()->getVehicle()->debugChangeThrust(change);
+        } catch (const std::exception& ex) {
+        qDebug() << "Error debugging thrust: " << ex.what();
+        return 0;
+        }
     }
 
     float32 SceneManager::debugger::debugMaxThrust(double change)
     {
-        if (GameManager::GetPlayer() == nullptr) { return 0;}
-        else{ return GameManager::GetPlayer()->getVehicle()->debugChangeMaxThrust(change);}
-    }
-    float32 SceneManager::debugger::debugLinearDamping(double change)
-    {
-        if (GameManager::GetPlayer() == nullptr) { return 0;}
-        else{ return GameManager::GetPlayer()->getVehicle()->debugChangeLinearDampening(change);}
+        try {
+        Player* player = GameManager::GetPlayer();
+        if (player == nullptr) {
+        throw std::runtime_error("Player not instantiated");
+        }
+        return GameManager::GetPlayer()->getVehicle()->debugChangeMaxThrust(change);
+        } catch (const std::exception& ex) {
+        qDebug() << "Error debugging max thrust: " << ex.what();
+        return 0;
+        }
     }
 
+    float32 SceneManager::debugger::debugLinearDamping(double change)
+    {
+        try {
+        Player* player = GameManager::GetPlayer();
+        if (player == nullptr) {
+        throw std::runtime_error("Player not instantiated");
+        }
+        return GameManager::GetPlayer()->getVehicle()->debugChangeLinearDampening(change);
+        } catch (const std::exception& ex) {
+        qDebug() << "Error debugging max thrust: " << ex.what();
+        return 0;
+        }
+    }

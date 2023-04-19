@@ -8,39 +8,29 @@
 #include <QBoxLayout>
 #include <mainwindow.h>
 #include <dashboard.h>
+
 class WindowManager
 {
+    friend class SceneManager;
+    friend class MAINCONTROLLER;
+public:
+    WindowManager();
+    static QSize getCurrentScreenSize()
+    {
+
+        return qApp->primaryScreen()->availableSize();
+
+    };
+
+    void closeMenu();
 private:
-
-	public:
-		friend class SceneManager;
-		static WindowManager* Instance()
-		{
-			//lock
-			std::lock_guard<std::mutex> lock(mutex_);
-			//If instance does not exist, create a new one
-			if (instance_ == nullptr){ instance_= new WindowManager();}
-			// return signleton instance;
-			return instance_;
-		}
-		static QGraphicsView* getView()
-		{
-			return Instance()->view;
-		}
-
-		static QSize getCurrentScreenSize()
-		{
-            return qApp->primaryScreen()->availableSize();
-        };
-
-    private:
-		WindowManager();
 		~WindowManager();
 		inline static std::mutex mutex_;
 		inline static WindowManager* instance_ { nullptr};
 		//Prevent Singleton from being copied.
 		WindowManager(WindowManager const&);;
 		void operator=(WindowManager const&);;
+        QDockWidget* leftWidget;
 		QGraphicsView* view;
         MainWindow* window;
 

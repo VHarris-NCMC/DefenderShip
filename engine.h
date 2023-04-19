@@ -28,7 +28,7 @@ public:
     float32 getAcceleration();
     float32 getMaxThrust();
 private:
-    Plume mPlume = Plume(&mBody->GetPosition(), parent);
+    Plume* mPlume;
     Thruster* mThruster;
     bool isActive;
 
@@ -43,7 +43,7 @@ protected slots:
     void updateComponent()override{
         
         
-        mPlume.setPlumeThrust(mThruster->thrust(isActive));
+        mPlume->setPlumeThrust(mThruster->thrust(isActive));
 
     };
 };

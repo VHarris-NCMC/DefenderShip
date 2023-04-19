@@ -2,7 +2,7 @@
 #include "component.h"
 #include <GameObject.h>
 #include <Box2D/Dynamics/b2Fixture.h>
-#include <scenemanager.h>
+#include <maincontroller.h>
 #include <converter.h>
 #include <CONFIG.h>
 
@@ -10,17 +10,15 @@
 
 Component::Component(const b2Vec2* localPos_,  b2Body* anchor) :  QObject()
 {
-    if (localPos_ == nullptr)
-    {
-        qDebug() << " LOCAL POSITION IS NULL VALUE";
-            localPos_ = new b2Vec2(0,0);
-    }
-    if (anchor == nullptr)
-    {
-            qDebug() << " ERROR: ANCHOR PARENT NOT DEFINED";
-    }
-    parent = anchor;
-    mRelativePosition = localPos_;
+    try {
+        parent = anchor;
+        mRelativePosition = localPos_;
+        if (localPos_ == nullptr) { throw std::runtime_error("Local Position Not Defined");}
+        if (anchor == nullptr) { throw std::runtime_error("Anchor Not Defined");}
+    } catch (std::exception e) {
+        qDebug() << "Unable to construct component " << e.what();}
+
+
     QTimer* timer = new QTimer();
    //connect(timer, SIGNAL(timeout()),this,SLOT(updatePosition()));
     connect(timer, SIGNAL(timeout()),this,SLOT(updateComponent()));
@@ -30,18 +28,18 @@ Component::Component(const b2Vec2* localPos_,  b2Body* anchor) :  QObject()
     bodyDef.type = b2_dynamicBody;
     bodyDef.active = true;
     bodyDef.angularDamping = 2;
-    mBody = SceneManager::Instance()->getWorld()->CreateBody(&bodyDef);
 
-    b2MassData* data = new b2MassData();
-    data->mass = 1;
-    mBody->SetMassData(data);
+    try{
+        mBody = MAINCONTROLLER::ADD_TO_WORLD(&bodyDef);
+        b2PolygonShape shape;
+        shape.SetAsBox(1,1);
+        mBody->CreateFixture(&shape, 1);
+        mBody->SetTransform(parent->GetPosition() + *localPos_, mBody->GetAngle());
 
-    b2PolygonShape shape;
-    shape.SetAsBox(1,1);
-
-    mBody->CreateFixture(&shape, 1);
-    mBody->SetTransform(parent->GetPosition() + *localPos_, mBody->GetAngle());
-
+    }catch(std::exception e)
+    {
+        qDebug() << e.what();
+    }
     weld();
 
 
@@ -70,7 +68,7 @@ void Component::weld()
 
     jointDef.Initialize(mBody, parent, b2Vec2(*mRelativePosition));
 
-    weldJoint = (b2WeldJoint*)SceneManager::Instance()->getWorld()->CreateJoint(&jointDef);
+    weldJoint = (b2WeldJoint*)MAINCONTROLLER::SCENE()->getWorld()->CreateJoint(&jointDef);
 
    weldJoint->SetDampingRatio(0);
     //weldJoint->SetFrequency(0);

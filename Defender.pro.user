@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 10.0.0, 2023-04-18T19:49:08. -->
+<!-- Written by QtCreator 10.0.0, 2023-04-19T17:28:25. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -76,8 +76,72 @@
     <value type="bool" key="ClangTools.BuildBeforeAnalysis">true</value>
     <value type="QString" key="ClangTools.DiagnosticConfig">Builtin.DefaultTidyAndClazy</value>
     <value type="int" key="ClangTools.ParallelJobs">8</value>
-    <valuelist type="QVariantList" key="ClangTools.SelectedDirs"/>
-    <valuelist type="QVariantList" key="ClangTools.SelectedFiles"/>
+    <valuelist type="QVariantList" key="ClangTools.SelectedDirs">
+     <value type="QString">/</value>
+    </valuelist>
+    <valuelist type="QVariantList" key="ClangTools.SelectedFiles">
+     <value type="QString">C:/Users/vchar/Documents/Defender/thruster.cpp</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/maincontroller.cpp</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/dashpanel.cpp</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/enemy.cpp</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/gamemanager.cpp</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/gameObject.h</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/player.cpp</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/dashboard.cpp</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/converter.h</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/plume.cpp</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/component.h</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/projectiledef.h</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/scenemanager.cpp</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/vehicle.h</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/dashboardfield.h</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/vehiclepicker.h</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/windowmanager.cpp</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/inputmanager.h</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/sprite.h</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/mainwindow.cpp</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/Projectile.h</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/COMPONENTS.h</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/SPRITES.cpp</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/engine.cpp</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/engine.h</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/Projectile.cpp</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/exceptions.h</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/dashboardfield.cpp</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/mainwindow.h</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/player.h</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/inputObject.h</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/projectiledef.cpp</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/debug_dashboard.cpp</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/weapon.cpp</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/CONFIG.h</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/dashboard.h</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/scenemanager.h</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/gameObject.cpp</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/GameManager.h</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/maincontroller.h</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/main.cpp</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/sprite.cpp</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/plume.h</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/inputmanager.cpp</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/converter.cpp</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/vehicle.cpp</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/debugger.h</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/exceptions.cpp</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/weapon.h</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/vehiclepicker.cpp</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/model.h</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/debug_dashboard.h</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/STATICMETHODS.h</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/model.cpp</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/debugger.cpp</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/component.cpp</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/dashpanel.h</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/enemy.h</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/windowmanager.h</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/CONSTANTS.h</value>
+     <value type="QString">C:/Users/vchar/Documents/Defender/thruster.h</value>
+    </valuelist>
     <valuelist type="QVariantList" key="ClangTools.SuppressedDiagnostics"/>
     <value type="bool" key="ClangTools.UseGlobalSettings">true</value>
    </valuemap>

@@ -10,8 +10,6 @@
 #include <qgraphicsitem.h>
 #include <Box2D/Collision/Shapes/b2PolygonShape.h>
 #include <Box2D/Collision/Shapes/b2Shape.h>
-#include <scenemanager.h>
-
 
 struct Model
 {

@@ -57,7 +57,7 @@ void Dashboard::addFields(QGridLayout* grid, QWidget* widget)
     int col = 0;
     int row =0;
 
-    for (std::pair<DashboardField*, bool> kvp : fields)
+    for (std::pair<UI_BUTTON*, bool> kvp : fields)
     {
         if (kvp.second == true)
         {

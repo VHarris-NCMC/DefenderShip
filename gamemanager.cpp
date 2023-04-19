@@ -2,28 +2,26 @@
 
 
 
-GameManager::GameManager(Player* player)
+GameManager::GameManager()
 {
 }
 
 Player * GameManager::_player_ = nullptr;
 void GameManager::SetPlayer(Player* player){
-    if (_player_ == nullptr)
-    {
-        _player_ = player;
-    }
-    else{
-        qDebug() << "ERROR, PLAYER ALREADY EXISTS";
-    }
+    try {
+        if (_player_ != nullptr) { throw std::runtime_error("ERROR: PLAYER ALREADY EXISTS");}
+            _player_ = player;
+        }catch(const std::exception& error){
+           qDebug() << error.what();
+        }
 }
-
 Player* GameManager::GetPlayer()
 {
-    if (_player_ == nullptr)
-    {
-        qDebug() << " ERROR, PLAYER NOT INSTANTIATED";
+    try {
+            return _player_;
+    } catch (const std::exception& ex) {
+        qDebug() << "Error getting player: " << ex.what();
         return nullptr;
     }
-    return _player_;
 }
 

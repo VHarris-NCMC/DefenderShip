@@ -7,11 +7,11 @@ void Vehicle::move()
 }
 Vehicle::Vehicle() : GameObject(new struct Model(1))
 {
-	qDebug() << "Vehicle Constructor 1";
+    qDebug() << "Vehicle Constructor 1: Vehicle Instantiated";
 }
 Vehicle::Vehicle(struct Model* m, QPixmap* pixmap) : GameObject(m, pixmap)
 {
-    qDebug() << "Vehicle Constructor 2";
+    qDebug() << "Vehicle Constructor 2: Vehicle Instantiated";
 }
 
 b2BodyDef* Vehicle::getBodyDef()
@@ -31,7 +31,6 @@ void Vehicle::startInput(QTimer* timer_, QKeyEvent* event)
 
     case Qt::Key_W:
         connect(timer_, SIGNAL(timeout()),this,SLOT(moveForward()));
-
         break;
 
     case Qt::Key_E:

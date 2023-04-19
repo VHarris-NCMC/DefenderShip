@@ -3,9 +3,9 @@
 #define DEBUG_DASHBOARD_H
 
 #include "Box2D/Common/b2Settings.h"
-#include <DashboardField.h>
+#include <UI_BUTTON.h>
 
-class DASHBOARD_DEBUG_MASS : public DashboardField
+class DASHBOARD_DEBUG_MASS : public UI_BUTTON
 {
 
 public:
@@ -23,7 +23,7 @@ private:
     const float32 DEBUG_CHANGE_VALUE = 0.25;
 
 };
-class DASHBOARD_DEBUG_LINEARDAMPING : public DashboardField
+class DASHBOARD_DEBUG_LINEARDAMPING : public UI_BUTTON
 {
 
 public:
@@ -41,7 +41,7 @@ private:
     const float32 DEBUG_CHANGE_VALUE = 0.2;
 };
 
-class DASHBOARD_DEBUG_THRUST : public DashboardField
+class DASHBOARD_DEBUG_THRUST : public UI_BUTTON
 {
 
 public:
@@ -60,7 +60,7 @@ private:
 };
 
 
-class DASHBOARD_DEBUG_MAXTHRUST : public DashboardField
+class DASHBOARD_DEBUG_MAXTHRUST : public UI_BUTTON
 {
 
 public:

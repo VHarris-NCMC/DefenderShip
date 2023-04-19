@@ -20,7 +20,7 @@ Model::Model(int i)
         //vertices = defaultObject;
         break;
     }
-    SceneManager::addToWorld(bodyDef);
+    //MAINCONTROLLER::ADD_TO_WOLD(bodyDef);
 
 }
 
@@ -46,4 +46,5 @@ void Model::syncTransform(b2Body* body, QGraphicsItem* poly)
     poly->setRotation(qRadiansToDegrees(body->GetAngle()));
     auto pos = QPointF(converter::convertToQPointF(body->GetPosition()));
     poly->setPos(pos);
+}
 }

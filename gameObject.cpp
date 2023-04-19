@@ -1,6 +1,6 @@
 #include <gameObject.h>
 #include <qDebug>
-
+#include<maincontroller.h>
 #include <Box2D/Dynamics/b2Fixture.h>
 
 
@@ -8,12 +8,12 @@
 
 //void GameObject::GenerateObject(QGraphicsPolygonItem* graphic_, b2BodyDef* bodyDef_)
 //{
-//	auto body = SceneManager::Instance()->getWorld()->CreateBody(bodyDef_);
+//	auto body = MAINCONTROLLER::SCENE->Instance()->getWorld()->CreateBody(bodyDef_);
 
 //	//set graphic*
 //	auto poly = graphic_;
 //	//notify SM that object was created
-//	SceneManager::Instance()->addToScene(poly);
+//	MAINCONTROLLER::SCENE->Instance()->addToScene(poly);
 
 
 //	//Start Timer
@@ -25,13 +25,16 @@
 //}
 GameObject::GameObject(Model* m, QPixmap* pixmap)
 {
-    if (m == nullptr)
+    try {
+        GenerateObject(m);
+         if (m == nullptr){throw std::runtime_error("Model is null");}
+    }catch (std::exception e)
     {
-        qDebug() << "Model is null";
+         qDebug() << e.what();
     }
-    GenerateObject(m);
-    sprite = new  Sprite(&getBody()->GetPosition(), getBody());
-    SceneManager::Instance()->addToScene(sprite);
+    Sprite* sprite   = new Sprite(new b2Vec2(b2Vec2_zero), getBody());
+    MAINCONTROLLER::ADD_TO_SCENE(sprite);
+
 
 
 }
@@ -55,15 +58,15 @@ void GameObject::GenerateObject(Model* model_)
     QPolygonF* polyF = (model->getVertices() == nullptr) ? buildPoly() : buildPoly(model->getVertices());
 
             //set graphic*
-    auto polygon = new QGraphicsPolygonItem();
+    polygon = new QGraphicsPolygonItem();
     polygon->setPolygon(*polyF);
     polygon->show();
 
     //notify SM that object was created
 
 
-    SceneManager::Instance()->addToScene(polygon);
-    body = SceneManager::addToWorld(model->getBodyDef());
+    MAINCONTROLLER::ADD_TO_SCENE(polygon);
+    body = MAINCONTROLLER::ADD_TO_WORLD(model->getBodyDef());
     //activate pixmap    Sprite* sprite = new Sprite(localvec,  model->getBody());
 
 	//Start Timer
@@ -89,6 +92,7 @@ void GameObject::GenerateObject(Model* model_)
 
 void GameObject::moveForward()
 {
+    qDebug() << "move forward";
 
 }
 void GameObject::update()
@@ -98,6 +102,7 @@ void GameObject::update()
 
     if ( body != nullptr && polygon != nullptr)
     {
+
         model->syncTransform(body, polygon);
     }
 

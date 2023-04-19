@@ -1,14 +1,19 @@
 #include "windowmanager.h"
 
+#include <MenuDock.h>
+
 
 
 WindowManager::WindowManager()
 {
 	InitializeWIndow();
-    window = new MainWindow();
+   view->setStyleSheet("background-image: url(:/images/src/SpaceBackground.png);");
+    window->setSizePolicy(QSizePolicy::Fixed, QSizePolicy::Fixed);
 }
 
-WindowManager::~WindowManager(){}
+WindowManager::~WindowManager()
+{
+}
 
 WindowManager::WindowManager(const WindowManager&){}
 
@@ -28,7 +33,7 @@ void WindowManager::InitializeWIndow()
 
     // Configure Background
     //view->setBackgroundBrush(QPixmap(BACKGROUND, "png", Qt::AutoColor));
-    auto viewRect  = new QRect(QPoint(-1500, 1500), QPoint(1500, -1500));
+    auto viewRect  = new QRect(QPoint(-1000, 1000), QPoint(1000, -1000));
     view->setAutoFillBackground(true);
 
 
@@ -39,9 +44,16 @@ void WindowManager::InitializeWIndow()
 	// Show window
 
     window->setCentralWidget(view);
+
     window->addDockWidget(Qt::BottomDockWidgetArea, new Dashboard());
+    leftWidget = new MenuDock();
+    window->addDockWidget(Qt::LeftDockWidgetArea,leftWidget);
     window->showMaximized();
     window->show();
 
+}
+void WindowManager::closeMenu()
+{
+    window->removeDockWidget(leftWidget);
 }
 

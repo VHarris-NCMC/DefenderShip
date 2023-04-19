@@ -10,6 +10,5 @@ UpdateManager::UpdateManager()
 
 void UpdateManager::update()
 {
-	SceneManager::Instance()->safeStep();
 
 }

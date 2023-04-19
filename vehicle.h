@@ -56,8 +56,9 @@ class Vehicle :  public  GameObject
             // FIX: set position correctly, for testing only.
             bodyDef->position.SetZero();
             return new std::pair<QGraphicsPolygonItem *, b2BodyDef *>(
-                new QGraphicsPolygonItem(polygon), bodyDef);
-	   }
+                new (polygon), bodyDef);
+       }
+    protected slots:
        virtual void stopTurnRight();
        virtual void stopTurnLeft();
        virtual void fullBrake();

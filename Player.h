@@ -17,7 +17,8 @@ public:
     virtual ~Player(){};
         Vehicle* getVehicle();
 
-    private:
+    void StartTimer();
+private:
 		int score;
 		Vehicle* vehicle;
 		void keyPressEvent(QKeyEvent* event)override;
@@ -30,8 +31,5 @@ public:
 
         QTimer* InputTimer;
     private slots:
-
-        void increaseMass();
-
 };
 #endif // PLAYER_H

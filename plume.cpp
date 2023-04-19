@@ -1,6 +1,6 @@
 #include <plume.h>
 
-Plume::Plume(const b2Vec2* localPosition_,  b2Body* anchor) : Sprite(localPosition_, anchor)
+Plume::Plume(b2Vec2* localPosition_,  b2Body* anchor) : Sprite(localPosition_, anchor)
 {
     pixmap = new QPixmap(":/sprites/src/plume_with_smoke-modified.png", "png", Qt::AutoColor);
     setPixmap(*pixmap);

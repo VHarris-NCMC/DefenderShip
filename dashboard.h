@@ -6,10 +6,9 @@
 #include <QGraphicsProxyWidget>
 #include <QLayout>
 #include <QDockWidget>
-#include <DashboardField.h>
+#include <UI_BUTTON.h>
 #include <DashPanel.h>
 #include <QPushButton>
-
 #include <debug_dashboard.h>
 
 class Dashboard : public QDockWidget
@@ -29,7 +28,7 @@ private:
     void addFields(QGridLayout* grid, QWidget* widget);
     
     
-    std::map<DashboardField*,bool> fields = {
+    std::map<UI_BUTTON*,bool> fields = {
                                                      {new DASHBOARD_DEBUG_MASS(), true},
         {new DASHBOARD_DEBUG_LINEARDAMPING(), true},
         {new DASHBOARD_DEBUG_THRUST(), true},

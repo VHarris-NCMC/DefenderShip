@@ -17,7 +17,7 @@ class Sprite : public Component, public QGraphicsPixmapItem
     Q_OBJECT
 
         public:
-    Sprite(const b2Vec2* localPosition_,  b2Body* anchor);
+    Sprite(b2Vec2* localPosition_,  b2Body* anchor);
 
             QPixmap* pixmap;
         protected:

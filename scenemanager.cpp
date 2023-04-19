@@ -1,57 +1,31 @@
 #include "scenemanager.h"
 
-
-
-
-// Initialize Singleton and mutex
-SceneManager::SceneManager()
+void SceneManager::Initialize()
 {
     InitializeScene();
-
-
-
 	QTimer* timer = new QTimer();
     wakeWorld();
-
     //ob->connect(timer,SIGNAL(timeout()),this,SLOT(step()));
 	timer->start(CONFIG::GameSpeed());
+}
+
+b2Body* SceneManager::addToWorld(b2BodyDef* bDef){ return world->CreateBody(bDef);}
+b2World* SceneManager::getWorld(){return world;}
+QGraphicsScene* SceneManager::getScene(){ return scene;}
+void SceneManager::addToView(QGraphicsItem* graphic){
+    try{
+        if (graphic == nullptr) { throw std::runtime_error("Graphic == nullptr");}
+        if (scene == nullptr) { throw std::runtime_error("Scene == nullptr");}
+        scene->addItem(graphic); graphic->show();
+    }catch(const std::exception& error){
+        qDebug() << "Error adding graphic to view: " << error.what();}
 
 }
 
-QGraphicsScene* SceneManager::getScene()
-{
-	return scene;
-}
-
-void SceneManager::safeStep(/*UpdateManager* updater_*/)
-{
-	/* // REMOVED DUE TO RECURSIVE CLASS INCLUSION
-	try {
-		if (updater == updater_)
-		{
-			*/step();/*
-		}else{throw updater_;}
-	} catch (UpdateManager* up) {
-		if (updater == nullptr) { updater = updater_;}
-		else{ qDebug() << "Error, multiple updaters detected";
-	}
-	*/
-
-}
-
-b2Body* SceneManager::addToWorld(b2BodyDef* bDef)
-{
-    return Instance()->world->CreateBody(bDef);
-}
-
-b2World* SceneManager::getWorld()
-{
-	return world;
-}
-void SceneManager::addToScene(QGraphicsItem* graphic)
-{
-	scene->addItem(graphic);
-	graphic->show();
+void SceneManager::addToView(QPixmap* pixmap){
+    scene->addPixmap(*pixmap);
+    scene->dumpObjectInfo();
+    scene->dumpObjectTree();
 }
 
 void SceneManager::wakeWorld()
@@ -60,44 +34,52 @@ void SceneManager::wakeWorld()
     {
         b->SetAwake(true);
         b->SetActive(true);
-	}
+    }
 
-    world->SetDebugDraw(&debug);
-    debug.SetFlags(b2Draw::e_shapeBit);
+//    world->SetDebugDraw(&mDebug);
+   // SceneManager::mDebug.SetFlags(b2Draw::e_shapeBit);
 
 }
 
 void SceneManager::step()
 {
     auto timeStep = 1.0f/10.0f;
-
-world->Step(timeStep, 4, 4);
-    debug.Clear();
+    world->Step(timeStep, 4, 4);
+   // mDebug.Clear();
+if (debugger::DEBUGGING)
+    {
     world->DrawDebugData();
+    }
+}
+
+void SceneManager::resizeToWindow()
+{
+    auto screenSize = WindowManager::getCurrentScreenSize();
+    scene->setSceneRect(0-screenSize.rwidth()/2, 0-screenSize.rheight()/2, screenSize.rwidth()-200, screenSize.rheight()- 250);
 
 
 }
 
 void SceneManager::InitializeScene()
 {
-	//Initialize Scene
-	scene = new QGraphicsScene();
+    //Initialize Scene
+    scene = new QGraphicsScene();
 
 
-	// Set Scene size to match window size
-	auto screenSize = WindowManager::Instance()->getCurrentScreenSize();
-    scene->setSceneRect(0-screenSize.rwidth()/2, 0-screenSize.rheight()/2, screenSize.rwidth(), screenSize.rheight()- 250);
+    // Set Scene size to match window size
+    resizeToWindow();
+
 
 	qDebug() << "Scene Dimensions - Height: " <<scene->sceneRect().size().height() << " Width: " << scene->sceneRect().size().width();
-	//Configure World
-	gravity = new b2Vec2(0.0f, 0.0f);
+    //Configure World
+    auto gravity = new b2Vec2(0.0f, 0.0f);
     world = new b2World(*gravity);
 
 
     // declare world edge
         b2BodyDef wallBodyDef;
         wallBodyDef.position.Set(0,0);
-        wallBody = world->CreateBody(&wallBodyDef);
+        auto wallBody = world->CreateBody(&wallBodyDef);
         wallBody->SetType(b2_staticBody);
 
         b2EdgeShape worldEdge;
@@ -123,8 +105,7 @@ void SceneManager::InitializeScene()
         worldEdge.Set(converter::convertToB2Vec2(rect.bottomLeft()), converter::convertToB2Vec2(rect.bottomRight()));
         wallBody->CreateFixture(&wallFixtureDef);
 
-        WindowManager::getView()->setScene(scene);
-        WindowManager::getView()->setStyleSheet("background-image: url(:/images/src/SpaceBackground.png);");
+
 
 }
 
