@@ -6,7 +6,7 @@
 #include <vehicle.h>
 #include <QTimer>
 #include <qobjectdefs.h>
-#include <debug_mass_dashboard.h>
+#include <debug_dashboard.h>
 
 class Player : public QWidget{
 

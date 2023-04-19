@@ -4,15 +4,19 @@
 void Vehicle::move()
 {
 
-
 }
 Vehicle::Vehicle() : GameObject(new struct Model(1))
 {
 	qDebug() << "Vehicle Constructor 1";
 }
-Vehicle::Vehicle(struct Model* m) : GameObject(m)
+Vehicle::Vehicle(struct Model* m, QPixmap* pixmap) : GameObject(m, pixmap)
 {
     qDebug() << "Vehicle Constructor 2";
+}
+
+b2BodyDef* Vehicle::getBodyDef()
+{
+    return model->getBodyDef();
 }
 
 void Vehicle::startInput(QTimer* timer_, QKeyEvent* event)
@@ -93,26 +97,66 @@ void Vehicle::stopInput(QTimer* timer_, QKeyEvent* event)
 
         break;
     case Qt::Key_X:
-
+        getBody()->SetTransform(b2Vec2_zero,0);
         break;
     }
 }
 
-int Vehicle::changeMass(int change)
+float32 Vehicle::debugChangeLinearDampening(float32 change)
 {
-    auto mass = model->getBody()->GetMass();
-    auto data = b2MassData();
-
-    if (data.mass < - change)
+    qDebug() << "DEBUG: CHANGE LINEAR DAMPENING";
+    auto linearDampening = getBody()->GetLinearDamping();
+    if (linearDampening + change < 0)
     {
-        data.mass = mass  + change;
-        data.mass = 0;
+        linearDampening = 0;
     }
-        model->getBody()->SetMassData(&data);
-    return data.mass;
+    else {
+        linearDampening += change;
+    }
+    getBody()->SetLinearDamping(linearDampening);
+    return linearDampening;
+}
+float32 Vehicle::debugChangeThrust(float32 change)
+{
+    float32 val;
+    qDebug() << "DEBUG: CHANGE THRUST";
+    for (Engine* e : engines)
+    {
+        e->adjustAcceleration(change);
+        val = e->getAcceleration();
+    }
 
+    return val;
+}
 
-
+float32 Vehicle::debugChangeMaxThrust(float32 change)
+{
+    qDebug() << "DEBUG: CHANGE MAX THRUST";
+    float32 val;
+    qDebug() << "DEBUG: CHANGE THRUST";
+    for (Engine* e : engines)
+    {
+        e->adjustMaxThrust(change);
+        val = e->getMaxThrust();
+    }
+    return val;
+}
+float32 Vehicle::debugChangeMass(float32 change)
+{
+    qDebug() << "DEBUG: CHANGE VEHICLE MASS";
+    auto mass = getBody()->GetMass();
+    if (mass + change < 0)
+    {
+        mass = 0;
+    }
+    else {
+        mass += change;
+    }
+    b2MassData data;
+    getBody()->GetMassData(&data);
+    data.mass = mass;
+    getBody()->SetMassData(&data);
+    return mass;
 }
 void Vehicle::killEngines()
 {
@@ -121,7 +165,6 @@ void Vehicle::killEngines()
         e->setActive(false);
     }
 }
-
 //void Vehicle::setBody(b2Body* b)
 //{
 //	 TODO: implement vehicle attributes
@@ -145,9 +188,11 @@ void Vehicle::fire()
     {
         w->Fire();
     }
+}
 
-
-
+void Vehicle::keyPressEvent(QKeyEvent* event)
+{
+    startInput(timer, event);
 }
 void Vehicle::stopFullBrake(){
     for (Engine* e : engines)

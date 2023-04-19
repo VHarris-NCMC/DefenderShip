@@ -63,10 +63,11 @@ SOURCES += \
 	dashboard.cpp \
 	dashboardfield.cpp \
 	dashpanel.cpp \
-	debug_mass_dashboard.cpp \
+	debug_dashboard.cpp \
 	debugger.cpp \
 	enemy.cpp \
 	engine.cpp \
+	exceptions.cpp \
 	gameObject.cpp \
 	gamemanager.cpp \
 	inputmanager.cpp \
@@ -147,10 +148,11 @@ HEADERS += \
 	dashboard.h \
 	dashboardfield.h \
 	dashpanel.h \
-	debug_mass_dashboard.h \
+	debug_dashboard.h \
 	debugger.h \
 	enemy.h \
 	engine.h \
+	exceptions.h \
 	gameObject.h \
 	inputObject.h \
 	inputmanager.h \
@@ -601,6 +603,9 @@ DISTFILES += \
     Box2D/B2.cxxflags \
     Box2D/Box2DConfig.cmake \
     Box2D/CMakeLists.txt \
+    src/SpaceBackground.png \
+    src/Spaceship1.PNG \
+    src/Spaceship2.PNG \
     src/plume.gif
 
 SUBDIRS += \
@@ -608,6 +613,9 @@ SUBDIRS += \
 
 FORMS += \
 	mainwindow.ui
+
+RESOURCES += \
+	Images.qrc
 
 
 

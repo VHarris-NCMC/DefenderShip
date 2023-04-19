@@ -21,7 +21,7 @@ Projectile::Projectile(int model, ProjectileDef def) : GameObject(new struct Mod
 
 void Projectile::move()
 {
-   this->setPos(this->x(), this->y() +speed);
+
     lifespan-=1;
     if (lifespan<=0)
     {

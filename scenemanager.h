@@ -14,6 +14,9 @@
 #include<QBrush>
 #include <QPen>
 #include<converter.h>
+#include <converter.h>
+#include "Box2D/Dynamics/b2Fixture.h"
+#include <Box2D/Collision/Shapes/b2EdgeShape.h>
 //#include <debugger.h>
 
 class SceneManager
@@ -26,6 +29,7 @@ class SceneManager
     friend class UpdateManager;
     friend class WindowManager;
 		void safeStep();
+    static b2Body* addToWorld(b2BodyDef*);
 		// Get Singleton Instance
 
 		static SceneManager* Instance()
@@ -64,10 +68,9 @@ class SceneManager
 		//Member fields
 		QGraphicsScene* scene;
         b2World* world;
-		b2Vec2* gravity;
-		b2Body* groundBody;
-		b2BodyDef groundBodyDef;
-		b2PolygonShape groundBox;
+        b2Vec2* gravity;
+        b2Body* wallBody;
+
 
         // debug Stuff
 
@@ -91,13 +94,14 @@ class SceneManager
         friend class GameManager;
         friend class Player;
         friend class Vehicle;
-        friend class DEBUG_MASS_DASHBOARD;
+        friend class DASHBOARD_DEBUG_MASS;
     public:
         debugger();
         ~debugger();
         void log(int level, QString s);
-        static const bool DEBUGGING = true;
+        static const bool DEBUGGING = false;
     private:
+           const QString BACKGROUND = "/src/SpaceBackground.png";
         const int debugLevel = 0;
         std::list<QGraphicsItem*> debug_items = std::list<QGraphicsItem*>();
         // b2Draw interface
@@ -111,7 +115,10 @@ class SceneManager
         void Clear();
         void debug();
     public:
-        int debugMass(int change);
+        static  float32 debugLinearDamping(double change);
+        static  float32 debugMass(double change);
+        static float32 debugThrust(double change);
+        static float32 debugMaxThrust(double change);
 };
 debugger debug;
 };

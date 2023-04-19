@@ -1,0 +1,16 @@
+<RCC>
+    <qresource prefix="/sprites">
+        <file>src/default.gif</file>
+        <file>src/plume.gif</file>
+        <file>src/plume_with_smoke.gif</file>
+        <file>src/Spaceship1.PNG</file>
+        <file>src/Spaceship2.PNG</file>
+        <file>src/plume_with_smoke-modified.png</file>
+    </qresource>
+    <qresource prefix="/images">
+        <file>src/SpaceBackground.png</file>
+    </qresource>
+    <qresource prefix="/">
+        <file>src/plume_with_smoke-modified.png</file>
+    </qresource>
+</RCC>

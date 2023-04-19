@@ -5,7 +5,6 @@
 #include "components.h"
 #include "weapon.h"
 #include <inputObject.h>
-#include <QGraphicsPolygonItem>
 #include <QVector2D>
 #include <Projectile.h>
 #include <GameObject.h>
@@ -22,7 +21,7 @@ class Vehicle :  public  GameObject
 		Q_OBJECT
     public:
         explicit Vehicle();
-        explicit Vehicle(struct Model *m);
+        explicit Vehicle(struct Model *m, QPixmap* pixmap);
         Vehicle(const Vehicle &) = delete;
         Vehicle(Vehicle &&) = delete;
         Vehicle &operator=(const Vehicle &) = delete;
@@ -32,9 +31,11 @@ class Vehicle :  public  GameObject
 
         void startInput(QTimer *timer_, QKeyEvent *event_);
         void stopInput(QTimer *timer_, QKeyEvent *event_);
-
-        int changeMass(int change);
-
+        
+        float32 debugChangeLinearDampening(float32 change);
+        float32 debugChangeMass(float32 change);
+        float32 debugChangeThrust(float32 change);
+        float32 debugChangeMaxThrust(float32 change);
     public slots:
         void move();
 
@@ -91,7 +92,7 @@ protected slots:
     }
 	   virtual void moveBackward()
 	   {
-		   auto body = model->getBody();
+           auto body = getBody();
 		   if (body->GetLinearDamping() <=5){
 			   body->SetLinearDamping(body->GetLinearDamping()+1);
 		   }
@@ -126,15 +127,15 @@ protected slots:
 
     private:
        Weapon* BulletWeapons[2] = {
-                                    new Weapon(new b2Vec2(-1, 0), model->getBody(), new ProjectileDef()),
-            new Weapon(new b2Vec2(1, 0), model->getBody(), new ProjectileDef())
+                                    new Weapon(new b2Vec2(-1, 0), getBody(), new ProjectileDef()),
+            new Weapon(new b2Vec2(1, 0), getBody(), new ProjectileDef())
         };
         const Weapon* MissileWeapons[0] = {};
         const Weapon* RocketWeapons[0] = {};
         const Weapon* AreaWeapons[0] = {};
         Engine* engines[2]= {
-                              new Engine(new b2Vec2(-6 + model->getBody()->GetPosition().x, model->getBody()->GetPosition().y+1), model->getBody(), new Thruster(*components::THRUSTER_1)),
-            new Engine(new b2Vec2(6 + model->getBody()->GetPosition().x, 1 + model->getBody()->GetPosition().y), model->getBody(), new Thruster(*components::THRUSTER_1))
+                              new Engine(new b2Vec2(-6 + getBody()->GetPosition().x, getBody()->GetPosition().y+1), getBody(), new Thruster(*components::THRUSTER_1)),
+            new Engine(new b2Vec2(6 + getBody()->GetPosition().x, 1 + getBody()->GetPosition().y), getBody(), new Thruster(*components::THRUSTER_1))
         };
         Plume* plume;
 		//vehicle controls

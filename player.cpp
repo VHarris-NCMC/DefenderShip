@@ -5,13 +5,10 @@
 Player::Player()
 {
 	qDebug() << "Player Constructor 1";
-		QWidget::grabKeyboard();
-		vehicle = new Vehicle(new Model(1));
+        QWidget::grabKeyboard();
+    vehicle = new Vehicle(new Model(1), new QPixmap(":/sprites/src/Spaceship1.PNG", "png", Qt::AutoColor));
 		InputTimer = new QTimer();
         InputTimer->start(25);
-        //draw the player vehicle
-
-
 
 }
 

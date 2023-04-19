@@ -3,7 +3,7 @@
 
 
 
-DashboardField::DashboardField(QWidget* parent) : QWidget(parent)
+DashboardField::DashboardField(QWidget* parent, QString fieldName, QWidget* contentWidget) : QWidget(parent)
 {
     upButton = new QPushButton("+");
     QFont f = upButton->font();
@@ -12,9 +12,9 @@ DashboardField::DashboardField(QWidget* parent) : QWidget(parent)
     upButton->setFont(f);
     downButton = new QPushButton("-");
     downButton->setFont(f);
-    label = new QLabel(fieldName());
+    label = new QLabel(fieldName);
     label->setFont(f);
-    Content = ContentWidget();
+    Content = contentWidget;
     Content->setFont(f);
         f.setPointSize(f.pointSize()+5);
 

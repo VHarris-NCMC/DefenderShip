@@ -23,6 +23,10 @@ public:
     void applyBrake();
     void stopBrake();
     b2Body* getBody();
+    float32 adjustAcceleration(float32 f);
+    float32 adjustMaxThrust(float32 f);
+    float32 getAcceleration();
+    float32 getMaxThrust();
 private:
     Plume mPlume = Plume(&mBody->GetPosition(), parent);
     Thruster* mThruster;

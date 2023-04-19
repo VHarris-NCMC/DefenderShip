@@ -10,7 +10,7 @@
 #include <DashPanel.h>
 #include <QPushButton>
 
-#include <debug_mass_dashboard.h>
+#include <debug_dashboard.h>
 
 class Dashboard : public QDockWidget
 {
@@ -27,13 +27,13 @@ public:
 private:
     void addPanels(QLayout* layout);
     void addFields(QGridLayout* grid, QWidget* widget);
-
-
-    std::map<DEBUG_MASS_DASHBOARD*,bool> fields = {
-        {new DEBUG_MASS_DASHBOARD(), true},
-        {new DEBUG_MASS_DASHBOARD(), true},
-        {new DEBUG_MASS_DASHBOARD(), true},
-        {new DEBUG_MASS_DASHBOARD(), true}
+    
+    
+    std::map<DashboardField*,bool> fields = {
+                                                     {new DASHBOARD_DEBUG_MASS(), true},
+        {new DASHBOARD_DEBUG_LINEARDAMPING(), true},
+        {new DASHBOARD_DEBUG_THRUST(), true},
+        {new DASHBOARD_DEBUG_MAXTHRUST(), true}
 
     };
 };

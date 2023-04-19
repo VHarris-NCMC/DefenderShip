@@ -17,10 +17,8 @@ int main(int argc, char *argv[])
 
     WindowManager* windowManager = WindowManager::Instance();
     SceneManager * sceneManager = SceneManager::Instance();
-       GameManager* gameManager = GameManager::Instance();
      UpdateManager* UPDATER = new UpdateManager();
-
-
+    GameManager::SetPlayer(new Player());
 
     return a.exec();
 

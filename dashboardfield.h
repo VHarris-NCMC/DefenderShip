@@ -13,21 +13,18 @@ class DashboardField : public QWidget
 {
     Q_OBJECT
 public:
-   explicit DashboardField(QWidget* parent = nullptr);
+    explicit DashboardField(QWidget* parent = nullptr, QString fieldName = "DASHBOARD_DEBUG", QWidget* = new QLabel ("DEFAULT WIDGET"));
     virtual ~DashboardField(){}
 protected:
-    virtual QString fieldName() {return "FIELD: ";}
-    virtual QWidget* ContentWidget(){ return new QLabel("VALUE");}
     QWidget* Content;
-
-   protected slots:
-   virtual void onUpButtonPressed()=0;
+    QLabel* label;
+protected slots:
+    virtual void onUpButtonPressed()=0;
     virtual void onDownButtonPressed()=0;
 
 private:
    QPushButton* downButton;
     QPushButton* upButton;
-   QLabel* label;
 
 };
 

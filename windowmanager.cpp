@@ -26,10 +26,16 @@ void WindowManager::InitializeWIndow()
     view = new QGraphicsView();
 
 
+    // Configure Background
+    //view->setBackgroundBrush(QPixmap(BACKGROUND, "png", Qt::AutoColor));
+    auto viewRect  = new QRect(QPoint(-1500, 1500), QPoint(1500, -1500));
+    view->setAutoFillBackground(true);
+
 
 	//Prevent Scrolling
 	view->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 	view->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
 	// Show window
 
     window->setCentralWidget(view);

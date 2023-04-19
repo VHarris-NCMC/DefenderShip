@@ -1,13 +1,24 @@
 
 #include "component.h"
-
+#include <GameObject.h>
 #include <Box2D/Dynamics/b2Fixture.h>
+#include <scenemanager.h>
+#include <converter.h>
+#include <CONFIG.h>
 
 
 
-
-Component::Component(const b2Vec2* localPos_,  b2Body* anchor)
+Component::Component(const b2Vec2* localPos_,  b2Body* anchor) :  QObject()
 {
+    if (localPos_ == nullptr)
+    {
+        qDebug() << " LOCAL POSITION IS NULL VALUE";
+            localPos_ = new b2Vec2(0,0);
+    }
+    if (anchor == nullptr)
+    {
+            qDebug() << " ERROR: ANCHOR PARENT NOT DEFINED";
+    }
     parent = anchor;
     mRelativePosition = localPos_;
     QTimer* timer = new QTimer();

@@ -12,12 +12,21 @@ QPointF converter::convertToQPointF(b2Vec2 vector)
 
 }
 
-b2Vec2 converter::convertToB2Point(QPointF qp)
+b2Vec2 converter::convertToB2Vec2(QPointF qp)
 {
 		b2Vec2 b2pt;
 		b2pt.x =  qp.x();
-		b2pt.y = qp.y();
-		return b2pt;
+        b2pt.y = qp.y();
+        return b2pt;
+}
+
+b2Vec2 converter::convertToB2Vec2(QPoint q_point)
+{
+
+        b2Vec2 b2pt;
+        b2pt.x =  q_point.x();
+        b2pt.y = q_point.y();
+        return b2pt;
 }
 //b2Vec2 converter::convert(QVector2D vector)
 //{

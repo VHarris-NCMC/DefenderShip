@@ -11,7 +11,9 @@ class converter
 	public:
         converter();
         static QPointF convertToQPointF(b2Vec2 vector);
-		static b2Vec2 convertToB2Point(QPointF Qpoints);
+        static b2Vec2 convertToB2Vec2(QPointF q_point);
+        static b2Vec2 convertToB2Vec2(QPoint q_point);
+
 
 };
 

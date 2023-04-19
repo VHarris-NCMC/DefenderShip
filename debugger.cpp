@@ -1,6 +1,8 @@
 
+#include "exceptions.cpp"
 #include "scenemanager.h"
 #include <GameManager.h>
+#include <QLineF>
 
 
 SceneManager::debugger::debugger() : b2Draw()
@@ -28,7 +30,10 @@ void SceneManager::debugger::DrawPolygon(const b2Vec2* vertices, int32 vertexCou
 }
 void SceneManager::debugger::DrawSolidPolygon(const b2Vec2* vertices, int32 vertexCount, const b2Color& color)
     {
-
+    if(!DEBUGGING)
+    {
+        return;
+    }
     QPolygonF* pts = new QPolygonF();
 
     for (int i = 0; i < vertexCount; i++)
@@ -47,19 +52,30 @@ void SceneManager::debugger::DrawSolidPolygon(const b2Vec2* vertices, int32 vert
     };
 void SceneManager::debugger::DrawCircle(const b2Vec2& center, float32 radius, const b2Color& color)
     {
-        qDebug()<< "Hello2";
+    qDebug() << "DrawCircle graphical debug not implemented";
+        throw ("Not implemented)");
     };
 void SceneManager::debugger::DrawSolidCircle(const b2Vec2& center, float32 radius, const b2Vec2& axis, const b2Color& color)
     {
-        qDebug()<< "Hello3";
+        qDebug() << "DrawSolidCircle graphical debug not implemented";
+        throw ("Not implemented)");
     };
 void SceneManager::debugger::DrawSegment(const b2Vec2& p1, const b2Vec2& p2, const b2Color& color)
     {
-        qDebug()<< "Hello4";
+        QLineF* line = new QLineF(converter::convertToQPointF(p1), converter::convertToQPointF(p2));
+        auto graphic_ = new QGraphicsLineItem();
+
+        graphic_->setLine(*line);
+        graphic_->show();
+
+        debug_items.push_back(graphic_);
+        graphic_->setPen(QPen(Qt::blue));
+        SceneManager::Instance()->addToScene(graphic_);
     };
 void SceneManager::debugger::DrawTransform(const b2Transform& xf)
     {
-        qDebug()<< "Hello5";
+        qDebug() << "DrawTransform graphical debug not implemented";
+        throw ("Not implemented)");
     };
     void SceneManager::debugger::Clear()
     {
@@ -77,11 +93,26 @@ void SceneManager::debugger::DrawTransform(const b2Transform& xf)
     {
 
     }
-
-    int SceneManager::debugger::debugMass(int change)
+    float32 SceneManager::debugger::debugMass(double change)
     {
-        auto def = GameManager::Instance()->player->getVehicle()->changeMass(change);
+        if (GameManager::GetPlayer() == nullptr) { return 0;}
+        else{ return GameManager::GetPlayer()->getVehicle()->debugChangeMass(change);}
+    }
 
+    float32 SceneManager::debugger::debugThrust(double change)
+    {
+        if (GameManager::GetPlayer() == nullptr) { return 0;}
+        else{ return GameManager::GetPlayer()->getVehicle()->debugChangeThrust(change);}
+    }
 
+    float32 SceneManager::debugger::debugMaxThrust(double change)
+    {
+        if (GameManager::GetPlayer() == nullptr) { return 0;}
+        else{ return GameManager::GetPlayer()->getVehicle()->debugChangeMaxThrust(change);}
+    }
+    float32 SceneManager::debugger::debugLinearDamping(double change)
+    {
+        if (GameManager::GetPlayer() == nullptr) { return 0;}
+        else{ return GameManager::GetPlayer()->getVehicle()->debugChangeLinearDampening(change);}
     }
 

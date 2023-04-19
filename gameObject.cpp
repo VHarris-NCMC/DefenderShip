@@ -23,13 +23,17 @@
 //	timer->start(CONFIG::GameSpeed());
 //	qDebug() << "Object Created";
 //}
-GameObject::GameObject(Model* m)
+GameObject::GameObject(Model* m, QPixmap* pixmap)
 {
     if (m == nullptr)
     {
         qDebug() << "Model is null";
     }
     GenerateObject(m);
+    sprite = new  Sprite(&getBody()->GetPosition(), getBody());
+    SceneManager::Instance()->addToScene(sprite);
+
+
 }
 void GameObject::GenerateObject(Model* model_)
 {
@@ -45,25 +49,22 @@ void GameObject::GenerateObject(Model* model_)
     }
     b2PolygonShape* shape = new b2PolygonShape(*model->getShape());
     b2FixtureDef fixDef;
-
-        fixDef.shape = shape;
-	fixDef.friction = 0;
+    fixDef.shape = shape;
+    fixDef.friction = 0;
     fixDef.density = .5;
-
-
-    model->setBody(SceneManager::Instance()->getWorld()->CreateBody(model->getBodyDef()));
-    model->getBody()->CreateFixture(&fixDef);
-
     QPolygonF* polyF = (model->getVertices() == nullptr) ? buildPoly() : buildPoly(model->getVertices());
 
             //set graphic*
-    auto graphic_ = new QGraphicsPolygonItem();
-    graphic_->setPolygon(*polyF);
-    graphic_->show();
+    auto polygon = new QGraphicsPolygonItem();
+    polygon->setPolygon(*polyF);
+    polygon->show();
 
     //notify SM that object was created
-	model->setPoly(graphic_);
-	SceneManager::Instance()->addToScene(graphic_);
+
+
+    SceneManager::Instance()->addToScene(polygon);
+    body = SceneManager::addToWorld(model->getBodyDef());
+    //activate pixmap    Sprite* sprite = new Sprite(localvec,  model->getBody());
 
 	//Start Timer
 	timer = new QTimer();
@@ -94,7 +95,11 @@ void GameObject::update()
 {
 //		 Adjust Angle & Position of GraphicPolygon  to match body
     //model->getPoly()->setRotation(model->getBody()->GetWorldVector(b2Vec2(0,1)).y);
-    model->syncTransform();
+
+    if ( body != nullptr && polygon != nullptr)
+    {
+        model->syncTransform(body, polygon);
+    }
 
 
 

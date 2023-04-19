@@ -10,7 +10,7 @@
 #include <qgraphicsitem.h>
 #include <Box2D/Collision/Shapes/b2PolygonShape.h>
 #include <Box2D/Collision/Shapes/b2Shape.h>
-
+#include <scenemanager.h>
 
 
 struct Model
@@ -21,17 +21,11 @@ struct Model
 		Model(int i);
 		std::list<QPointF>* getVertices(){return &vertices;};
 		b2BodyDef* getBodyDef(){return bodyDef;};
-		b2Body* getBody(){return body;};
         b2PolygonShape* getShape();
         QGraphicsPolygonItem* getPoly(){return poly;};
-		void setPoly(QGraphicsPolygonItem* poly_){poly = poly_;};
-		void setBody(b2Body body_){body = &body_;};
-		void setBody(b2Body* body_){ body = body_;};
-		void setBody(const b2Body& body_){body = new b2Body(body_);};
 
-        void syncTransform();
-	private:
-		b2Body* body = {nullptr};
+        void syncTransform(b2Body* body, QGraphicsItem* poly);
+    private:
         b2PolygonShape* shape = { nullptr };
 		std::list<QPointF> vertices;
 		b2BodyDef*  bodyDef = {nullptr};

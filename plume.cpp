@@ -2,7 +2,8 @@
 
 Plume::Plume(const b2Vec2* localPosition_,  b2Body* anchor) : Sprite(localPosition_, anchor)
 {
-setPixmap(QPixmap("src/plume_with_smoke.gif", "gif", Qt::AutoColor));
+    pixmap = new QPixmap(":/sprites/src/plume_with_smoke-modified.png", "png", Qt::AutoColor);
+    setPixmap(*pixmap);
     center();
     //setPixmap(QPixmap("src/plume.gif", "gif", Qt::AutoColor ));
 

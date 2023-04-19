@@ -2,30 +2,28 @@
 
 
 
-
-GameManager::GameManager()
+GameManager::GameManager(Player* player)
 {
-    InitializePlayer();
 }
 
-
-
-
-
-void GameManager::InitializePlayer()
-{
-	if  (player == nullptr)
-	{
-        player = new Player();
+Player * GameManager::_player_ = nullptr;
+void GameManager::SetPlayer(Player* player){
+    if (_player_ == nullptr)
+    {
+        _player_ = player;
+    }
+    else{
+        qDebug() << "ERROR, PLAYER ALREADY EXISTS";
     }
 }
-Player& GameManager::getPlayerInstance()
-{
-    return *player;
-}
-Player* GameManager::getPlayer()
-{
-    return player;
-}
 
+Player* GameManager::GetPlayer()
+{
+    if (_player_ == nullptr)
+    {
+        qDebug() << " ERROR, PLAYER NOT INSTANTIATED";
+        return nullptr;
+    }
+    return _player_;
+}
 

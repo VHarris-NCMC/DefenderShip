@@ -20,6 +20,7 @@ Model::Model(int i)
         //vertices = defaultObject;
         break;
     }
+    SceneManager::addToWorld(bodyDef);
 
 }
 
@@ -37,11 +38,12 @@ b2PolygonShape* Model::getShape()
     }
 }
 
-void Model::syncTransform()
+void Model::syncTransform(b2Body* body, QGraphicsItem* poly)
 {
+    if (body == nullptr){ qDebug() << "BODY NULL PTR"; return;
+        if (poly == nullptr){qDebug()<< "POLY NULLPTR"; return;}
    // b2Transform t = body->GetTransform();
     poly->setRotation(qRadiansToDegrees(body->GetAngle()));
     auto pos = QPointF(converter::convertToQPointF(body->GetPosition()));
     poly->setPos(pos);
-
 }

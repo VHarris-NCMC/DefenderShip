@@ -5,7 +5,7 @@
 #include<QGraphicsRectItem>
 #include<QObject>
 #include <ProjectileDef.h>
-class Projectile : public GameObject, public QGraphicsRectItem
+class Projectile : public GameObject
 {
         Q_OBJECT
     public:

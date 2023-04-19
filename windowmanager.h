@@ -10,6 +10,8 @@
 #include <dashboard.h>
 class WindowManager
 {
+private:
+
 	public:
 		friend class SceneManager;
 		static WindowManager* Instance()
